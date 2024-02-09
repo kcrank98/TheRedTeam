@@ -6,19 +6,19 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    [SerializeField] GameObject menuActive;
-    [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject menuWin;
-    [SerializeField] GameObject menuLose;
+    [SerializeField] GameObject activeMenu;
+    [SerializeField] GameObject pauseMenu;
+    [SerializeField] GameObject loseMenu;
+    [SerializeField] GameObject winMenu;
 
     public GameObject player;
-
     public bool isPaused;
     int enemyCount;
 
-    // Start is called before the first frame update
+    //awake will run before any other call crating this object before anything needs to use it
     void Awake()
     {
+        //create the manager and find the object that will be our player in any given instance by tag
         instance = this;
         player = GameObject.FindWithTag("Player");
     }
@@ -26,49 +26,43 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && menuActive == null)
+        if(Input.GetButtonDown("Cancel") && activeMenu == null)//if the escape key is pressed and there is no open menu
         {
-            statePaused();
-            menuActive = menuPause;
-            menuActive.SetActive(isPaused);
+            statePaused();//pause the game
+            activeMenu = pauseMenu;//current menu is the pause menu
+            activeMenu.SetActive(isPaused);// bring it to the screen
         }
     }
-
-    public void statePaused()
+    public void statePaused()//sets the game state into a paused state and brings back mouse
     {
         isPaused = !isPaused;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
     }
-
-    public void stateUnpaused()
+    public void stateUnPaused()//sets the game state into a running state and removes mouse
     {
         isPaused = !isPaused;
-        Time.timeScale = 1; // shoudnt hard code this
+        Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        menuActive.SetActive(false);
-        menuActive = null;
+        activeMenu.SetActive(false);//turns off the current menu
+        activeMenu = null;// there is no menu open anymore
     }
-
-    public void updateGameGoal(int amount)
+    public void updateGameGoal(int score)//will activly alter the total score until win or loss (same code as class for now)
     {
-        enemyCount += amount;
-
-        if (enemyCount <= 0)
+        enemyCount += score;// determent the current score(in this case number of enemys)
+        if (enemyCount <= 0)// if there are no enemys its a win
         {
-            // you win!
-            menuActive = menuWin;
-            menuActive.SetActive(true);
+            activeMenu = winMenu;
+            activeMenu.SetActive(true);
             statePaused();
         }
     }
-
-    public void youLose()
+    public void youLose()//on a player death show a loss menu
     {
         statePaused();
-        menuActive = menuLose;
-        menuActive.SetActive(true);
+        activeMenu = loseMenu;
+        activeMenu.SetActive(true);
     }
 }
