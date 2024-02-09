@@ -12,7 +12,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject winMenu;
 
     public GameObject player;
-    bool isPaused;
+    public bool isPaused;
     int enemyCount;
 
     //awake will run before any other call crating this object before anything needs to use it
@@ -30,19 +30,19 @@ public class gameManager : MonoBehaviour
         {
             statePaused();//pause the game
             activeMenu = pauseMenu;//current menu is the pause menu
-            activeMenu.SetActive(true);// bring it to the screen
+            activeMenu.SetActive(isPaused);// bring it to the screen
         }
     }
     public void statePaused()//sets the game state into a paused state and brings back mouse
     {
-        isPaused = true;
+        isPaused = !isPaused;
         Time.timeScale = 0;
         Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void stateUnPaused()//sets the game state into a running state and removes mouse
     {
-        isPaused = false;
+        isPaused = !isPaused;
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

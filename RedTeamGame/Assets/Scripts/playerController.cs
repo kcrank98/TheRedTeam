@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour ,IDamage
+public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
 
@@ -22,7 +22,6 @@ public class playerController : MonoBehaviour ,IDamage
     int jumpCount;
     bool isShooting;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +31,9 @@ public class playerController : MonoBehaviour ,IDamage
     // Update is called once per frame
     void Update()
     {
-       // if (!gameManager.instance.isPaused)
-        //{
+        
+        if (!gameManager.instance.isPaused)
+        {
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.blue);
 
             movement();
@@ -42,7 +42,7 @@ public class playerController : MonoBehaviour ,IDamage
             {
                 StartCoroutine(shoot());
             }
-       // }
+        }
 
     }
     private void movement()
@@ -90,10 +90,10 @@ public class playerController : MonoBehaviour ,IDamage
 
     public void takeDamage(int amount)
     {
-        //HP -= amount;
-        //if (HP <= 0)
-        //{
-        //    gameManager.instance.youLose();
-        //}
+        HP -= amount;
+        if (HP <= 0)
+        {
+            gameManager.instance.youLose();
+        }
     }
 }
