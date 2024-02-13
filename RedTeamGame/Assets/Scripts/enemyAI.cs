@@ -17,6 +17,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int targetFaceSpeed;
 
     [SerializeField] GameObject bullet;
+    [SerializeField] float attackDistance;
     [SerializeField] float shootRate;
 
     bool isShooting;
@@ -58,9 +59,12 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (!isShooting)
+                if (!isShooting && (agent.remainingDistance <= attackDistance))
                 {
-                    StartCoroutine(shoot());
+                    if (!agent.pathPending)
+                    {
+                        StartCoroutine(shoot());
+                    }
                 }
 
                 if (agent.remainingDistance < agent.stoppingDistance)
@@ -116,9 +120,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator flashMat()
     {
+        Color ogColor = model.material.color;
+
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        model.material.color = Color.white;
+        model.material.color = ogColor;
     }
 
     IEnumerator shoot()
