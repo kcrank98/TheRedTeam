@@ -23,7 +23,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerSpawnPos;
     public GameObject enemySpawnPos;
     public TimeSpan currentTime;
-    bool isPaused;
+    public bool isPaused;
     int enemyCount;
     float time;
     bool timerOn;
