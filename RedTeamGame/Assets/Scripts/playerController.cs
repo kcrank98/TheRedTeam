@@ -15,16 +15,19 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float shootRate;
-
+    [SerializeField] float HPPerc;
 
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
     bool isShooting;
+    int HPOrig;
 
     // Start is called before the first frame update
     void Start()
     {
+        HPOrig = HP;
+        respawn();
 
     }
 
@@ -91,9 +94,42 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        
+        StartCoroutine(flashDamage());
+        checkHPBelowPerc();
+
         if (HP <= 0)
         {
             gameManager.instance.youLose();
         }
+    }
+    void checkHPBelowPerc()
+    {
+        if (HP <= HPOrig * HPPerc)
+        {
+            gameManager.instance.damagePersist.gameObject.SetActive(true);
+        }
+        else
+        {
+            gameManager.instance.damagePersist.gameObject.SetActive(false);
+        }
+
+    }
+    IEnumerator flashDamage()
+    {
+        gameManager.instance.damageFlash.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.damageFlash.gameObject.SetActive(false);
+        checkHPBelowPerc();
+
+    }
+    public void respawn()
+    {
+        HP = HPOrig;
+        checkHPBelowPerc();
+
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
     }
 }
