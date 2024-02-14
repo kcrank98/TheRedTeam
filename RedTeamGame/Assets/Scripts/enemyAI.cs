@@ -17,6 +17,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int targetFaceSpeed;
 
     [SerializeField] GameObject bullet;
+    [SerializeField] float attackDistance;
     [SerializeField] float shootRate;
 
     bool isShooting;
@@ -24,6 +25,13 @@ public class enemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     Vector3 playerDir;
     int HPOrig;
+
+    //Patroling
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange;
+    public LayerMask whatIsGround;
+    public LayerMask whatIsPlayer;
 
 
 
@@ -38,6 +46,10 @@ public class enemyAI : MonoBehaviour, IDamage
         if (playerInRange && canSeePlayer())
         {
 
+        }
+        else if(!playerInRange && !canSeePlayer())
+        {
+            patroling();
         }
     }
 
@@ -58,9 +70,12 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (!isShooting)
+                if (!isShooting && (agent.remainingDistance <= attackDistance))
                 {
-                    StartCoroutine(shoot());
+                    if (!agent.pathPending)
+                    {
+                        StartCoroutine(shoot());
+                    }
                 }
 
                 if (agent.remainingDistance < agent.stoppingDistance)
@@ -116,9 +131,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator flashMat()
     {
+        Color ogColor = model.material.color;
+
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        model.material.color = Color.white;
+        model.material.color = ogColor;
     }
 
     IEnumerator shoot()
@@ -129,6 +146,42 @@ public class enemyAI : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    void patroling()
+    {
+        if (!walkPointSet)
+        {
+            searchWalkPoint();
+        }
+
+        if (walkPointSet)
+        {
+            agent.SetDestination(walkPoint);
+        }
+
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+        //walkPoint reached 
+        if(distanceToWalkPoint.magnitude <= 2f)
+        {
+            walkPointSet = false;
+        }
+    }
+
+    private void searchWalkPoint()
+    {
+        //calculate random point in range
+        float randZ = Random.Range(-walkPointRange, walkPointRange);
+        float randX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randX, transform.position.y, transform.position.z + randZ);
+
+        //check if walkPoint is valid
+        if(Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        {
+            walkPointSet = true;
+        }
     }
 
     void updateUI()
