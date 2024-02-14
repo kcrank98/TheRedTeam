@@ -21,10 +21,13 @@ public class playerController : MonoBehaviour, IDamage
     Vector3 playerVel;
     int jumpCount;
     bool isShooting;
+    int HPOrig;
 
     // Start is called before the first frame update
     void Start()
     {
+        HPOrig = HP;
+        //respawn();
 
     }
 
@@ -91,9 +94,42 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        //updatePlayerUI();
+        //StartCoroutine(flashDamage());
+
         if (HP <= 0)
         {
             gameManager.instance.youLose();
         }
     }
+    //void updatePlayerUI()
+    //{
+    //    if(HP < HP * .20)
+    //    {
+    //        gameManager.instance.damagePersist.SetActive(true);
+
+    //    }
+    //    else
+    //    {
+    //        gameManager.instance.damagePersist.SetActive(false);
+
+    //    }
+
+    //}
+    //IEnumerator flashDamage()
+    //{
+    //    gameManager.instance.damageFlash.SetActive(true);
+    //    yield return new WaitForSeconds(0.1f);
+    //    gameManager.instance.damageFlash.SetActive(false);
+
+    //}
+    //public void respawn()
+    //{
+    //    HP = HPOrig;
+    //    updatePlayerUI();
+
+    //    controller.enabled = false;
+    //    transform.position = gameManager.instance.playerSpawnPos.transform.position;
+    //    controller.enabled = true;
+    //}
 }
