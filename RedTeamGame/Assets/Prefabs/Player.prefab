@@ -51,13 +51,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 5516196950528769471}
   HP: 50
-  playerSpeed: 5
+  playerSpeed: 10
   jumpMax: 2
   jumpForce: 12
   gravity: -25
   shootDamage: 1
   shootDistance: 50
   shootRate: 0.5
+  HPPerc: 0
 --- !u!143 &5516196950528769471
 CharacterController:
   m_ObjectHideFlags: 0
@@ -153,8 +154,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.1
+  m_Height: 0.1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6950867946940626763

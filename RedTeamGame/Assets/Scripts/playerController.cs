@@ -17,6 +17,9 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] float HPPerc;
 
+    //[SerializeField] private GunSystem gunSystem;
+    //[SerializeField] private GunSystem.GunProperties currentGun;
+
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
@@ -28,7 +31,8 @@ public class playerController : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         respawn();
-
+        //gunSystem = new GunSystem();
+        //currentGun = gunSystem.GetCurrentGun();
     }
 
     // Update is called once per frame
@@ -40,6 +44,21 @@ public class playerController : MonoBehaviour, IDamage
             //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.blue);
 
             movement();
+
+            //float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
+
+            // Change gun based on scroll wheel movement
+            //if (scrollWheelInput > 0f) // Scroll up
+            //{
+            //    gunSystem.SwitchGun(GunSystem.GunType.Pistol);
+                
+            //}
+            //else if (scrollWheelInput <= 0f) // Scroll down
+            //{
+            //    gunSystem.SwitchGun(GunSystem.GunType.Rifle);
+            //}
+
+           //GunSystem.GunProperties gun = gunSystem.GetCurrentGun();
 
             if (Input.GetButton("Shoot") && !isShooting)
             {
@@ -84,6 +103,8 @@ public class playerController : MonoBehaviour, IDamage
             if (hit.transform != transform && dmg != null)
             {
                 dmg.takeDamage(shootDamage);
+                //dmg.takeDamage(currentGun.shootDamage);
+                
             }
         }
 
@@ -96,37 +117,42 @@ public class playerController : MonoBehaviour, IDamage
         HP -= amount;
         
         StartCoroutine(flashDamage());
-        checkHPBelowPerc();
+        //checkHPBelowPerc();
 
         if (HP <= 0)
         {
             gameManager.instance.youLose();
         }
     }
-    void checkHPBelowPerc()
-    {
-        if (HP <= HPOrig * HPPerc)
-        {
-            gameManager.instance.damagePersist.gameObject.SetActive(true);
-        }
-        else
-        {
-            gameManager.instance.damagePersist.gameObject.SetActive(false);
-        }
 
-    }
+
+    //void checkHPBelowPerc()
+    //{
+    //    if (HP <= HPOrig * HPPerc)
+    //    {
+    //        //gameManager.instance.damagePersist.gameObject.SetActive(true);
+    //        gameManager.instance.damagePersist.enabled = true;
+    //    }
+    //    else
+    //    {
+    //        //gameManager.instance.damagePersist.gameObject.SetActive(false);
+    //        gameManager.instance.damagePersist.enabled = false;
+
+    //    }
+    //}
+
     IEnumerator flashDamage()
     {
         gameManager.instance.damageFlash.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.damageFlash.gameObject.SetActive(false);
-        checkHPBelowPerc();
+        //checkHPBelowPerc();
 
     }
     public void respawn()
     {
         HP = HPOrig;
-        checkHPBelowPerc();
+        //checkHPBelowPerc();
 
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
