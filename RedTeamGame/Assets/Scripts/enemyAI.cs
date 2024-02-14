@@ -26,6 +26,13 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 playerDir;
     int HPOrig;
 
+    //Patroling
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange;
+    public LayerMask whatIsGround;
+    public LayerMask whatIsPlayer;
+
 
 
     void Start()
@@ -39,6 +46,10 @@ public class enemyAI : MonoBehaviour, IDamage
         if (playerInRange && canSeePlayer())
         {
 
+        }
+        else if(!playerInRange && !canSeePlayer())
+        {
+            patroling();
         }
     }
 
@@ -135,6 +146,42 @@ public class enemyAI : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+    }
+
+    void patroling()
+    {
+        if (!walkPointSet)
+        {
+            searchWalkPoint();
+        }
+
+        if (walkPointSet)
+        {
+            agent.SetDestination(walkPoint);
+        }
+
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+        //walkPoint reached 
+        if(distanceToWalkPoint.magnitude <= 2f)
+        {
+            walkPointSet = false;
+        }
+    }
+
+    private void searchWalkPoint()
+    {
+        //calculate random point in range
+        float randZ = Random.Range(-walkPointRange, walkPointRange);
+        float randX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randX, transform.position.y, transform.position.z + randZ);
+
+        //check if walkPoint is valid
+        if(Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        {
+            walkPointSet = true;
+        }
     }
 
     void updateUI()
