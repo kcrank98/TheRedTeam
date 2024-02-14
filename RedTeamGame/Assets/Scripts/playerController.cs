@@ -17,8 +17,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] float HPPerc;
 
-    //[SerializeField] private GunSystem gunSystem;
-    //[SerializeField] private GunSystem.GunProperties currentGun;
+    [SerializeField] private gunSystem gunSystem;
+    [SerializeField] private gunSystem.GunProperties currentGun;
 
     Vector3 move;
     Vector3 playerVel;
@@ -31,8 +31,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         respawn();
-        //gunSystem = new GunSystem();
-        //currentGun = gunSystem.GetCurrentGun();
+        //gunSystem = new gunSystem();
     }
 
     // Update is called once per frame
@@ -45,20 +44,24 @@ public class playerController : MonoBehaviour, IDamage
 
             movement();
 
-            //float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
+            float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
 
-            // Change gun based on scroll wheel movement
-            //if (scrollWheelInput > 0f) // Scroll up
-            //{
-            //    gunSystem.SwitchGun(GunSystem.GunType.Pistol);
-                
-            //}
-            //else if (scrollWheelInput <= 0f) // Scroll down
-            //{
-            //    gunSystem.SwitchGun(GunSystem.GunType.Rifle);
-            //}
+            //Change gun based on scroll wheel movement
+            if (scrollWheelInput > 0f) // Scroll up
+            {
+                gunSystem.SwitchGun(gunSystem.GunType.Pistol);
+                currentGun = gunSystem.GetCurrentGun();
 
-           //GunSystem.GunProperties gun = gunSystem.GetCurrentGun();
+
+            }
+            else if (scrollWheelInput <= 0f) // Scroll down
+            {
+                gunSystem.SwitchGun(gunSystem.GunType.Rifle);
+                currentGun = gunSystem.GetCurrentGun();
+
+            }
+
+            gunSystem.GunProperties gun = gunSystem.GetCurrentGun();
 
             if (Input.GetButton("Shoot") && !isShooting)
             {
@@ -102,9 +105,9 @@ public class playerController : MonoBehaviour, IDamage
 
             if (hit.transform != transform && dmg != null)
             {
+                shootDamage = currentGun.shootDamage;
                 dmg.takeDamage(shootDamage);
-                //dmg.takeDamage(currentGun.shootDamage);
-                
+                //dmg.takeDamage(currentGun.shootDamage);  
             }
         }
 

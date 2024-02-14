@@ -241,6 +241,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c6a1648d6f5d8b45997037cbb0ea5ff, type: 3}
+--- !u!1 &599859909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3860080454848694472, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
+  m_PrefabInstance: {fileID: 1833607951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &599859916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599859909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d292c48f7f1bb3e4e820b07bd738bcf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentGun:
+    gunType: 0
+    shootRate: 0
+    shootDamage: 0
+    shootDistance: 0
 --- !u!1001 &711925470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -877,6 +899,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4830529142271345928, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
+      propertyPath: gunSystem
+      value: 
+      objectReference: {fileID: 599859916}
+    - target: {fileID: 4830529142271345928, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
       propertyPath: damagePersistPerc
       value: 0.5
       objectReference: {fileID: 0}
@@ -899,7 +925,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3860080454848694472, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 599859916}
   m_SourcePrefab: {fileID: 100100000, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
 --- !u!1 &1955020215
 GameObject:
