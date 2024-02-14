@@ -15,7 +15,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float shootRate;
-
+    [SerializeField] float HPPerc;
 
     Vector3 move;
     Vector3 playerVel;
@@ -27,7 +27,7 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
-        //respawn();
+        respawn();
 
     }
 
@@ -94,42 +94,42 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        //updatePlayerUI();
-        //StartCoroutine(flashDamage());
+        
+        StartCoroutine(flashDamage());
+        checkHPBelowPerc();
 
         if (HP <= 0)
         {
             gameManager.instance.youLose();
         }
     }
-    //void updatePlayerUI()
-    //{
-    //    if(HP < HP * .20)
-    //    {
-    //        gameManager.instance.damagePersist.SetActive(true);
+    void checkHPBelowPerc()
+    {
+        if (HP <= HPOrig * HPPerc)
+        {
+            gameManager.instance.damagePersist.gameObject.SetActive(true);
+        }
+        else
+        {
+            gameManager.instance.damagePersist.gameObject.SetActive(false);
+        }
 
-    //    }
-    //    else
-    //    {
-    //        gameManager.instance.damagePersist.SetActive(false);
+    }
+    IEnumerator flashDamage()
+    {
+        gameManager.instance.damageFlash.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.damageFlash.gameObject.SetActive(false);
+        checkHPBelowPerc();
 
-    //    }
+    }
+    public void respawn()
+    {
+        HP = HPOrig;
+        checkHPBelowPerc();
 
-    //}
-    //IEnumerator flashDamage()
-    //{
-    //    gameManager.instance.damageFlash.SetActive(true);
-    //    yield return new WaitForSeconds(0.1f);
-    //    gameManager.instance.damageFlash.SetActive(false);
-
-    //}
-    //public void respawn()
-    //{
-    //    HP = HPOrig;
-    //    updatePlayerUI();
-
-    //    controller.enabled = false;
-    //    transform.position = gameManager.instance.playerSpawnPos.transform.position;
-    //    controller.enabled = true;
-    //}
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerSpawnPos.transform.position;
+        controller.enabled = true;
+    }
 }
