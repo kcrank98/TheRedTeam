@@ -363,10 +363,19 @@ MonoBehaviour:
   headPos: {fileID: 7683297572389773842}
   HP: 50
   HPBar: {fileID: 2407793303828707256}
-  viewCone: 45
+  viewCone: 50
   targetFaceSpeed: 5
   bullet: {fileID: 8417197538657703367, guid: 07a39ba8a8b7433468d8dcf5acb082a8, type: 3}
+  attackDistance: 2.5
   shootRate: 1
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 10
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!195 &6846060173894299914
 NavMeshAgent:
   m_ObjectHideFlags: 0
