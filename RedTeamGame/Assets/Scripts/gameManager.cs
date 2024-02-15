@@ -13,9 +13,10 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject winMenu;
+    
 
     [SerializeField] TMP_Text timer;
-
+    [SerializeField] TMP_Text winTime;
     public GameObject player;
     public Image damageFlash;
     public Image damagePersist;
@@ -79,7 +80,9 @@ public class gameManager : MonoBehaviour
         if (enemyCount <= 0)// if there are no enemys its a win
         {
             activeMenu = winMenu;
+            winTime.text = currentTime.Minutes + ":" + currentTime.Seconds; 
             activeMenu.SetActive(true);
+
             statePaused();
         }
     }
@@ -89,7 +92,7 @@ public class gameManager : MonoBehaviour
         activeMenu = loseMenu;
         activeMenu.SetActive(true);
     }
-    // pause the timer
+    //pause the timer
     public void timerStart()
     {
         timerOn = !timerOn;
@@ -107,7 +110,7 @@ public class gameManager : MonoBehaviour
             time += Time.deltaTime;
         }
         currentTime = TimeSpan.FromSeconds(time);
-        timer.text = currentTime.Minutes + ":" + currentTime.Seconds + ":" + currentTime.Milliseconds;
+        timer.text = currentTime.Minutes + ":" + currentTime.Seconds;
     }
 
 }
