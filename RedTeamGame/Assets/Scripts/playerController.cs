@@ -177,7 +177,6 @@ public class playerController : MonoBehaviour, IDamage
         gameManager.instance.shieldDamage.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.shieldDamage.SetActive(false);
-
     }
 
     IEnumerator flashDamage()
