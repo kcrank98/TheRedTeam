@@ -20,7 +20,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float sprintSpeed;
     [SerializeField] float sprintDuration;
     [SerializeField] float sprintRemaining;
-    private bool isSprinting = false;
+    //private bool isSprinting = false;
 
     [Header("Shooting")]
     [SerializeField] int shootDamage;
@@ -32,6 +32,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float HPPerc;
     [SerializeField] int HP;
     [SerializeField] int HPOrig;
+    [SerializeField] int shieldAmmount;
 
 
     [HideInInspector][SerializeField] gun currentGun;
