@@ -19,6 +19,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float shootRate;
+    [SerializeField] ParticleSystem muzzleFlash;
 
     [Header("HP")]
     [SerializeField] float HPPerc;
@@ -81,10 +82,15 @@ public class playerController : MonoBehaviour, IDamage
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
     }
+    private void sprint()
+    {
+        // add a sprint 
+        // make player bob
+    }
     IEnumerator shoot()
     {
         isShooting = true;
-
+        muzzleFlash.Play();
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
         {
@@ -100,6 +106,7 @@ public class playerController : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+        muzzleFlash.Stop();
     }
 
     public void takeDamage(int amount)
