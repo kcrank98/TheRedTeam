@@ -8,7 +8,6 @@ public class weaponSway : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float sensitivityMultiplier;
 
-
     private void Update()
     {
         // get mouse input
