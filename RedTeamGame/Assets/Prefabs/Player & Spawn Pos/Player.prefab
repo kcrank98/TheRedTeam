@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 5516196950528769471}
-  playerSpeed: 15
+  playerSpeed: 16
   origanalPlayerSpeed: 0
   jumpMax: 2
   jumpForce: 9
@@ -443,14 +443,15 @@ MonoBehaviour:
   sprintSpeed: 100
   sprintDuration: 3
   sprintRemaining: 3
-  shootDamage: 5
+  shootDamage: 10
   shootDistance: 50
   shootRate: 0.5
   muzzleFlash: {fileID: 6374929165481542872}
   HPPerc: 0.5
   HP: 50
   HPOrig: 0
-  shieldAmmount: 15
+  shieldAmountOrg: 0
+  shieldAmount: 15
   currentGun: {fileID: 0}
   currentGunDamage: 0
   shootPos: {fileID: 0}

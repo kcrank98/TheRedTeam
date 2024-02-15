@@ -195,4 +195,9 @@ public class playerController : MonoBehaviour, IDamage
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
+
+    public void updateHealth(int amount)
+    {
+        HP += amount;
+    }
 }

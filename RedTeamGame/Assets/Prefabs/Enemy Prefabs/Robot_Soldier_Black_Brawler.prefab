@@ -2506,7 +2506,7 @@ MonoBehaviour:
   agent: {fileID: 941874116226577140}
   shootPos: {fileID: 5274986704635345188}
   headPos: {fileID: 2492068274997441694}
-  HP: 50
+  HP: 10
   HPBar: {fileID: 6737331677290374402}
   viewCone: 50
   targetFaceSpeed: 5
