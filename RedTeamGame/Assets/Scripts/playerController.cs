@@ -32,7 +32,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float HPPerc;
     [SerializeField] int HP;
     [SerializeField] int HPOrig;
-    [SerializeField] int shieldAmmount;
+    [SerializeField] int shieldAmountOrg;
+    [SerializeField] int shieldAmount;
 
 
     [HideInInspector][SerializeField] gun currentGun;
@@ -52,6 +53,7 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
+        shieldAmountOrg = shieldAmount;
         respawn();
     }
 
@@ -139,11 +141,19 @@ public class playerController : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
-        HP -= amount;
-        
-        StartCoroutine(flashDamage());
-        checkHPBelowPerc();
+        if(shieldAmount > 0)
+        {
+            StartCoroutine(flashShieldDamage());
+            shieldAmount -= amount;
+        }
+        else
+        {
+            HP -= amount;
 
+            StartCoroutine(flashDamage());
+            checkHPBelowPerc();
+        }
+        
         if (HP <= 0)
         {
             gameManager.instance.youLose();
@@ -162,6 +172,13 @@ public class playerController : MonoBehaviour, IDamage
             gameManager.instance.damagePersist.gameObject.SetActive(false);
         }
     }
+    IEnumerator flashShieldDamage()
+    {
+        gameManager.instance.shieldDamage.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.shieldDamage.SetActive(false);
+
+    }
 
     IEnumerator flashDamage()
     {
@@ -173,6 +190,7 @@ public class playerController : MonoBehaviour, IDamage
     public void respawn()
     {
         HP = HPOrig;
+        shieldAmountOrg = shieldAmount;
 
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
