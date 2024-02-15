@@ -1,26 +1,44 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
 
-    [SerializeField] int HP;
+    [Header("Movement")]
     [SerializeField] float playerSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] float jumpForce;
     [SerializeField] float gravity;
+    int jumpCount;
 
+    [Header("Shooting")]
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float shootRate;
+    [SerializeField] ParticleSystem muzzleFlash;
+
+    [Header("HP")]
     [SerializeField] float HPPerc;
+    [SerializeField] int HP;
+    [SerializeField] int HPOrig;
+
+
+    [HideInInspector][SerializeField] gun currentGun;
+    [HideInInspector][SerializeField] int currentGunDamage;
+
+    [HideInInspector][SerializeField] Transform shootPos;
+    [HideInInspector][SerializeField] GameObject bullet;
+
+    // test code
+    //public static Action shootInput;
 
     Vector3 move;
     Vector3 playerVel;
-    int jumpCount;
     bool isShooting;
-    int HPOrig;
 
     // Start is called before the first frame update
     void Start()
@@ -40,31 +58,8 @@ public class playerController : MonoBehaviour, IDamage
             {
                 StartCoroutine(shoot());
             }
-
-            // Check if the player picks up a health pack by pressing "E"
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                CheckForHealthPackPickup();
-            }
         }
     }
-
-    private void CheckForHealthPackPickup()
-    {
-        HealthPack[] healthPacks = FindObjectsOfType<HealthPack>();
-        foreach (HealthPack pack in healthPacks)
-        {
-            if (pack.hasEnteredTrigger)
-            {
-                // Player is in the trigger zone, handle health pack pickup
-                RestoreHealth(20); // Heal the player by 20 HP
-                pack.gameObject.SetActive(false);
-                pack.useText.SetActive(false);
-                break;
-            }
-        }
-    }
-
     private void movement()
     {
         if (controller.isGrounded)
@@ -87,31 +82,39 @@ public class playerController : MonoBehaviour, IDamage
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
     }
-
-    private IEnumerator shoot()
+    private void sprint()
+    {
+        // add a sprint 
+        // make player bob
+    }
+    IEnumerator shoot()
     {
         isShooting = true;
-
+        muzzleFlash.Play();
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
         {
+            Debug.Log(hit.collider.name);
+
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
             if (hit.transform != transform && dmg != null)
             {
-                dmg.takeDamage(shootDamage);
+                dmg.takeDamage(shootDamage);       
             }
         }
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+        muzzleFlash.Stop();
     }
 
     public void takeDamage(int amount)
     {
         HP -= amount;
-
+        
         StartCoroutine(flashDamage());
+        checkHPBelowPerc();
 
         if (HP <= 0)
         {
@@ -119,24 +122,32 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
-    private IEnumerator flashDamage()
+
+    void checkHPBelowPerc()
+    {
+        if (HP <= HPOrig * HPPerc)
+        {
+            gameManager.instance.damagePersist.gameObject.SetActive(true);
+        }
+        else
+        {
+            gameManager.instance.damagePersist.gameObject.SetActive(false);
+        }
+    }
+
+    IEnumerator flashDamage()
     {
         gameManager.instance.damageFlash.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.damageFlash.gameObject.SetActive(false);
-    }
 
+    }
     public void respawn()
     {
         HP = HPOrig;
+
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
-    }
-
-    public void RestoreHealth(int amount)
-    {
-        HP += amount;
-        HP = Mathf.Min(HP, HPOrig); // Ensure HP doesn't exceed max HP
     }
 }

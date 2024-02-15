@@ -19,10 +19,11 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public Image damageFlash;
     public Image damagePersist;
+    public GameObject shieldDamage;
     public playerController playerScript;
     public GameObject playerSpawnPos;
-    //public GameObject enemySpawnPos;
-    public TimeSpan currentTime;
+    public GameObject enemySpawnPos;
+    public TimeSpan currentTime;// unity class to turn delta time into 
     public bool isPaused;
     int enemyCount;
     float time;
@@ -36,8 +37,8 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         timerStart();
-        playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
-        //enemySpawnPos = GameObject.FindWithTag("Enemy Spawn Pos");
+        //playerSpawnPos = gameObject.FindWithTag("Player Spawn Pos");
+        //enemySpawnPos = gameObject.FindWithTag("Enemy Spawn Pos");
 
     }
 
