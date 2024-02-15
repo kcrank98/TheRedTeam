@@ -10,10 +10,17 @@ public class playerController : MonoBehaviour, IDamage
 
     [Header("Movement")]
     [SerializeField] float playerSpeed;
+    [SerializeField] float origanalPlayerSpeed;
     [SerializeField] int jumpMax;
     [SerializeField] float jumpForce;
     [SerializeField] float gravity;
+    
     int jumpCount;
+    // sprint attempt
+    [SerializeField] float sprintSpeed;
+    [SerializeField] float sprintDuration;
+    [SerializeField] float sprintRemaining;
+    private bool isSprinting = false;
 
     [Header("Shooting")]
     [SerializeField] int shootDamage;
@@ -54,6 +61,11 @@ public class playerController : MonoBehaviour, IDamage
         {
             movement();
 
+            //if (Input.GetButtonDown("Sprint") && sprintRemaining > 0f)
+            //{
+            //    sprint();
+            //}
+
             if (Input.GetButton("Shoot") && !isShooting)
             {
                 StartCoroutine(shoot());
@@ -73,6 +85,7 @@ public class playerController : MonoBehaviour, IDamage
 
         controller.Move(move * playerSpeed * Time.deltaTime);
 
+
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             playerVel.y = jumpForce;
@@ -82,11 +95,25 @@ public class playerController : MonoBehaviour, IDamage
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
     }
-    private void sprint()
-    {
-        // add a sprint 
-        // make player bob
-    }
+    //private void sprint()
+    //{
+    //    // add a sprint 
+    //    // make player bob
+       
+    //    //if (Input.GetKeyDown(KeyCode.LeftShift) && sprintRemaining > 0f)
+    //    //if (Input.GetButtonDown("Sprint") && sprintRemaining > 0f)
+    //    {
+    //        isSprinting = true;
+    //        playerSpeed = sprintSpeed;
+    //        sprintRemaining -= Time.deltaTime;
+    //        if (sprintRemaining <= 0f)
+    //        {
+    //            isSprinting = false;
+    //            sprintRemaining = sprintDuration;
+    //        }
+    //    }
+    //    playerSpeed = origanalPlayerSpeed;
+    //}
     IEnumerator shoot()
     {
         isShooting = true;
