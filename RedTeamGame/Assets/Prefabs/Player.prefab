@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 5516196950528769471}
-  playerSpeed: 10
+  playerSpeed: 15
   jumpMax: 2
   jumpForce: 12
   gravity: -25

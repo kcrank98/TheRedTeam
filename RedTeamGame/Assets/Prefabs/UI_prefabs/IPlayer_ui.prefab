@@ -186,7 +186,6 @@ MonoBehaviour:
   loseMenu: {fileID: 8852691393002133191}
   winMenu: {fileID: 7120537883945269406}
   timer: {fileID: 7955721625908836319}
-  gunManager: {fileID: 0}
   player: {fileID: 0}
   damageFlash: {fileID: 168791148288412015}
   damagePersist: {fileID: 4764889019225457144}
@@ -2599,12 +2598,12 @@ RectTransform:
   - {fileID: 8321543761693487387}
   - {fileID: 875138959303039010}
   - {fileID: 5164497389584825667}
-  - {fileID: 4048894418966796051}
-  - {fileID: 3467845358933760011}
-  - {fileID: 874392215081176393}
   - {fileID: 6044272585485974557}
   - {fileID: 6519648912118746345}
   - {fileID: 1290675129120715294}
+  - {fileID: 4048894418966796051}
+  - {fileID: 3467845358933760011}
+  - {fileID: 874392215081176393}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
