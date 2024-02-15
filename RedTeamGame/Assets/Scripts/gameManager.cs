@@ -16,11 +16,13 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] TMP_Text timer;
 
+
     public GameObject player;
     public Image damageFlash;
     public Image damagePersist;
     public playerController playerScript;
     public GameObject playerSpawnPos;
+
     //public GameObject enemySpawnPos;
     public TimeSpan currentTime;
     public bool isPaused;
@@ -35,6 +37,7 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+
         timerStart();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
         //enemySpawnPos = GameObject.FindWithTag("Enemy Spawn Pos");
