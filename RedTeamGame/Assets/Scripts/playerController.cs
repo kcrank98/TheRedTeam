@@ -150,4 +150,25 @@ public class playerController : MonoBehaviour, IDamage
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
     }
+
+    public void RestoreHealth(int amount)
+    {
+        HP += amount;
+        HP = Mathf.Min(HP, HPOrig); // Ensure HP doesn't exceed max HP
+    }
+
+    private void CheckForHealthPackPickup()
+    {
+        HealthPack[] healthPacks = FindObjectsOfType<HealthPack>();
+        foreach (HealthPack pack in healthPacks)
+        {
+            if (pack.hasEnteredTrigger)
+            {
+                RestoreHealth(20); // Heal the player by 20 HP
+                pack.gameObject.SetActive(false);
+                pack.useText.SetActive(false);
+                break;
+            }
+        }
+    }
 }
