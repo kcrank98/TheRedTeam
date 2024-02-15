@@ -186,12 +186,13 @@ MonoBehaviour:
   loseMenu: {fileID: 8852691393002133191}
   winMenu: {fileID: 7120537883945269406}
   timer: {fileID: 7955721625908836319}
+  gunManager: {fileID: 0}
   player: {fileID: 0}
-  damageFlash: {fileID: 0}
-  damagePersist: {fileID: 0}
+  damageFlash: {fileID: 168791148288412015}
+  damagePersist: {fileID: 4764889019225457144}
   playerScript: {fileID: 0}
   playerSpawnPos: {fileID: 0}
-  enemySpawnPos: {fileID: 0}
+  isPaused: 0
 --- !u!114 &1733830292545451013
 MonoBehaviour:
   m_ObjectHideFlags: 0
