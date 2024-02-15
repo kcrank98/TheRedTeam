@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
@@ -17,9 +16,6 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] float HPPerc;
 
-    //[SerializeField] private GunSystem gunSystem;
-    //[SerializeField] private GunSystem.GunProperties currentGun;
-
     Vector3 move;
     Vector3 playerVel;
     int jumpCount;
@@ -31,42 +27,44 @@ public class playerController : MonoBehaviour, IDamage
     {
         HPOrig = HP;
         respawn();
-        //gunSystem = new GunSystem();
-        //currentGun = gunSystem.GetCurrentGun();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if (!gameManager.instance.isPaused)
         {
-            //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.blue);
-
             movement();
-
-            //float scrollWheelInput = Input.GetAxis("Mouse ScrollWheel");
-
-            // Change gun based on scroll wheel movement
-            //if (scrollWheelInput > 0f) // Scroll up
-            //{
-            //    gunSystem.SwitchGun(GunSystem.GunType.Pistol);
-                
-            //}
-            //else if (scrollWheelInput <= 0f) // Scroll down
-            //{
-            //    gunSystem.SwitchGun(GunSystem.GunType.Rifle);
-            //}
-
-           //GunSystem.GunProperties gun = gunSystem.GetCurrentGun();
 
             if (Input.GetButton("Shoot") && !isShooting)
             {
                 StartCoroutine(shoot());
             }
-        }
 
+            // Check if the player picks up a health pack by pressing "E"
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                CheckForHealthPackPickup();
+            }
+        }
     }
+
+    private void CheckForHealthPackPickup()
+    {
+        HealthPack[] healthPacks = FindObjectsOfType<HealthPack>();
+        foreach (HealthPack pack in healthPacks)
+        {
+            if (pack.hasEnteredTrigger)
+            {
+                // Player is in the trigger zone, handle health pack pickup
+                RestoreHealth(20); // Heal the player by 20 HP
+                pack.gameObject.SetActive(false);
+                pack.useText.SetActive(false);
+                break;
+            }
+        }
+    }
+
     private void movement()
     {
         if (controller.isGrounded)
@@ -89,22 +87,19 @@ public class playerController : MonoBehaviour, IDamage
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
     }
-    IEnumerator shoot()
+
+    private IEnumerator shoot()
     {
         isShooting = true;
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
         {
-            //Debug.Log(hit.collider.name);
-
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
             if (hit.transform != transform && dmg != null)
             {
                 dmg.takeDamage(shootDamage);
-                //dmg.takeDamage(currentGun.shootDamage);
-                
             }
         }
 
@@ -115,9 +110,8 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        
+
         StartCoroutine(flashDamage());
-        //checkHPBelowPerc();
 
         if (HP <= 0)
         {
@@ -125,37 +119,24 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
-
-    //void checkHPBelowPerc()
-    //{
-    //    if (HP <= HPOrig * HPPerc)
-    //    {
-    //        //gameManager.instance.damagePersist.gameObject.SetActive(true);
-    //        gameManager.instance.damagePersist.enabled = true;
-    //    }
-    //    else
-    //    {
-    //        //gameManager.instance.damagePersist.gameObject.SetActive(false);
-    //        gameManager.instance.damagePersist.enabled = false;
-
-    //    }
-    //}
-
-    IEnumerator flashDamage()
+    private IEnumerator flashDamage()
     {
         gameManager.instance.damageFlash.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.damageFlash.gameObject.SetActive(false);
-        //checkHPBelowPerc();
-
     }
+
     public void respawn()
     {
         HP = HPOrig;
-        //checkHPBelowPerc();
-
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
         controller.enabled = true;
+    }
+
+    public void RestoreHealth(int amount)
+    {
+        HP += amount;
+        HP = Mathf.Min(HP, HPOrig); // Ensure HP doesn't exceed max HP
     }
 }
