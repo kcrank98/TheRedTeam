@@ -94,7 +94,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 1.8, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8118081083412077230}
@@ -118,7 +118,7 @@ MonoBehaviour:
   agent: {fileID: 884707597996431080}
   shootPos: {fileID: 7257947223345274545}
   headPos: {fileID: 8118081083412077230}
-  HP: 100
+  HP: 1000
   HPBar: {fileID: 7206521381729029595}
   viewCone: 50
   targetFaceSpeed: 5
@@ -141,7 +141,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783111734963591961}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1923039037
   m_Radius: 0.5
   m_Speed: 6
   m_Acceleration: 20
