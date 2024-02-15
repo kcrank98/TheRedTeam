@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
@@ -14,13 +11,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int jumpMax;
     [SerializeField] float jumpForce;
     [SerializeField] float gravity;
-    
+
     int jumpCount;
-    // sprint attempt
-    [SerializeField] float sprintSpeed;
-    [SerializeField] float sprintDuration;
-    [SerializeField] float sprintRemaining;
-    //private bool isSprinting = false;
 
     [Header("Shooting")]
     [SerializeField] int shootDamage;
@@ -32,48 +24,41 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float HPPerc;
     [SerializeField] int HP;
     [SerializeField] int HPOrig;
-    [SerializeField] int shieldAmmount;
-
-
-    [HideInInspector][SerializeField] gun currentGun;
-    [HideInInspector][SerializeField] int currentGunDamage;
+    [SerializeField] int shieldAmount;
 
     [HideInInspector][SerializeField] Transform shootPos;
     [HideInInspector][SerializeField] GameObject bullet;
-
-    // test code
-    //public static Action shootInput;
 
     Vector3 move;
     Vector3 playerVel;
     bool isShooting;
 
-    // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
         respawn();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!gameManager.instance.isPaused)
         {
             movement();
 
-            //if (Input.GetButtonDown("Sprint") && sprintRemaining > 0f)
-            //{
-            //    sprint();
-            //}
-
             if (Input.GetButton("Shoot") && !isShooting)
             {
                 StartCoroutine(shoot());
             }
+
+            if (HealthPack.hasPickedUpHealthPack)
+            {
+                HealPlayer(20);
+                HealthPack.hasPickedUpHealthPack = false; // Reset the flag
+            }
         }
     }
-    private void movement()
+
+    void movement()
     {
         if (controller.isGrounded)
         {
@@ -86,7 +71,6 @@ public class playerController : MonoBehaviour, IDamage
 
         controller.Move(move * playerSpeed * Time.deltaTime);
 
-
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             playerVel.y = jumpForce;
@@ -96,25 +80,7 @@ public class playerController : MonoBehaviour, IDamage
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
     }
-    //private void sprint()
-    //{
-    //    // add a sprint 
-    //    // make player bob
-       
-    //    //if (Input.GetKeyDown(KeyCode.LeftShift) && sprintRemaining > 0f)
-    //    //if (Input.GetButtonDown("Sprint") && sprintRemaining > 0f)
-    //    {
-    //        isSprinting = true;
-    //        playerSpeed = sprintSpeed;
-    //        sprintRemaining -= Time.deltaTime;
-    //        if (sprintRemaining <= 0f)
-    //        {
-    //            isSprinting = false;
-    //            sprintRemaining = sprintDuration;
-    //        }
-    //    }
-    //    playerSpeed = origanalPlayerSpeed;
-    //}
+
     IEnumerator shoot()
     {
         isShooting = true;
@@ -128,7 +94,7 @@ public class playerController : MonoBehaviour, IDamage
 
             if (hit.transform != transform && dmg != null)
             {
-                dmg.takeDamage(shootDamage);       
+                dmg.takeDamage(shootDamage);
             }
         }
 
@@ -140,7 +106,7 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        
+
         StartCoroutine(flashDamage());
         checkHPBelowPerc();
 
@@ -149,7 +115,6 @@ public class playerController : MonoBehaviour, IDamage
             gameManager.instance.youLose();
         }
     }
-
 
     void checkHPBelowPerc()
     {
@@ -168,8 +133,8 @@ public class playerController : MonoBehaviour, IDamage
         gameManager.instance.damageFlash.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.damageFlash.gameObject.SetActive(false);
-
     }
+
     public void respawn()
     {
         HP = HPOrig;
@@ -179,24 +144,10 @@ public class playerController : MonoBehaviour, IDamage
         controller.enabled = true;
     }
 
-    public void RestoreHealth(int amount)
+    void HealPlayer(int amount)
     {
         HP += amount;
-        HP = Mathf.Min(HP, HPOrig); // Ensure HP doesn't exceed max HP
-    }
-
-    private void CheckForHealthPackPickup()
-    {
-        HealthPack[] healthPacks = FindObjectsOfType<HealthPack>();
-        foreach (HealthPack pack in healthPacks)
-        {
-            if (pack.hasEnteredTrigger)
-            {
-                RestoreHealth(20); // Heal the player by 20 HP
-                pack.gameObject.SetActive(false);
-                pack.useText.SetActive(false);
-                break;
-            }
-        }
+        if (HP > HPOrig)
+            HP = HPOrig;
     }
 }

@@ -1,10 +1,10 @@
-
 using UnityEngine;
 
 public class HealthPack : MonoBehaviour
 {
     public GameObject useText;
-    public bool hasEnteredTrigger = false;
+    public static bool hasPickedUpHealthPack = false;
+    private bool hasEnteredTrigger = false;
 
     void Update()
     {
@@ -12,12 +12,7 @@ public class HealthPack : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                playerController player = FindObjectOfType<playerController>();
-                if (player != null)
-                {
-                    player.RestoreHealth(20); // Heal the player by 20 HP
-                }
-
+                hasPickedUpHealthPack = true;
                 hasEnteredTrigger = false;
                 gameObject.SetActive(false);
                 useText.SetActive(false);
@@ -34,6 +29,7 @@ public class HealthPack : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         useText.SetActive(false);
+        hasPickedUpHealthPack = false;
         hasEnteredTrigger = false;
     }
 }
