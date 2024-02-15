@@ -450,7 +450,8 @@ MonoBehaviour:
   HPPerc: 0.5
   HP: 50
   HPOrig: 0
-  shieldAmmount: 15
+  shieldAmountOrg: 0
+  shieldAmount: 15
   currentGun: {fileID: 0}
   currentGunDamage: 0
   shootPos: {fileID: 0}
