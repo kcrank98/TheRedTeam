@@ -22,7 +22,7 @@ public class gameManager : MonoBehaviour
     public GameObject shieldDamage;
     public playerController playerScript;
     public GameObject playerSpawnPos;
-    public GameObject enemySpawnPos;
+    //public GameObject enemySpawnPos;
     public TimeSpan currentTime;// unity class to turn delta time into 
     public bool isPaused;
     int enemyCount;
@@ -37,8 +37,8 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         timerStart();
-        //playerSpawnPos = gameObject.FindWithTag("Player Spawn Pos");
-        //enemySpawnPos = gameObject.FindWithTag("Enemy Spawn Pos");
+        playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
+        //enemySpawnPos = GameObject.FindWithTag("Enemy Spawn Pos");
 
     }
 

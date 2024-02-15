@@ -436,9 +436,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 5516196950528769471}
   playerSpeed: 15
+  origanalPlayerSpeed: 0
   jumpMax: 2
-  jumpForce: 12
-  gravity: -25
+  jumpForce: 9
+  gravity: -28
+  sprintSpeed: 100
+  sprintDuration: 3
+  sprintRemaining: 3
   shootDamage: 5
   shootDistance: 50
   shootRate: 0.5
