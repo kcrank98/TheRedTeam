@@ -34,7 +34,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int HPOrig;
     [SerializeField] int shieldAmountOrg;
     [SerializeField] int shieldAmount;
-
+    
 
     [HideInInspector][SerializeField] gun currentGun;
     [HideInInspector][SerializeField] int currentGunDamage;
@@ -201,4 +201,13 @@ public class playerController : MonoBehaviour, IDamage
     {
         HP += amount;
     }
+
+
+    public void updateShield(int amount)
+    {
+        shieldAmount += amount;
+        
+    }
+
+
 }
