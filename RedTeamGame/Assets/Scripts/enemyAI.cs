@@ -6,18 +6,23 @@ using UnityEngine.UI;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
+    [SerializeField] Animator anim;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform headPos;
+    [SerializeField] Collider weaponCollider;
 
     [SerializeField] int HP;
-    [SerializeField] Image HPBar;
     [SerializeField] int viewCone;
+    [SerializeField] int shootCone;
     [SerializeField] int targetFaceSpeed;
+    [SerializeField] int animSpeedTrans;
+    [SerializeField] int roamPauseTime;
+    [SerializeField] int roamDistance;
+    [SerializeField] Image HPBar;
 
     [SerializeField] GameObject bullet;
-    [SerializeField] float attackDistance;
     [SerializeField] float shootRate;
 
     bool isShooting;
@@ -25,13 +30,9 @@ public class enemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     Vector3 playerDir;
     int HPOrig;
-
-    //Patroling
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
-    public LayerMask whatIsGround;
-    public LayerMask whatIsPlayer;
+    Vector3 startingPos;
+    bool destinChosen;
+    float stoppingDistanceOrig;
 
 
 
@@ -39,17 +40,43 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         gameManager.instance.updateGameGoal(1);
         HPOrig = HP;
+        startingPos = transform.position;
+        stoppingDistanceOrig = agent.stoppingDistance;
     }
 
     void Update()
     {
-        if (playerInRange && canSeePlayer())
-        {
+        float animSpeed = agent.velocity.normalized.magnitude;
+        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), animSpeed, Time.deltaTime * animSpeedTrans));
 
-        }
-        else if(!playerInRange && !canSeePlayer())
+        if (playerInRange && !canSeePlayer())
         {
-            patroling();
+            //roam
+            StartCoroutine(roam());
+        }
+        else if (!playerInRange)
+        {
+            //roam
+            StartCoroutine(roam());
+        }
+    }
+
+    IEnumerator roam()
+    {
+        if (agent.remainingDistance < 0.05f && !destinChosen)
+        {
+            destinChosen = true;
+            agent.stoppingDistance = 0;
+            yield return new WaitForSeconds(roamPauseTime);
+
+            Vector3 randPos = Random.insideUnitSphere * roamDistance;
+            randPos += startingPos;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randPos, out hit, roamDistance, 1);
+            agent.SetDestination(hit.position);
+
+            destinChosen = false;
         }
     }
 
@@ -57,25 +84,22 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         playerDir = gameManager.instance.player.transform.position - headPos.position;
 
-        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-        //Debug.Log(angleToPlayer);
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+        Debug.Log(angleToPlayer);
         Debug.DrawRay(headPos.position, playerDir);
 
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            //Debug.Log(hit.collider.name);
+            Debug.Log(hit.collider.name);
 
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (!isShooting && (agent.remainingDistance <= attackDistance))
+                if (!isShooting && angleToPlayer <= shootCone)
                 {
-                    if (!agent.pathPending)
-                    {
-                        StartCoroutine(shoot());
-                    }
+                    StartCoroutine(shoot());
                 }
 
                 if (agent.remainingDistance < agent.stoppingDistance)
@@ -109,12 +133,15 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
 
 
     public void takeDamage(int amount)
     {
+        weaponColliderOff();
+
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         HP -= amount;
@@ -131,57 +158,37 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator flashMat()
     {
-        Color ogColor = model.material.color;
-
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        model.material.color = ogColor;
+        model.material.color = Color.white;
     }
 
     IEnumerator shoot()
     {
         isShooting = true;
 
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        anim.SetTrigger("Shoot");
+
+
+        //Instantiate(bullet, shootPos.position, transform.rotation);
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
     }
 
-    void patroling()
+    public void createBullet()
     {
-        if (!walkPointSet)
-        {
-            searchWalkPoint();
-        }
-
-        if (walkPointSet)
-        {
-            agent.SetDestination(walkPoint);
-        }
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        //walkPoint reached 
-        if(distanceToWalkPoint.magnitude <= 2f)
-        {
-            walkPointSet = false;
-        }
+        Instantiate(bullet, shootPos.position, transform.rotation);
     }
 
-    private void searchWalkPoint()
+    public void weaponColliderOn()
     {
-        //calculate random point in range
-        float randZ = Random.Range(-walkPointRange, walkPointRange);
-        float randX = Random.Range(-walkPointRange, walkPointRange);
+        //weaponCollider.enabled = true;
+    }
 
-        walkPoint = new Vector3(transform.position.x + randX, transform.position.y, transform.position.z + randZ);
-
-        //check if walkPoint is valid
-        if(Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
-            walkPointSet = true;
-        }
+    public void weaponColliderOff()
+    {
+        //weaponCollider.enabled = false;
     }
 
     void updateUI()

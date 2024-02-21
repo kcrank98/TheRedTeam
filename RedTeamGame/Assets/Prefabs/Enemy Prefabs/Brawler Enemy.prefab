@@ -463,25 +463,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772787b05ca258842bc50b7e1ac1f760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   model: {fileID: 4731119618042976871}
   agent: {fileID: 6846060173894299914}
   shootPos: {fileID: 4639940482870345629}
   headPos: {fileID: 7683297572389773842}
+  weaponCollider: {fileID: 0}
   HP: 15
-  HPBar: {fileID: 2407793303828707256}
   viewCone: 50
+  shootCone: 0
   targetFaceSpeed: 5
+  animSpeedTrans: 0
+  roamPauseTime: 0
+  roamDistance: 0
+  HPBar: {fileID: 2407793303828707256}
   bullet: {fileID: 8417197538657703367, guid: 07a39ba8a8b7433468d8dcf5acb082a8, type: 3}
-  attackDistance: 2.5
   shootRate: 1
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 10
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!195 &6846060173894299914
 NavMeshAgent:
   m_ObjectHideFlags: 0
