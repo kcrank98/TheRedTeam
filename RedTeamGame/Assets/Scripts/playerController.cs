@@ -28,7 +28,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int HPOrig;
     [SerializeField] int shieldAmountOrg;
     [SerializeField] int shieldAmount;
-
+    
 
     // test code
     //public static Action shootInput;
@@ -181,4 +181,13 @@ public class playerController : MonoBehaviour, IDamage
     {
         HP += amount;
     }
+
+
+    public void updateShield(int amount)
+    {
+        shieldAmount += amount;
+        
+    }
+
+
 }
