@@ -10,23 +10,17 @@ public class playerController : MonoBehaviour, IDamage
 
     [Header("Movement")]
     [SerializeField] float playerSpeed;
-    [SerializeField] float origanalPlayerSpeed;
+    [SerializeField] float sprintMod;
     [SerializeField] int jumpMax;
     [SerializeField] float jumpForce;
     [SerializeField] float gravity;
     
     int jumpCount;
-    // sprint attempt
-    [SerializeField] float sprintSpeed;
-    [SerializeField] float sprintDuration;
-    [SerializeField] float sprintRemaining;
-    //private bool isSprinting = false;
 
     [Header("Shooting")]
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float shootRate;
-    [SerializeField] ParticleSystem muzzleFlash;
 
     [Header("HP")]
     [SerializeField] float HPPerc;
@@ -36,18 +30,13 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shieldAmount;
 
 
-    [HideInInspector][SerializeField] gun currentGun;
-    [HideInInspector][SerializeField] int currentGunDamage;
-
-    [HideInInspector][SerializeField] Transform shootPos;
-    [HideInInspector][SerializeField] GameObject bullet;
-
     // test code
     //public static Action shootInput;
 
     Vector3 move;
     Vector3 playerVel;
     bool isShooting;
+    bool isSprinting;
 
     // Start is called before the first frame update
     void Start()
@@ -60,14 +49,12 @@ public class playerController : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        sprint();
+
         if (!gameManager.instance.isPaused)
         {
             movement();
 
-            //if (Input.GetButtonDown("Sprint") && sprintRemaining > 0f)
-            //{
-            //    sprint();
-            //}
 
             if (Input.GetButton("Shoot") && !isShooting)
             {
@@ -98,29 +85,23 @@ public class playerController : MonoBehaviour, IDamage
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
     }
-    //private void sprint()
-    //{
-    //    // add a sprint 
-    //    // make player bob
-       
-    //    //if (Input.GetKeyDown(KeyCode.LeftShift) && sprintRemaining > 0f)
-    //    //if (Input.GetButtonDown("Sprint") && sprintRemaining > 0f)
-    //    {
-    //        isSprinting = true;
-    //        playerSpeed = sprintSpeed;
-    //        sprintRemaining -= Time.deltaTime;
-    //        if (sprintRemaining <= 0f)
-    //        {
-    //            isSprinting = false;
-    //            sprintRemaining = sprintDuration;
-    //        }
-    //    }
-    //    playerSpeed = origanalPlayerSpeed;
-    //}
+    void sprint()
+    {
+        if (Input.GetButtonDown("Sprint"))
+        {
+            playerSpeed *= sprintMod;
+            isSprinting = true;
+        }
+        else if (Input.GetButtonUp("Sprint"))
+        {
+            playerSpeed /= sprintMod;
+            isSprinting = false;
+        }
+    }
     IEnumerator shoot()
     {
         isShooting = true;
-        muzzleFlash.Play();
+        
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
         {
@@ -136,7 +117,7 @@ public class playerController : MonoBehaviour, IDamage
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
-        muzzleFlash.Stop();
+    
     }
 
     public void takeDamage(int amount)
