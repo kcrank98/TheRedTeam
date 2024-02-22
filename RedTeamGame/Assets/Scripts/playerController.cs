@@ -7,42 +7,51 @@ using UnityEngine;
 public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
+    [SerializeField] GameObject mainCamera;
+    [SerializeField] float originalFOV;
 
-    [Header("Movement")]
-    [SerializeField] float playerSpeed;
-    [SerializeField] float sprintMod;
-    [SerializeField] int jumpMax;
-    [SerializeField] float jumpForce;
-    [SerializeField] float gravity;
-    
+    [Header("---- Health")]
+    [Range(0, 50)][SerializeField] int HP;
+    [SerializeField] int HPOrig;
+    [Range(.1f, .99f)][SerializeField] float HPPerc;
+
+    [Header("---- Shield")]
+    [SerializeField] int shieldAmountOrg;
+    [Range(0, 50)][SerializeField] int shieldAmount;
+
+    [Header("---- Movement")]
+    [Range(3, 25)][SerializeField] float playerSpeed;
+    [Range(1.0f, 5)][SerializeField] float sprintMod;
+    [Range(1, 3)][SerializeField] int jumpMax;
+    [Range(5, 30)][SerializeField] float jumpForce;
+    [Range(-10, -30)][SerializeField] float gravity;
+
     int jumpCount;
 
-    [Header("Shooting")]
+    [Header("---- Gun Stats")]
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float shootRate;
+    [SerializeField] float aimFOV;
+    [SerializeField] float aimSpeed;
 
-    [Header("HP")]
-    [SerializeField] float HPPerc;
-    [SerializeField] int HP;
-    [SerializeField] int HPOrig;
-    [SerializeField] int shieldAmountOrg;
-    [SerializeField] int shieldAmount;
-    
-
-    // test code
-    //public static Action shootInput;
+    [Header("---- Gun")]
+    [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    [SerializeField] GameObject gunModel;
 
     Vector3 move;
     Vector3 playerVel;
     bool isShooting;
     bool isSprinting;
+    int selectedGun;
+    bool aimedIn;
 
     // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
         shieldAmountOrg = shieldAmount;
+        originalFOV = mainCamera.GetComponent<Camera>().fieldOfView;
         respawn();
     }
 
@@ -56,10 +65,29 @@ public class playerController : MonoBehaviour, IDamage
             movement();
 
 
-            if (Input.GetButton("Shoot") && !isShooting)
+            if (gunList.Count > 0)
             {
-                StartCoroutine(shoot());
+                selectGun();
+                aim();
+
+                if (Input.GetButton("Shoot") && !isShooting)
+                {
+                    StartCoroutine(shoot());
+                }
             }
+        }
+    }
+    private void aim()
+    {
+        if (Input.GetButtonDown("Aim"))
+        {      
+            aimedIn = true;
+            mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, aimFOV, aimSpeed);
+        }
+        else if (Input.GetButtonUp("Aim"))
+        {
+            mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, originalFOV, aimSpeed);
+            aimedIn = false;
         }
     }
     private void movement()
@@ -101,7 +129,7 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        
+
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
         {
@@ -111,18 +139,18 @@ public class playerController : MonoBehaviour, IDamage
 
             if (hit.transform != transform && dmg != null)
             {
-                dmg.takeDamage(shootDamage);       
+                dmg.takeDamage(shootDamage);
             }
         }
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
-    
+
     }
 
     public void takeDamage(int amount)
     {
-        if(shieldAmount > 0)
+        if (shieldAmount > 0)
         {
             StartCoroutine(flashShieldDamage());
             shieldAmount -= amount;
@@ -134,7 +162,7 @@ public class playerController : MonoBehaviour, IDamage
             StartCoroutine(flashDamage());
             checkHPBelowPerc();
         }
-        
+
         if (HP <= 0)
         {
             gameManager.instance.youLose();
@@ -186,8 +214,46 @@ public class playerController : MonoBehaviour, IDamage
     public void updateShield(int amount)
     {
         shieldAmount += amount;
-        
-    }
 
+    }
+    public void getGunStats(gunStats gun)
+    {
+        gunList.Add(gun);
+
+        shootDamage = gun.shootDamage;
+        shootDistance = gun.shootDistance;
+        shootRate = gun.shootRate;
+        aimFOV = gun.aimFOV;
+        aimSpeed = gun.aimSpeed;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        selectedGun = gunList.Count - 1;
+    }
+    void selectGun()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1 && !aimedIn)
+        {
+            selectedGun++;
+            changeGun();
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0 && !aimedIn)
+        {
+            selectedGun--;
+            changeGun();
+        }
+    }
+    void changeGun()
+    {
+        shootDamage = gunList[selectedGun].shootDamage;
+        shootDistance = gunList[selectedGun].shootDistance;
+        shootRate = gunList[selectedGun].shootRate;
+        aimFOV = gunList[selectedGun].aimFOV;
+        aimSpeed = gunList[selectedGun].aimSpeed;
+
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
+    }
 
 }
