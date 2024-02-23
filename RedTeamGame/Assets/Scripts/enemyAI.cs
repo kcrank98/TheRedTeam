@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -10,8 +11,10 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos;
-    [SerializeField] Transform headPos;
     [SerializeField] Collider weaponCollider;
+    [SerializeField] Transform headPos;
+    [SerializeField] bool Shooter;
+    [SerializeField] bool Melee;
 
     [SerializeField] int HP;
     [SerializeField] int viewCone;
@@ -24,8 +27,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
+    [SerializeField] float meleeRate;
 
+    bool isAttacking;
     bool isShooting;
+    bool isMelee;
     bool playerInRange;
     float angleToPlayer;
     Vector3 playerDir;
@@ -97,15 +103,21 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (!isShooting && angleToPlayer <= shootCone)
+                if (!isAttacking && angleToPlayer <= shootCone)
                 {
-                    StartCoroutine(shoot());
+                    if(Shooter)
+                        StartCoroutine(shoot());
+
+                    if (Melee)
+                        StartCoroutine(melee());
                 }
 
                 if (agent.remainingDistance < agent.stoppingDistance)
                 {
                     faceTarget();
                 }
+
+                agent.stoppingDistance = stoppingDistanceOrig;
 
                 return true;
             }
@@ -140,6 +152,8 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
+        anim.SetTrigger("Damaged");
+
         weaponColliderOff();
 
         agent.SetDestination(gameManager.instance.player.transform.position);
@@ -165,15 +179,27 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator shoot()
     {
+        isAttacking = true;
         isShooting = true;
 
         anim.SetTrigger("Shoot");
 
 
-        //Instantiate(bullet, shootPos.position, transform.rotation);
-
         yield return new WaitForSeconds(shootRate);
+        isAttacking = false;
         isShooting = false;
+    }
+
+    IEnumerator melee()
+    {
+        isAttacking = true;
+        isMelee = true;
+
+        anim.SetTrigger("Melee");
+
+        yield return new WaitForSeconds(meleeRate);
+        isAttacking = false;
+        isMelee = false;
     }
 
     public void createBullet()
@@ -183,12 +209,12 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void weaponColliderOn()
     {
-        //weaponCollider.enabled = true;
+        weaponCollider.GetComponent<Collider>().enabled = true;
     }
 
     public void weaponColliderOff()
     {
-        //weaponCollider.enabled = false;
+        weaponCollider.GetComponent<Collider>().enabled = false;
     }
 
     void updateUI()

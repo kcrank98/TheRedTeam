@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IPushBack
 {
     [SerializeField] CharacterController controller;
 
@@ -14,7 +14,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int jumpMax;
     [SerializeField] float jumpForce;
     [SerializeField] float gravity;
-    
+    [SerializeField] int pushBackResolve;
+
     int jumpCount;
     // sprint attempt
     [SerializeField] float sprintSpeed;
@@ -47,7 +48,9 @@ public class playerController : MonoBehaviour, IDamage
 
     Vector3 move;
     Vector3 playerVel;
+    Vector3 pushBack;
     bool isShooting;
+
 
     // Start is called before the first frame update
     void Start()
@@ -77,6 +80,8 @@ public class playerController : MonoBehaviour, IDamage
     }
     private void movement()
     {
+        pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
+
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -96,13 +101,13 @@ public class playerController : MonoBehaviour, IDamage
         }
 
         playerVel.y += gravity * Time.deltaTime;
-        controller.Move(playerVel * Time.deltaTime);
+        controller.Move((playerVel + pushBack) * Time.deltaTime);
     }
     //private void sprint()
     //{
     //    // add a sprint 
     //    // make player bob
-       
+
     //    //if (Input.GetKeyDown(KeyCode.LeftShift) && sprintRemaining > 0f)
     //    //if (Input.GetButtonDown("Sprint") && sprintRemaining > 0f)
     //    {
@@ -187,6 +192,12 @@ public class playerController : MonoBehaviour, IDamage
         gameManager.instance.damageFlash.gameObject.SetActive(false);
 
     }
+
+    public void pushBackDir(Vector3 dir)
+    {
+        pushBack += dir;
+    }
+
     public void respawn()
     {
         HP = HPOrig;
