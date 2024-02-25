@@ -297,11 +297,20 @@ MonoBehaviour:
   HPPerc: 0.5
   shieldAmountOrg: 0
   shieldAmount: 15
-  playerSpeed: 16
-  sprintMod: 2
+  playerSpeed: 10
+  playerSpeedOrig: 0
+  sprintMod: 1.5
   jumpMax: 2
-  jumpForce: 9
-  gravity: -28
+  jumpForce: 8
+  gravity: -26
+  crouchSpeedMod: 0.5
+  controllerHeightOrig: 2
+  controllerYOrig: 0
+  controllerCrouchHeight: 1
+  controllerCrouchY: -0.7
+  dashMax: 1
+  dashForce: 15
+  dashCount: 0
   shootDamage: 0
   shootDistance: 0
   shootRate: 0
