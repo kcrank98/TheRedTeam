@@ -63,10 +63,7 @@ public class doorControl : MonoBehaviour
             rightDoorTransform.position = (Vector3.MoveTowards(rightDoor.transform.position, rightMoveLocation, doorSpeed * Time.deltaTime));
             rightSubTransform.position = (Vector3.MoveTowards(rightDoorSubPanel.transform.position, rightMoveLocation, subPanelSpeed * Time.deltaTime));
         }
-        else
-        {
-            Debug.Log("made it");
-        }
+      
     }
     //open door
     public void open()

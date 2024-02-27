@@ -16,7 +16,7 @@ public class gunPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.addGun(gun.name);
+            gameManager.instance.setActiveGun(gameManager.instance.addGunUi(gun.gunName));
             gameManager.instance.playerScript.getGunStats(gun);
             Destroy(gameObject);
         }

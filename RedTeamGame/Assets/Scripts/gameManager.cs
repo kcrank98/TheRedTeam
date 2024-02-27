@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
@@ -33,12 +34,15 @@ public class gameManager : MonoBehaviour
     public playerController playerScript;
     public GameObject playerSpawnPos;
     //gun elements
-    public Dictionary<GameObject,List<GameObject>> gunMags = new Dictionary<GameObject, List<GameObject>>();
-    public Dictionary<GameObject,int> currentMagBullet = new Dictionary<GameObject,int>();
+    public Dictionary<GameObject,List<GameObject>> gunMags = new Dictionary<GameObject, List<GameObject>>();//refreince to gun mags
+    public Dictionary<GameObject,int> currentMagBullet = new Dictionary<GameObject,int>();//current ammo used per gun
+    public List<GameObject> guns = new List<GameObject>();//refrence to each ui element
    
     //public GameObject enemySpawnPos;
     public TimeSpan currentTime;// unity class to turn delta time into 
     public bool isPaused;
+    public int currrentGunIndex;
+    public int gunIndex;  
     int enemyCount;
     float time;
     bool timerOn;
@@ -53,12 +57,7 @@ public class gameManager : MonoBehaviour
         timerStart();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
         //enemySpawnPos = GameObject.FindWithTag("Enemy Spawn Pos");
-        //set the dictionary for ammo count
-        //the key is the, and the value is the current bullet the gun is on (this counts up to the mags max)
-        currentMagBullet.Add(pistol, 0);
-        currentMagBullet.Add(rifle, 0);
-        currentMagBullet.Add(shotgun, 0);
-        currentMagBullet.Add(sniper, 0);
+        
 
     }
 
@@ -150,7 +149,11 @@ public class gameManager : MonoBehaviour
             if (currentMagBullet[activeGun] <= gunMags[activeGun].Count())//if the current bullet is not more than the mags maximum
             {
                 gunMags[activeGun][currentMagBullet[activeGun]].SetActive(false);//turn off the current bullet chambered
-                currentMagBullet[activeGun]++;//set the current bullet for active guns mag
+                if (currentMagBullet[activeGun] != gunMags[activeGun].Count() - 1)
+                {
+                    currentMagBullet[activeGun]++;
+                }
+                //set the current bullet for active guns mag
                 return hasAmmo;//return that the gun still has ammo
             }
         }
@@ -160,7 +163,7 @@ public class gameManager : MonoBehaviour
     {
         if(activeGun != null && !isPaused)//if there is a gun and the game is not paused
         {
-            for (int i = 0; i < gunMags[activeGun].Count() - 1; i++)//while the iterator is not the last bullet
+            for (int i = 0; i < gunMags[activeGun].Count(); i++)//while the iterator is not the last bullet
             {
                 gunMags[activeGun][i].SetActive(true);//set the current iterated bullet to on
             }
@@ -170,32 +173,43 @@ public class gameManager : MonoBehaviour
     List<GameObject> findAllChild(GameObject parent)//find all the children of an object and return them as a list
     {
         List<GameObject> children = new List<GameObject>();
-        foreach (Transform child in transform)
+        foreach (Transform child in parent.transform)
         {
             children.Add(child.gameObject);
         }
         return children;
     }
-    public void addGunUi(string gunName)
+    public GameObject addGunUi(string gunName)
     {
-        if(!string.IsNullOrEmpty(gunName))
-        {
+       
             if(gunName ==  "Pistol")
             {
                 gunMags.Add(pistol, findAllChild(pistol.transform.GetChild(0).gameObject));
+                currentMagBullet.Add(pistol, 0);
+                guns.Add(pistol);
+                return pistol;
             }
             else if(gunName == "Rifle")
             {
                 gunMags.Add(rifle,findAllChild(rifle.transform.GetChild(0).gameObject));
+                currentMagBullet.Add(rifle, 0);
+                guns.Add(rifle);
+                return rifle;
             }
             else if(gunName == "Shotgun")
             {
                 gunMags.Add(shotgun,findAllChild(shotgun.transform.GetChild(0).gameObject));
+                currentMagBullet.Add(shotgun, 0);
+                guns.Add(shotgun);
+                return shotgun;
             }
             else if(gunName == "Sniper")
             {
                 gunMags.Add(sniper,findAllChild(sniper.transform.GetChild(0).gameObject));
+                currentMagBullet.Add(sniper, 0);
+                guns.Add(sniper);
+                return sniper;
             }
-        }
+        return null;
     }
 }
