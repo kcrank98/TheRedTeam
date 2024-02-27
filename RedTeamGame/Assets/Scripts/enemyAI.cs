@@ -30,8 +30,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float meleeRate;
 
     bool isAttacking;
-    bool isShooting;
-    bool isMelee;
+    //bool isShooting;
+    //bool isMelee;
     bool playerInRange;
     float angleToPlayer;
     Vector3 playerDir;
@@ -180,26 +180,26 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isAttacking = true;
-        isShooting = true;
+        //isShooting = true;
 
         anim.SetTrigger("Shoot");
 
 
         yield return new WaitForSeconds(shootRate);
         isAttacking = false;
-        isShooting = false;
+        //isShooting = false;
     }
 
     IEnumerator melee()
     {
         isAttacking = true;
-        isMelee = true;
+        //isMelee = true;
 
         anim.SetTrigger("Melee");
 
         yield return new WaitForSeconds(meleeRate);
         isAttacking = false;
-        isMelee = false;
+        //isMelee = false;
     }
 
     public void createBullet()
