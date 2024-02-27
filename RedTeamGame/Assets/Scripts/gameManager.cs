@@ -33,11 +33,14 @@ public class gameManager : MonoBehaviour
     public GameObject shieldDamage;
     public playerController playerScript;
     public GameObject playerSpawnPos;
+   
     //gun elements
     public Dictionary<GameObject,List<GameObject>> gunMags = new Dictionary<GameObject, List<GameObject>>();//refreince to gun mags
     public Dictionary<GameObject,int> currentMagBullet = new Dictionary<GameObject,int>();//current ammo used per gun
     public List<GameObject> guns = new List<GameObject>();//refrence to each ui element
    
+
+
     //public GameObject enemySpawnPos;
     public TimeSpan currentTime;// unity class to turn delta time into 
     public bool isPaused;

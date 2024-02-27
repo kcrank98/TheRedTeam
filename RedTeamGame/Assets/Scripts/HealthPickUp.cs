@@ -23,7 +23,7 @@ public class HealthPack : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 hasPickedUpHealthPack = true;
-                gameManager.instance.playerScript.updateHealth(5);
+                gameManager.instance.playerScript.updateHealth(10);
                 hasEnteredTrigger = false;
                 gameObject.SetActive(false);
                 useText.SetActive(false);
