@@ -291,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1278013717027179020}
   mainCamera: {fileID: 5869851376620594706}
+  capsuleCollider: {fileID: 8792165001967449541}
   originalFOV: 0
   HP: 50
   HPOrig: 0
@@ -311,6 +312,7 @@ MonoBehaviour:
   dashMax: 1
   dashForce: 15
   dashCount: 0
+  gunName: 
   shootDamage: 0
   shootDistance: 0
   shootRate: 0
@@ -318,6 +320,10 @@ MonoBehaviour:
   aimSpeed: 0
   gunList: []
   gunModel: {fileID: 7351574798940520122}
+  grenadeModel: {fileID: 0}
+  grenadeMax: 2
+  grenadeCount: 0
+  isThrowingGrenadee: 0
 --- !u!143 &1278013717027179020
 CharacterController:
   m_ObjectHideFlags: 0
