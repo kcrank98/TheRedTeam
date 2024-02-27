@@ -21,12 +21,21 @@ public class playerController : MonoBehaviour, IDamage
 
     [Header("---- Movement")]
     [Range(3, 25)][SerializeField] float playerSpeed;
+    [Range(3, 25)][SerializeField] float playerSpeedOrig;
     [Range(1.0f, 5)][SerializeField] float sprintMod;
     [Range(1, 3)][SerializeField] int jumpMax;
     [Range(5, 30)][SerializeField] float jumpForce;
     [Range(-10, -30)][SerializeField] float gravity;
-
-    int jumpCount;
+    [Header("---- Crouch")]
+    [Range(.1f, 1f)][SerializeField] float crouchSpeedMod;
+    [SerializeField] int controllerHeightOrig;
+    [SerializeField] float controllerYOrig;
+    [SerializeField] int controllerCrouchHeight;
+    [SerializeField] float controllerCrouchY;
+    [Header("---- Dash")]
+    [Range(1, 3)][SerializeField] int dashMax;
+    [Range(5, 30)][SerializeField] float dashForce;
+    [SerializeField] int dashCount;
 
     [Header("---- Gun Stats")]
     [SerializeField] int shootDamage;
@@ -43,14 +52,18 @@ public class playerController : MonoBehaviour, IDamage
     Vector3 playerVel;
     bool isShooting;
     bool isSprinting;
+    bool isCrouched;
     int selectedGun;
     bool aimedIn;
+    int jumpCount;
+
 
     // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
         shieldAmountOrg = shieldAmount;
+        playerSpeedOrig = playerSpeed;
         originalFOV = mainCamera.GetComponent<Camera>().fieldOfView;
         respawn();
     }
@@ -59,6 +72,8 @@ public class playerController : MonoBehaviour, IDamage
     void Update()
     {
         sprint();
+        crouch();
+        dash();
 
         if (!gameManager.instance.isPaused)
         {
@@ -77,24 +92,13 @@ public class playerController : MonoBehaviour, IDamage
             }
         }
     }
-    private void aim()
-    {
-        if (Input.GetButtonDown("Aim"))
-        {      
-            aimedIn = true;
-            mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, aimFOV, aimSpeed);
-        }
-        else if (Input.GetButtonUp("Aim"))
-        {
-            mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, originalFOV, aimSpeed);
-            aimedIn = false;
-        }
-    }
+
     private void movement()
     {
         if (controller.isGrounded)
         {
             jumpCount = 0;
+            dashCount = 0;
             playerVel = Vector3.zero;
         }
 
@@ -113,19 +117,70 @@ public class playerController : MonoBehaviour, IDamage
         playerVel.y += gravity * Time.deltaTime;
         controller.Move(playerVel * Time.deltaTime);
     }
+    void crouch()
+    {
+        if (Input.GetButtonDown("Crouch") && controller.isGrounded && !isSprinting)
+        {
+            isCrouched = true;
+            controller.height = controllerCrouchHeight;
+
+            // controller is popping
+                // just camera crouch for now
+            controller.center = new Vector3(controller.center.x, controllerCrouchY, controller.center.z);
+            mainCamera.GetComponent<Camera>().transform.localPosition = mainCamera.GetComponent<Camera>().transform.localPosition + new Vector3(0, -.7f, 0);
+
+            // lerp test
+            //mainCamera.GetComponent<Camera>().transform.localPosition = Vector3.Lerp(mainCamera.GetComponent<Camera>().transform.localPosition, new Vector3(0, -.7f, 0), .02f);
+            //controller.center = Vector3.Lerp(controller.center, new Vector3(controller.center.x, controllerCrouchY, controller.center.z), .5f);
+            //
+
+            playerSpeed *= crouchSpeedMod;
+
+        }
+       // else if (Input.GetButtonUp("Crouch"))
+        else if (Input.GetButtonUp("Crouch"))
+        {
+            isCrouched = false;
+            controller.height = controllerHeightOrig;
+            
+            // controller is popping
+                // just camera crouch for now
+            controller.center = new Vector3(controller.center.x, controllerYOrig, controller.center.z);
+            mainCamera.GetComponent<Camera>().transform.localPosition = new Vector3(0, 1, 0);
+
+            // lerp test
+            //mainCamera.GetComponent<Camera>().transform.localPosition = Vector3.Lerp(mainCamera.GetComponent<Camera>().transform.localPosition, new Vector3(0, 1, 0), 5f);
+            //controller.center = Vector3.Lerp(controller.center, new Vector3(controller.center.x, controllerYOrig, controller.center.z), .02f);
+            //
+            playerSpeed = playerSpeedOrig;
+
+        }
+    }
+    void dash()
+    {
+        if (Input.GetButtonDown("Dash") && dashCount < dashMax)
+        {
+            playerVel += transform.forward * dashForce;
+            dashCount++;
+        }
+
+    }
+
+
     void sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if (Input.GetButtonDown("Sprint") && jumpCount < 1)
         {
             playerSpeed *= sprintMod;
             isSprinting = true;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
-            playerSpeed /= sprintMod;
+            playerSpeed = playerSpeedOrig;
             isSprinting = false;
         }
     }
+
     IEnumerator shoot()
     {
         isShooting = true;
@@ -254,6 +309,19 @@ public class playerController : MonoBehaviour, IDamage
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
+    }
+    private void aim()
+    {
+        if (Input.GetButtonDown("Aim"))
+        {
+            aimedIn = true;
+            mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, aimFOV, aimSpeed);
+        }
+        else if (Input.GetButtonUp("Aim"))
+        {
+            mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, originalFOV, aimSpeed);
+            aimedIn = false;
+        }
     }
 
 }
