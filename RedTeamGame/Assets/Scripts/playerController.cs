@@ -111,16 +111,16 @@ public class playerController : MonoBehaviour, IDamage
                 selectGun();
                 aim();
 
-                if (Input.GetButton("Shoot") && !isShooting && gameManager.instance.updateBullet())
+                if (Input.GetButton("Shoot") && !isShooting /*&& gameManager.instance.updateBullet()*/)
                 {
                     StartCoroutine(shoot());
                 }
-                else if (Input.GetButton("Shoot") && gameManager.instance.updateBullet())
-                {
+                //else if (Input.GetButton("Shoot") && gameManager.instance.updateBullet())
+                //{
 
-                    aud.PlayOneShot(clickSound, gunList[selectedGun].clickSoundVol);
+                //    aud.PlayOneShot(clickSound, gunList[selectedGun].clickSoundVol);
                     
-                }
+                //}
 
             }
         }
