@@ -9,7 +9,6 @@ public class gunPickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -17,6 +16,7 @@ public class gunPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            //gameManager.instance.addGun(gun.name);
             gameManager.instance.playerScript.getGunStats(gun);
             Destroy(gameObject);
         }

@@ -10,6 +10,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] GameObject mainCamera;
     [SerializeField] Collider capsuleCollider;
     [SerializeField] float originalFOV;
+    [SerializeField] AudioSource aud;
+
 
     [Header("---- Health")]
     [Range(0, 50)][SerializeField] int HP;
@@ -27,12 +29,14 @@ public class playerController : MonoBehaviour, IDamage
     [Range(1, 3)][SerializeField] int jumpMax;
     [Range(5, 30)][SerializeField] float jumpForce;
     [Range(-10, -30)][SerializeField] float gravity;
+
     [Header("---- Crouch")]
     [Range(.1f, 1f)][SerializeField] float crouchSpeedMod;
     [SerializeField] int controllerHeightOrig;
     [SerializeField] float controllerYOrig;
     [SerializeField] int controllerCrouchHeight;
     [SerializeField] float controllerCrouchY;
+
     [Header("---- Dash")]
     [Range(1, 3)][SerializeField] int dashMax;
     [Range(5, 30)][SerializeField] float dashForce;
@@ -49,6 +53,10 @@ public class playerController : MonoBehaviour, IDamage
     [Header("---- Gun")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject gunModel;
+    public AudioClip reloadSound;
+    public AudioClip clickSound;
+    public AudioClip shootSound;
+
     [Header("Grenade")]
     [SerializeField] GameObject grenadeModel;
     [SerializeField] int grenadeMax;
@@ -103,10 +111,17 @@ public class playerController : MonoBehaviour, IDamage
                 selectGun();
                 aim();
 
-                if (Input.GetButton("Shoot") && !isShooting)
+                if (Input.GetButton("Shoot") && !isShooting && gameManager.instance.updateBullet())
                 {
                     StartCoroutine(shoot());
                 }
+                else if (Input.GetButton("Shoot") && gameManager.instance.updateBullet())
+                {
+
+                    aud.PlayOneShot(clickSound, gunList[selectedGun].clickSoundVol);
+                    
+                }
+
             }
         }
     }
@@ -139,7 +154,6 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (Input.GetButtonDown("Crouch") && controller.isGrounded && !isSprinting)
         {
-            isCrouched = true;
             controller.height = controllerCrouchHeight;
             mainCamera.GetComponent<Camera>().transform.localPosition = mainCamera.GetComponent<Camera>().transform.localPosition + new Vector3(0, -.7f, 0);
             playerSpeed *= crouchSpeedMod;
@@ -147,7 +161,6 @@ public class playerController : MonoBehaviour, IDamage
         }
         else if (Input.GetButtonUp("Crouch"))
         {
-            isCrouched = false;
             controller.height = controllerHeightOrig;
             mainCamera.GetComponent<Camera>().transform.localPosition = new Vector3(0, 1, 0);
             playerSpeed = playerSpeedOrig;
@@ -268,6 +281,7 @@ public class playerController : MonoBehaviour, IDamage
     }
     public void getGunStats(gunStats gun)
     {
+       
         gunList.Add(gun);
 
         gunName = gun.gunName;
@@ -276,6 +290,8 @@ public class playerController : MonoBehaviour, IDamage
         shootRate = gun.shootRate;
         aimFOV = gun.aimFOV;
         aimSpeed = gun.aimSpeed;
+        reloadSound = gun.reloadSound;
+        clickSound = gun.clickSound;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
@@ -297,12 +313,15 @@ public class playerController : MonoBehaviour, IDamage
     }
     void changeGun()
     {
+
         gunName = gunList[selectedGun].gunName;
         shootDamage = gunList[selectedGun].shootDamage;
         shootDistance = gunList[selectedGun].shootDistance;
         shootRate = gunList[selectedGun].shootRate;
         aimFOV = gunList[selectedGun].aimFOV;
         aimSpeed = gunList[selectedGun].aimSpeed;
+        reloadSound = gunList[selectedGun].reloadSound;
+        clickSound = gunList[selectedGun].clickSound;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
