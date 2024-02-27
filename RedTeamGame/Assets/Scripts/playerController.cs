@@ -57,6 +57,8 @@ public class playerController : MonoBehaviour, IDamage
     bool aimedIn;
     int jumpCount;
 
+    public int coins = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -271,6 +273,14 @@ public class playerController : MonoBehaviour, IDamage
         shieldAmount += amount;
 
     }
+
+    public void updateCoins(int amount)
+    {
+        coins += amount;
+    }
+
+
+
     public void getGunStats(gunStats gun)
     {
         gunList.Add(gun);
@@ -323,5 +333,7 @@ public class playerController : MonoBehaviour, IDamage
             aimedIn = false;
         }
     }
+
+   
 
 }

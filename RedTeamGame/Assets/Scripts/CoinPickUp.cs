@@ -1,20 +1,20 @@
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPack : MonoBehaviour
+public class CoinPickUp : MonoBehaviour
 {
     public GameObject useText;
-    public static bool hasPickedUpHealthPack = false;
+    public static bool hasPickedUpCoin = false;
     private bool hasEnteredTrigger = false;
     public gameManager gameManager;
-    //public GameObject player;
 
+   
 
     private void Start()
     {
-        gameManager = GetComponent<gameManager>();
+        gameManager = FindObjectOfType<gameManager>();
     }
-
 
     void Update()
     {
@@ -22,8 +22,8 @@ public class HealthPack : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                hasPickedUpHealthPack = true;
-                gameManager.instance.playerScript.updateHealth(10);
+                hasPickedUpCoin = true;
+                gameManager.instance.playerScript.updateCoins(10);
                 hasEnteredTrigger = false;
                 gameObject.SetActive(false);
                 useText.SetActive(false);
@@ -40,7 +40,7 @@ public class HealthPack : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         useText.SetActive(false);
-        hasPickedUpHealthPack = false;
+        hasPickedUpCoin = false;
         hasEnteredTrigger = false;
     }
 }
