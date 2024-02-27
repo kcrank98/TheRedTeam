@@ -26,5 +26,5 @@ MonoBehaviour:
   reloadSoundVol: 0.5
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
   clickSoundVol: 0.5
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: 9423065c1c0d64ea3a434687a804188b, type: 3}
   shootSoundVol: 0.5

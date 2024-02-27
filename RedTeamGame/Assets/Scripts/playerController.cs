@@ -1,4 +1,4 @@
-using System;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -73,6 +73,9 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] jumpSound;
     [Range(0, 1)][SerializeField] float jumpSoundVol;
 
+    [SerializeField] AudioClip[] dashSound;
+    [Range(0, 1)][SerializeField] float dashSoundVol;
+
     Vector3 move;
     Vector3 playerVel;
     bool isShooting;
@@ -144,6 +147,7 @@ public class playerController : MonoBehaviour, IDamage
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
             playerVel.y = jumpForce;
+            StartCoroutine(playJumpSound());
             jumpCount++;
         }
 
@@ -171,6 +175,7 @@ public class playerController : MonoBehaviour, IDamage
         if (!controller.isGrounded && Input.GetButtonDown("Dash") && dashCount < dashMax)
         {
             playerVel += transform.forward * dashForce;
+            StartCoroutine(playDashSound());
             dashCount++;
         }
     }
@@ -189,10 +194,21 @@ public class playerController : MonoBehaviour, IDamage
             isSprinting = false;
         }
     }
+    IEnumerator playJumpSound()
+    {
+        aud.PlayOneShot(jumpSound[Random.Range(0, jumpSound.Length)], jumpSoundVol);
+        yield return new WaitForSeconds(0.01f);
+    }
+    IEnumerator playDashSound()
+    {
+        aud.PlayOneShot(dashSound[Random.Range(0, dashSound.Length)], dashSoundVol);
+        yield return new WaitForSeconds(0.5f);
+    }
 
     IEnumerator shoot()
     {
         isShooting = true;
+        aud.PlayOneShot(shootSound, gunList[selectedGun].shootSoundVol);
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
@@ -292,6 +308,7 @@ public class playerController : MonoBehaviour, IDamage
         aimSpeed = gun.aimSpeed;
         reloadSound = gun.reloadSound;
         clickSound = gun.clickSound;
+        shootSound = gun.shootSound;
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
@@ -322,6 +339,8 @@ public class playerController : MonoBehaviour, IDamage
         aimSpeed = gunList[selectedGun].aimSpeed;
         reloadSound = gunList[selectedGun].reloadSound;
         clickSound = gunList[selectedGun].clickSound;
+        shootSound = gunList[selectedGun].shootSound;
+
 
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
