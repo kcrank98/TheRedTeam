@@ -72,11 +72,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Weapon_Inspection
-      takeName: Weapon_Inspection
+      name: Dead_1
+      takeName: Dead_1
       internalID: -399856739441314001
-      firstFrame: 31
-      lastFrame: 331
+      firstFrame: 830
+      lastFrame: 860
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -99,7 +99,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 830
     - serializedVersion: 16
       name: idle
       takeName: idle
