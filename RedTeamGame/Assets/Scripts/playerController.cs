@@ -8,6 +8,7 @@ public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
     [SerializeField] GameObject mainCamera;
+    [SerializeField] Collider capsuleCollider;
     [SerializeField] float originalFOV;
 
     [Header("---- Health")]
@@ -38,6 +39,7 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int dashCount;
 
     [Header("---- Gun Stats")]
+    [SerializeField] string gunName;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float shootRate;
@@ -78,7 +80,6 @@ public class playerController : MonoBehaviour, IDamage
         if (!gameManager.instance.isPaused)
         {
             movement();
-
 
             if (gunList.Count > 0)
             {
@@ -123,42 +124,21 @@ public class playerController : MonoBehaviour, IDamage
         {
             isCrouched = true;
             controller.height = controllerCrouchHeight;
-
-            // controller is popping
-                // just camera crouch for now
-            controller.center = new Vector3(controller.center.x, controllerCrouchY, controller.center.z);
             mainCamera.GetComponent<Camera>().transform.localPosition = mainCamera.GetComponent<Camera>().transform.localPosition + new Vector3(0, -.7f, 0);
-
-            // lerp test
-            //mainCamera.GetComponent<Camera>().transform.localPosition = Vector3.Lerp(mainCamera.GetComponent<Camera>().transform.localPosition, new Vector3(0, -.7f, 0), .02f);
-            //controller.center = Vector3.Lerp(controller.center, new Vector3(controller.center.x, controllerCrouchY, controller.center.z), .5f);
-            //
-
             playerSpeed *= crouchSpeedMod;
 
         }
-       // else if (Input.GetButtonUp("Crouch"))
         else if (Input.GetButtonUp("Crouch"))
         {
             isCrouched = false;
             controller.height = controllerHeightOrig;
-            
-            // controller is popping
-                // just camera crouch for now
-            controller.center = new Vector3(controller.center.x, controllerYOrig, controller.center.z);
             mainCamera.GetComponent<Camera>().transform.localPosition = new Vector3(0, 1, 0);
-
-            // lerp test
-            //mainCamera.GetComponent<Camera>().transform.localPosition = Vector3.Lerp(mainCamera.GetComponent<Camera>().transform.localPosition, new Vector3(0, 1, 0), 5f);
-            //controller.center = Vector3.Lerp(controller.center, new Vector3(controller.center.x, controllerYOrig, controller.center.z), .02f);
-            //
             playerSpeed = playerSpeedOrig;
-
         }
     }
     void dash()
     {
-        if (Input.GetButtonDown("Dash") && dashCount < dashMax)
+        if (!controller.isGrounded && Input.GetButtonDown("Dash") && dashCount < dashMax)
         {
             playerVel += transform.forward * dashForce;
             dashCount++;
@@ -275,6 +255,7 @@ public class playerController : MonoBehaviour, IDamage
     {
         gunList.Add(gun);
 
+        gunName = gun.gunName;
         shootDamage = gun.shootDamage;
         shootDistance = gun.shootDistance;
         shootRate = gun.shootRate;
@@ -301,6 +282,7 @@ public class playerController : MonoBehaviour, IDamage
     }
     void changeGun()
     {
+        gunName = gunList[selectedGun].gunName;
         shootDamage = gunList[selectedGun].shootDamage;
         shootDistance = gunList[selectedGun].shootDistance;
         shootRate = gunList[selectedGun].shootRate;
