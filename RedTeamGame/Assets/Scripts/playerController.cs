@@ -116,7 +116,7 @@ public class playerController : MonoBehaviour, IDamage
                 selectGun();
                 aim();
 
-                if (Input.GetButton("Shoot") && !isShooting /*&& gameManager.instance.updateBullet()*/)
+                if (Input.GetButton("Shoot") && !isShooting)
                 {
                     StartCoroutine(shoot());
                 }
@@ -210,21 +210,21 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        aud.PlayOneShot(shootSound, gunList[selectedGun].shootSoundVol);
-
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+        if(gameManager.instance.updateBullet())
         {
-            Debug.Log(hit.collider.name);
-
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-            if (hit.transform != transform && dmg != null)
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
             {
-                dmg.takeDamage(shootDamage);
+                Debug.Log(hit.collider.name);
+
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+                if (hit.transform != transform && dmg != null)
+                {
+                    dmg.takeDamage(shootDamage);
+                }
             }
         }
-
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
 
@@ -329,11 +329,13 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1 && !aimedIn)
         {
+            gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
             selectedGun++;
             changeGun();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0 && !aimedIn)
         {
+            gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
             selectedGun--;
             changeGun();
         }
