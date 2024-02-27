@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
+  m_Name: Gun - Pistol
+  m_EditorClassIdentifier: 
+  shootDamage: 2
+  shootDistance: 45
+  shootRate: 0.25
+  ammoCurrent: 0
+  ammoMax: 21
+  aimFOV: 50
+  aimSpeed: 15
+  model: {fileID: 199669651405181594, guid: 41236ddb97b001d499cadd3503c086dc, type: 3}
+  hitEffect: {fileID: 0}
+  shootSound: {fileID: 0}
+  shootSoundVol: 0
