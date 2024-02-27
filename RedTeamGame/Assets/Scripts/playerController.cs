@@ -55,6 +55,16 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int grenadeCount;
     [SerializeField] bool isThrowingGrenadee;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip[] playerSteps;
+    [Range(0, 1)][SerializeField] float playerStepsVol;
+
+    [SerializeField] AudioClip[] soundHurt;
+    [Range(0, 1)][SerializeField] float soundHurtVol;
+
+    [SerializeField] AudioClip[] jumpSound;
+    [Range(0, 1)][SerializeField] float jumpSoundVol;
+
     Vector3 move;
     Vector3 playerVel;
     bool isShooting;
@@ -63,6 +73,8 @@ public class playerController : MonoBehaviour, IDamage
     int selectedGun;
     bool aimedIn;
     int jumpCount;
+    bool isPlayingSteps;
+
 
 
     // Start is called before the first frame update
@@ -148,7 +160,6 @@ public class playerController : MonoBehaviour, IDamage
             playerVel += transform.forward * dashForce;
             dashCount++;
         }
-
     }
 
 
@@ -208,7 +219,6 @@ public class playerController : MonoBehaviour, IDamage
             gameManager.instance.youLose();
         }
     }
-
 
     void checkHPBelowPerc()
     {
