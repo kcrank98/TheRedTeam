@@ -53,12 +53,6 @@ public class gameManager : MonoBehaviour
         timerStart();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
         //enemySpawnPos = GameObject.FindWithTag("Enemy Spawn Pos");
-        //set the dictionary for each mag
-        //the key is the gun, the elemnts are a list of reffrences to bullet ui objects
-        gunMags.Add(pistol,findAllChild(pistol.transform.GetChild(0).gameObject));
-        gunMags.Add(rifle, findAllChild(rifle.transform.GetChild(0).gameObject));
-        gunMags.Add(shotgun, findAllChild(shotgun.transform.GetChild(0).gameObject));
-        gunMags.Add(sniper, findAllChild(sniper.transform.GetChild(0).gameObject));
         //set the dictionary for ammo count
         //the key is the, and the value is the current bullet the gun is on (this counts up to the mags max)
         currentMagBullet.Add(pistol, 0);
@@ -181,5 +175,27 @@ public class gameManager : MonoBehaviour
             children.Add(child.gameObject);
         }
         return children;
+    }
+    public void addGunUi(string gunName)
+    {
+        if(!string.IsNullOrEmpty(gunName))
+        {
+            if(gunName ==  "Pistol")
+            {
+                gunMags.Add(pistol, findAllChild(pistol.transform.GetChild(0).gameObject));
+            }
+            else if(gunName == "Rifle")
+            {
+                gunMags.Add(rifle,findAllChild(rifle.transform.GetChild(0).gameObject));
+            }
+            else if(gunName == "Shotgun")
+            {
+                gunMags.Add(shotgun,findAllChild(shotgun.transform.GetChild(0).gameObject));
+            }
+            else if(gunName == "Sniper")
+            {
+                gunMags.Add(sniper,findAllChild(sniper.transform.GetChild(0).gameObject));
+            }
+        }
     }
 }
