@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
   m_Name: Gun - Rifle
   m_EditorClassIdentifier: 
+  gunName: Rifle
   shootDamage: 7
   shootDistance: 80
   shootRate: 0.75
@@ -21,5 +22,9 @@ MonoBehaviour:
   aimSpeed: 8
   model: {fileID: 4311248730837266121, guid: c20daf91d2bce304c85fec03f5fafd3b, type: 3}
   hitEffect: {fileID: 0}
-  shootSound: {fileID: 0}
-  shootSoundVol: 0
+  reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
+  reloadSoundVol: 0.5
+  clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
+  clickSoundVol: 0.5
+  shootSound: {fileID: 8300000, guid: d3247579c549643a5b3a95f9224eaf3c, type: 3}
+  shootSoundVol: 0.5
