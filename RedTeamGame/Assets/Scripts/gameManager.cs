@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,7 +55,7 @@ public class gameManager : MonoBehaviour
         //enemySpawnPos = GameObject.FindWithTag("Enemy Spawn Pos");
         //set the dictionary for each mag
         //the key is the gun, the elemnts are a list of reffrences to bullet ui objects
-        gunMags.Add(pistol, findAllChild(pistol.transform.GetChild(0).gameObject));
+        gunMags.Add(pistol,findAllChild(pistol.transform.GetChild(0).gameObject));
         gunMags.Add(rifle, findAllChild(rifle.transform.GetChild(0).gameObject));
         gunMags.Add(shotgun, findAllChild(shotgun.transform.GetChild(0).gameObject));
         gunMags.Add(sniper, findAllChild(sniper.transform.GetChild(0).gameObject));
@@ -174,22 +175,11 @@ public class gameManager : MonoBehaviour
     }
     List<GameObject> findAllChild(GameObject parent)//find all the children of an object and return them as a list
     {
-        // null reference check
-        if(parent.transform.GetChild(0) != null)
+        List<GameObject> children = new List<GameObject>();
+        foreach (Transform child in transform)
         {
-            //if not null make a list
-            List<GameObject> children = new List<GameObject>();
-            int i = 0;
-            //while the parent has children add them to the list
-            while(parent.transform.GetChild(i) != null) 
-            {
-                children.Add(parent.transform.GetChild(i).gameObject);
-                i++;
-            }
-            //return the list
-            return children;
+            children.Add(child.gameObject);
         }
-        //if no children return null
-        return null;
+        return children;
     }
 }
