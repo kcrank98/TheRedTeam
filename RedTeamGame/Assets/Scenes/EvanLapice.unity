@@ -488,11 +488,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad36c3d044d312e44a986a07f2c7f0b2, type: 3}
---- !u!136 &935326962 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 8792165001967449541, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
-  m_PrefabInstance: {fileID: 8266674892595825214}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1222418850 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 168791148288412015, guid: f6e718a9785b7eb43bc3d00bf266fdce, type: 3}
@@ -1227,10 +1222,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 9208572760951324073, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
-      propertyPath: capsuleCollider
-      value: 
-      objectReference: {fileID: 935326962}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

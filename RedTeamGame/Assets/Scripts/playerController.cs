@@ -49,6 +49,11 @@ public class playerController : MonoBehaviour, IDamage
     [Header("---- Gun")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject gunModel;
+    [Header("Grenade")]
+    [SerializeField] GameObject grenadeModel;
+    [SerializeField] int grenadeMax;
+    [SerializeField] int grenadeCount;
+    [SerializeField] bool isThrowingGrenadee;
 
     Vector3 move;
     Vector3 playerVel;
