@@ -1,37 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
+    [SerializeField] Animator anim;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos;
+    [SerializeField] Collider weaponCollider;
     [SerializeField] Transform headPos;
+    [SerializeField] bool Shooter;
+    [SerializeField] bool Melee;
 
     [SerializeField] int HP;
-    [SerializeField] Image HPBar;
     [SerializeField] int viewCone;
+    [SerializeField] int shootCone;
     [SerializeField] int targetFaceSpeed;
+    [SerializeField] int animSpeedTrans;
+    [SerializeField] int roamPauseTime;
+    [SerializeField] int roamDistance;
+    [SerializeField] Image HPBar;
 
     [SerializeField] GameObject bullet;
-    [SerializeField] float attackDistance;
     [SerializeField] float shootRate;
+    [SerializeField] float meleeRate;
+    [SerializeField] float meleeRange;
 
-    bool isShooting;
+    bool isAttacking;
+    //bool isShooting;
+    //bool isMelee;
     bool playerInRange;
     float angleToPlayer;
     Vector3 playerDir;
     int HPOrig;
-
-    //Patroling
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
-    public LayerMask whatIsGround;
-    public LayerMask whatIsPlayer;
+    Vector3 startingPos;
+    bool destinChosen;
+    float stoppingDistanceOrig;
 
 
 
@@ -39,17 +47,43 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         gameManager.instance.updateGameGoal(1);
         HPOrig = HP;
+        startingPos = transform.position;
+        stoppingDistanceOrig = agent.stoppingDistance;
     }
 
     void Update()
     {
-        if (playerInRange && canSeePlayer())
-        {
+        float animSpeed = agent.velocity.normalized.magnitude;
+        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), animSpeed, Time.deltaTime * animSpeedTrans));
 
-        }
-        else if(!playerInRange && !canSeePlayer())
+        if (playerInRange && !canSeePlayer())
         {
-            patroling();
+            //roam
+            StartCoroutine(roam());
+        }
+        else if (!playerInRange)
+        {
+            //roam
+            StartCoroutine(roam());
+        }
+    }
+
+    IEnumerator roam()
+    {
+        if (agent.remainingDistance < 0.05f && !destinChosen)
+        {
+            destinChosen = true;
+            agent.stoppingDistance = 0;
+            yield return new WaitForSeconds(roamPauseTime);
+
+            Vector3 randPos = Random.insideUnitSphere * roamDistance;
+            randPos += startingPos;
+
+            NavMeshHit hit;
+            NavMesh.SamplePosition(randPos, out hit, roamDistance, 1);
+            agent.SetDestination(hit.position);
+
+            destinChosen = false;
         }
     }
 
@@ -57,24 +91,28 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         playerDir = gameManager.instance.player.transform.position - headPos.position;
 
-        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-        //Debug.Log(angleToPlayer);
+        angleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+        Debug.Log(angleToPlayer);
         Debug.DrawRay(headPos.position, playerDir);
 
         RaycastHit hit;
         if (Physics.Raycast(headPos.position, playerDir, out hit))
         {
-            //Debug.Log(hit.collider.name);
+            Debug.Log(hit.collider.name);
 
             if (hit.collider.CompareTag("Player") && angleToPlayer <= viewCone)
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (!isShooting && (agent.remainingDistance <= attackDistance))
+                if (!isAttacking && angleToPlayer <= shootCone)
                 {
-                    if (!agent.pathPending)
-                    {
+                    if(Shooter)
                         StartCoroutine(shoot());
+
+                    if (Melee)
+                    {
+                        if(agent.remainingDistance <= meleeRange)
+                            StartCoroutine(melee());
                     }
                 }
 
@@ -82,6 +120,8 @@ public class enemyAI : MonoBehaviour, IDamage
                 {
                     faceTarget();
                 }
+
+                agent.stoppingDistance = stoppingDistanceOrig;
 
                 return true;
             }
@@ -109,12 +149,17 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
 
 
     public void takeDamage(int amount)
     {
+        anim.SetTrigger("Damaged");
+
+        weaponColliderOff();
+
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         HP -= amount;
@@ -131,57 +176,49 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator flashMat()
     {
-        Color ogColor = model.material.color;
-
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
-        model.material.color = ogColor;
+        model.material.color = Color.white;
     }
 
     IEnumerator shoot()
     {
-        isShooting = true;
+        isAttacking = true;
+        //isShooting = true;
 
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        anim.SetTrigger("Shoot");
+
 
         yield return new WaitForSeconds(shootRate);
-        isShooting = false;
+        isAttacking = false;
+        //isShooting = false;
     }
 
-    void patroling()
+    IEnumerator melee()
     {
-        if (!walkPointSet)
-        {
-            searchWalkPoint();
-        }
+        isAttacking = true;
+        //isMelee = true;
 
-        if (walkPointSet)
-        {
-            agent.SetDestination(walkPoint);
-        }
+        anim.SetTrigger("Melee");
 
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        //walkPoint reached 
-        if(distanceToWalkPoint.magnitude <= 2f)
-        {
-            walkPointSet = false;
-        }
+        yield return new WaitForSeconds(meleeRate);
+        isAttacking = false;
+        //isMelee = false;
     }
 
-    private void searchWalkPoint()
+    public void createBullet()
     {
-        //calculate random point in range
-        float randZ = Random.Range(-walkPointRange, walkPointRange);
-        float randX = Random.Range(-walkPointRange, walkPointRange);
+        Instantiate(bullet, shootPos.position, transform.rotation);
+    }
 
-        walkPoint = new Vector3(transform.position.x + randX, transform.position.y, transform.position.z + randZ);
+    public void weaponColliderOn()
+    {
+        weaponCollider.GetComponent<Collider>().enabled = true;
+    }
 
-        //check if walkPoint is valid
-        if(Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-        {
-            walkPointSet = true;
-        }
+    public void weaponColliderOff()
+    {
+        weaponCollider.GetComponent<Collider>().enabled = false;
     }
 
     void updateUI()
