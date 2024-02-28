@@ -1741,6 +1741,7 @@ MonoBehaviour:
   bullet: {fileID: 8417197538657703367, guid: 07a39ba8a8b7433468d8dcf5acb082a8, type: 3}
   shootRate: 0
   meleeRate: 0
+  meleeRange: 2
 --- !u!195 &8275901471113147691
 NavMeshAgent:
   m_ObjectHideFlags: 0

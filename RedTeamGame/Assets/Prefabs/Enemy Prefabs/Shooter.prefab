@@ -800,6 +800,7 @@ GameObject:
   - component: {fileID: 4339848936127567197}
   - component: {fileID: 1421686592178221306}
   - component: {fileID: 4146963292018934837}
+  - component: {fileID: 8460026800355166771}
   - component: {fileID: 4099201768921517452}
   - component: {fileID: 982870031440058555}
   m_Layer: 0
@@ -859,6 +860,7 @@ MonoBehaviour:
   bullet: {fileID: 8417197538657703367, guid: 491198794547b6d409f4fc0af769a12c, type: 3}
   shootRate: 0.33
   meleeRate: 0.33
+  meleeRange: 0
 --- !u!195 &4146963292018934837
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -881,6 +883,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &8460026800355166771
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5485072437895653505}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!135 &4099201768921517452
 SphereCollider:
   m_ObjectHideFlags: 0

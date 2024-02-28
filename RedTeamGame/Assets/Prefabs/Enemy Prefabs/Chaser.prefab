@@ -71,6 +71,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   shootRate: 0
   meleeRate: 1
+  meleeRange: 2
 --- !u!195 &7399129449857309045
 NavMeshAgent:
   m_ObjectHideFlags: 0
