@@ -15,13 +15,13 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] ParticleSystem muzzleFlash;
 
     [Header("---- Health")]
-    [Range(0, 35)][SerializeField] int HP;
+    [Range(0, 60)][SerializeField] int HP;
     [SerializeField] int HPOrig;
     [Range(.1f, .99f)][SerializeField] float HPPerc;
 
     [Header("---- Shield")]
     [SerializeField] int shieldAmountOrg;
-    [Range(0, 15)][SerializeField] int shieldAmount;
+    [Range(0, 30)][SerializeField] int shieldAmount;
 
     [Header("---- Money")]
     [SerializeField] int coins;

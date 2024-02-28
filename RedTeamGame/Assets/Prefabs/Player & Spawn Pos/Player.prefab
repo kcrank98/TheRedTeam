@@ -298,11 +298,11 @@ MonoBehaviour:
   aud: {fileID: 6833546462715036539}
   muzzlePos: {fileID: 7351574798940520122}
   muzzleFlash: {fileID: 1711574114516548582}
-  HP: 30
+  HP: 50
   HPOrig: 0
   HPPerc: 0.5
   shieldAmountOrg: 0
-  shieldAmount: 10
+  shieldAmount: 20
   coins: 0
   coinsOrig: 0
   playerSpeed: 8
