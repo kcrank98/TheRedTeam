@@ -20,7 +20,9 @@ MonoBehaviour:
   ammoMax: 21
   aimFOV: 50
   aimSpeed: 15
+  attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
   model: {fileID: 199669651405181594, guid: 41236ddb97b001d499cadd3503c086dc, type: 3}
+  attachment: {fileID: 3841797544688825945, guid: a83fe96ad887a7446bedc24c7c64a9bb, type: 3}
   hitEffect: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5

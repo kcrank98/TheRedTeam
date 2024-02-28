@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
-  m_Name: Gun - Sniper
+  m_Name: Gun2 - Pistol
   m_EditorClassIdentifier: 
-  gunName: Sniper
-  shootDamage: 10
-  shootDistance: 500
-  shootRate: 3
+  gunName: Pistol
+  shootDamage: 2
+  shootDistance: 45
+  shootRate: 0.25
   ammoCurrent: 0
-  ammoMax: 2
-  aimFOV: 30
-  aimSpeed: 5
-  attachmentPosition: {x: 0.02, y: 0.14, z: 0.22}
-  model: {fileID: 2352997721424495953, guid: bb0cd604d12965b48bc6104313af13d8, type: 3}
-  attachment: {fileID: 5221418186195645303, guid: 6b5140e90cca96b4ca7b0dae45e58fef, type: 3}
+  ammoMax: 21
+  aimFOV: 50
+  aimSpeed: 15
+  attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
+  model: {fileID: -927199367670048503, guid: 8d9660edbaa9273488c845c704bfb01e, type: 3}
+  attachment: {fileID: -928208058369757064, guid: 8d9660edbaa9273488c845c704bfb01e, type: 3}
   hitEffect: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
   clickSoundVol: 0.5
-  shootSound: {fileID: 8300000, guid: 0e5ec5d798406aa4699be8c44dd7599f, type: 3}
-  shootSoundVol: 0.3
+  shootSound: {fileID: 8300000, guid: 9423065c1c0d64ea3a434687a804188b, type: 3}
+  shootSoundVol: 0.5
