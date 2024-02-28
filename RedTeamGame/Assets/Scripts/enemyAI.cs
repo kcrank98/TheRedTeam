@@ -28,6 +28,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bullet;
     [SerializeField] float shootRate;
     [SerializeField] float meleeRate;
+    [SerializeField] float meleeRange;
 
     bool isAttacking;
     //bool isShooting;
@@ -109,7 +110,10 @@ public class enemyAI : MonoBehaviour, IDamage
                         StartCoroutine(shoot());
 
                     if (Melee)
-                        StartCoroutine(melee());
+                    {
+                        if(agent.remainingDistance <= meleeRange)
+                            StartCoroutine(melee());
+                    }
                 }
 
                 if (agent.remainingDistance < agent.stoppingDistance)
