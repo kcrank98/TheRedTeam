@@ -22,12 +22,12 @@ public class enemyAI : MonoBehaviour, IDamage, IPushBack
     [SerializeField] bool Melee;
 
     [Header("-----Enemy Parameters-----")]
-    [Range(1, 250)] [SerializeField] int HP;
+    [Range(0, 250)] [SerializeField] int HP;
     [Range(1, 90)] [SerializeField] int viewCone;
     [Range(1, 10)] [SerializeField] int shootCone;
     [Range(1, 50)] [SerializeField] int targetFaceSpeed;
     [Range(1, 50)] [SerializeField] int animSpeedTrans;
-    [Range(1, 10)] [SerializeField] int roamPauseTime;
+    [Range(0.1f, 10)] [SerializeField] float roamPauseTime;
     [Range(1, 50)] [SerializeField] int roamDistance;
     [Range(1, 50)] [SerializeField] int pushBackDivide;
 
@@ -46,6 +46,8 @@ public class enemyAI : MonoBehaviour, IDamage, IPushBack
     [Range(0, 1)][SerializeField] float enemyStepsVol;
     [SerializeField] AudioClip[] enemyGunShots;
     [Range(0, 1)][SerializeField] float enemyGunShotsVol;
+    [SerializeField] AudioClip[] enemyAttack;
+    [Range(0, 1)][SerializeField] float enemyAttackVol;
     [SerializeField] AudioClip[] soundHurt;
     [Range(0, 1)][SerializeField] float soundHurtVol;
 
@@ -193,7 +195,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPushBack
 
         if (HP <= 0)
         {
-            gameManager.instance.updateGameGoal(-1);
+            //gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
     }
@@ -230,6 +232,7 @@ public class enemyAI : MonoBehaviour, IDamage, IPushBack
         //isMelee = true;
 
         anim.SetTrigger("Melee");
+        aud.PlayOneShot(enemyAttack[Random.Range(0, enemyAttack.Length)], enemyAttackVol);
 
         yield return new WaitForSeconds(meleeRate);
         isAttacking = false;

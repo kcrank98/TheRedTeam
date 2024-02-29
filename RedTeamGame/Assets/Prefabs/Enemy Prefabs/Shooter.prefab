@@ -852,13 +852,14 @@ MonoBehaviour:
   HPBar: {fileID: 7834722459321105321}
   Shooter: 1
   Melee: 0
-  HP: 25
+  HP: 60
   viewCone: 90
   shootCone: 3
   targetFaceSpeed: 10
   animSpeedTrans: 5
   roamPauseTime: 1
   roamDistance: 15
+  pushBackDivide: 0
   scoreValue: 0
   moneyValue: 0
   bullet: {fileID: 8417197538657703367, guid: 491198794547b6d409f4fc0af769a12c, type: 3}
@@ -878,7 +879,9 @@ MonoBehaviour:
   enemyStepsVol: 0.2
   enemyGunShots:
   - {fileID: 8300000, guid: 1865e875aa3d06243a92647a885965b9, type: 3}
-  enemyGunShotsVol: 0.25
+  enemyGunShotsVol: 0.4
+  enemyAttack: []
+  enemyAttackVol: 0
   soundHurt:
   - {fileID: 8300000, guid: c181fdfff6725cc4b8d132570ff463c3, type: 3}
   - {fileID: 8300000, guid: 05d611aba3de2384b8dbb3ceccca9f26, type: 3}
