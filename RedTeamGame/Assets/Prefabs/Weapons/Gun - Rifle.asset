@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Gun - Rifle
   m_EditorClassIdentifier: 
   gunName: Rifle
-  shootDamage: 20
-  shootDistance: 80
-  shootRate: 0.75
+  shootDamage: 28
+  shootDistance: 95
+  shootRate: 0.4
   ammoCurrent: 0
   ammoMax: 32
   aimFOV: 40

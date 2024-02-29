@@ -93,7 +93,7 @@ public class playerController : MonoBehaviour, IDamage
     int jumpCount;
     bool isPlayingSteps;
 
-   
+
 
     // Start is called before the first frame update
     void Start()
@@ -111,11 +111,12 @@ public class playerController : MonoBehaviour, IDamage
     {
         sprint();
         crouch();
-        dash();
+
 
         if (!gameManager.instance.isPaused)
         {
             movement();
+            dash();
 
             if (gunList.Count > 0)
             {
@@ -184,7 +185,11 @@ public class playerController : MonoBehaviour, IDamage
     }
     void dash()
     {
-        if (!controller.isGrounded && Input.GetButtonDown("Dash") && dashCount < dashMax)
+        if (controller.isGrounded)
+        {
+            return;
+        }
+        if (/*!controller.isGrounded && */Input.GetButtonDown("Dash") && dashCount < dashMax)
         {
             playerVel += transform.forward * dashForce;
             StartCoroutine(playDashSound());
@@ -235,7 +240,7 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        if(gameManager.instance.updateBullet())
+        if (gameManager.instance.updateBullet())
         {
             aud.PlayOneShot(gunList[selectedGun].shootSound);
             StartCoroutine(showMuzzleFlash());
@@ -343,7 +348,7 @@ public class playerController : MonoBehaviour, IDamage
 
     public void getGunStats(gunStats gun)
     {
-       
+
         gunList.Add(gun);
 
         gunName = gun.gunName;
@@ -363,8 +368,8 @@ public class playerController : MonoBehaviour, IDamage
 
         //gunAttachment.GetComponent<MeshFilter>().sharedMesh = gun.attachment.GetComponent<MeshFilter>().sharedMesh;
         //gunAttachment.GetComponent<MeshRenderer>().sharedMaterial = gun.attachment.GetComponent<MeshRenderer>().sharedMaterial;
+        //gunAttachment.GetComponent <Transform>().position = attachmentPosition;
 
-       // gunAttachment.GetComponent <Transform>().position = attachmentPosition;
         selectedGun = gunList.Count - 1;
     }
     void selectGun()
@@ -404,7 +409,6 @@ public class playerController : MonoBehaviour, IDamage
 
         //gunAttachment.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].attachment.GetComponent<MeshFilter>().sharedMesh;
         //gunAttachment.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].attachment.GetComponent<MeshRenderer>().sharedMaterial;
-
         //gunAttachment.GetComponent<Transform>().position = gunList[selectedGun].attachmentPosition;
 
     }
@@ -422,6 +426,6 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
-   
+
 
 }
