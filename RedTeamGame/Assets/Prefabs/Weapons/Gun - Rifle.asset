@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: Gun - Rifle
   m_EditorClassIdentifier: 
   gunName: Rifle
-  shootDamage: 7
+  shootDamage: 20
   shootDistance: 80
   shootRate: 0.75
   ammoCurrent: 0
   ammoMax: 32
   aimFOV: 40
   aimSpeed: 8
+  attachmentPosition: {x: 0, y: 0, z: 0}
   model: {fileID: 4311248730837266121, guid: c20daf91d2bce304c85fec03f5fafd3b, type: 3}
   hitEffect: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}

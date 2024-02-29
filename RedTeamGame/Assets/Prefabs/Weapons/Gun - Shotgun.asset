@@ -21,6 +21,7 @@ MonoBehaviour:
   aimFOV: 55
   aimSpeed: 10
   model: {fileID: 4205521026231025682, guid: f7a69565ab2ff984789da792b0969f4b, type: 3}
+  attachment: {fileID: 8723140022207642106, guid: 91917936023d8d44698236efd68648ff, type: 3}
   hitEffect: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5
