@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gun - Sniper
   m_EditorClassIdentifier: 
   gunName: Sniper
-  shootDamage: 10
+  shootDamage: 70
   shootDistance: 500
   shootRate: 3
   ammoCurrent: 0
@@ -22,7 +22,6 @@ MonoBehaviour:
   aimSpeed: 5
   attachmentPosition: {x: 0.02, y: 0.14, z: 0.22}
   model: {fileID: 2352997721424495953, guid: bb0cd604d12965b48bc6104313af13d8, type: 3}
-  attachment: {fileID: 5221418186195645303, guid: 6b5140e90cca96b4ca7b0dae45e58fef, type: 3}
   hitEffect: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1307318247193082364}
   - component: {fileID: 3108046861098507880}
   - component: {fileID: 1955090460417319275}
+  - component: {fileID: 7776319418448838389}
   m_Layer: 0
   m_Name: Gun Pickup - Sniper
   m_TagString: Untagged
@@ -118,8 +119,29 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.9066125
+  m_Radius: 1
   m_Center: {x: 0.045916576, y: 0.019701347, z: 0.3703781}
+--- !u!95 &7776319418448838389
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4887156811603978419}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 626c7343af540314487882b12db71bd9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8644083241868467041
 GameObject:
   m_ObjectHideFlags: 0

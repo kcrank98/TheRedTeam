@@ -76,11 +76,19 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioClip[] soundHurt;
     [Range(0, 1)][SerializeField] float soundHurtVol;
 
+    [SerializeField] AudioClip[] shieldBreakSound;
+    [Range(0, 1)][SerializeField] float shieldBreakVol;
+
     [SerializeField] AudioClip[] jumpSound;
     [Range(0, 1)][SerializeField] float jumpSoundVol;
 
     [SerializeField] AudioClip[] dashSound;
     [Range(0, 1)][SerializeField] float dashSoundVol;
+
+    [SerializeField] AudioClip[] gunPickupSound;
+    [Range(0, 1)][SerializeField] float gunPickupVol;
+
+
 
     Vector3 move;
     Vector3 playerVel;
@@ -111,11 +119,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         sprint();
         crouch();
-        dash();
 
         if (!gameManager.instance.isPaused)
         {
             movement();
+            dash();
 
             if (gunList.Count > 0)
             {
@@ -279,6 +287,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         {
             StartCoroutine(flashShieldDamage());
             shieldAmount -= amount;
+
+            if (shieldAmount <= 0)
+            {
+                aud.PlayOneShot(shieldBreakSound[Random.Range(0, shieldBreakSound.Length)], shieldBreakVol);
+            }
         }
         else
         {
@@ -351,6 +364,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     public void getGunStats(gunStats gun)
     {
+        aud.PlayOneShot(gunPickupSound[Random.Range(0, gunPickupSound.Length)], gunPickupVol);
 
         gunList.Add(gun);
 
@@ -392,6 +406,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     void changeGun()
     {
+        aud.PlayOneShot(gunPickupSound[Random.Range(0, gunPickupSound.Length)], gunPickupVol);
 
         gunName = gunList[selectedGun].gunName;
         shootDamage = gunList[selectedGun].shootDamage;

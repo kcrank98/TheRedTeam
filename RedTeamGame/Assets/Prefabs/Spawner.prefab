@@ -159,6 +159,10 @@ MonoBehaviour:
   spawnTimer: 0
   spawnPos:
   - {fileID: 2326348015658295364}
+  totalEnemy: 0
+  aud: {fileID: 0}
+  gunSpawnSound: {fileID: 0}
+  gunSpawnVol: 0
 --- !u!33 &3952159376173159839
 MeshFilter:
   m_ObjectHideFlags: 0
