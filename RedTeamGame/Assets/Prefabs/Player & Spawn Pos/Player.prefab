@@ -311,6 +311,7 @@ MonoBehaviour:
   jumpMax: 2
   jumpForce: 8
   gravity: -26
+  pushBackResolve: 2
   crouchSpeedMod: 0.5
   controllerHeightOrig: 2
   controllerYOrig: 0
@@ -345,7 +346,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a31f5ebe52719145ba6ab606d5cc70a, type: 3}
   - {fileID: 8300000, guid: 003d0345f545ab3468ba422176eb6e80, type: 3}
   - {fileID: 8300000, guid: 643e25a0151951f4eaf3a79f684cf148, type: 3}
-  playerStepsVol: 0.3
+  playerStepsVol: 0.08
   soundHurt:
   - {fileID: 8300000, guid: c181fdfff6725cc4b8d132570ff463c3, type: 3}
   - {fileID: 8300000, guid: 05d611aba3de2384b8dbb3ceccca9f26, type: 3}
@@ -358,10 +359,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c369feb045950264d95f23783655092e, type: 3}
   - {fileID: 8300000, guid: 49a8fc246e483df45ad0855f02710527, type: 3}
   - {fileID: 8300000, guid: 8398948b856d55f42bbb32e460576eec, type: 3}
-  jumpSoundVol: 0.5
+  jumpSoundVol: 0.4
   dashSound:
   - {fileID: 8300000, guid: 89001e92ca492453599bb2bc49326e85, type: 3}
-  dashSoundVol: 0.7
+  dashSoundVol: 0.5
 --- !u!143 &1278013717027179020
 CharacterController:
   m_ObjectHideFlags: 0
