@@ -800,9 +800,10 @@ GameObject:
   - component: {fileID: 4339848936127567197}
   - component: {fileID: 1421686592178221306}
   - component: {fileID: 4146963292018934837}
+  - component: {fileID: 2366674707104843998}
+  - component: {fileID: 982870031440058555}
   - component: {fileID: 8460026800355166771}
   - component: {fileID: 4099201768921517452}
-  - component: {fileID: 982870031440058555}
   m_Layer: 0
   m_Name: Shooter
   m_TagString: Untagged
@@ -842,25 +843,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 982870031440058555}
+  aud: {fileID: 2366674707104843998}
   model: {fileID: 9182620121697096320}
   agent: {fileID: 4146963292018934837}
   shootPos: {fileID: 44167831105282100}
   weaponCollider: {fileID: 8582187853317124380}
   headPos: {fileID: 5984226759302028449}
+  HPBar: {fileID: 7834722459321105321}
   Shooter: 1
   Melee: 0
-  HP: 25
+  HP: 60
   viewCone: 90
   shootCone: 3
   targetFaceSpeed: 10
   animSpeedTrans: 5
   roamPauseTime: 1
   roamDistance: 15
-  HPBar: {fileID: 7834722459321105321}
+  pushBackDivide: 0
+  scoreValue: 400
+  moneyValue: 0
   bullet: {fileID: 8417197538657703367, guid: 491198794547b6d409f4fc0af769a12c, type: 3}
   shootRate: 0.33
   meleeRate: 0.33
   meleeRange: 0
+  enemySteps:
+  - {fileID: 8300000, guid: e0a52941995781149ba974a055d0fe7b, type: 3}
+  - {fileID: 8300000, guid: 3579664172b6bb74b925f79d0bfda7bd, type: 3}
+  - {fileID: 8300000, guid: c9165593be88d9f43a7fe8bd9ae580d6, type: 3}
+  - {fileID: 8300000, guid: 21a882a1f54975f46a61cc1422821cdf, type: 3}
+  - {fileID: 8300000, guid: 594d8dc300e328d46bf0b6e049068f87, type: 3}
+  - {fileID: 8300000, guid: 9fad08bfaa7b2534c8407eab83f09863, type: 3}
+  - {fileID: 8300000, guid: 5a31f5ebe52719145ba6ab606d5cc70a, type: 3}
+  - {fileID: 8300000, guid: 003d0345f545ab3468ba422176eb6e80, type: 3}
+  - {fileID: 8300000, guid: 643e25a0151951f4eaf3a79f684cf148, type: 3}
+  enemyStepsVol: 0.2
+  enemyGunShots:
+  - {fileID: 8300000, guid: 1865e875aa3d06243a92647a885965b9, type: 3}
+  enemyGunShotsVol: 0.4
+  enemyAttack: []
+  enemyAttackVol: 0
+  soundHurt:
+  - {fileID: 8300000, guid: c181fdfff6725cc4b8d132570ff463c3, type: 3}
+  - {fileID: 8300000, guid: 05d611aba3de2384b8dbb3ceccca9f26, type: 3}
+  - {fileID: 8300000, guid: a50b192e9c48c6f449ae9338e29a8102, type: 3}
+  - {fileID: 8300000, guid: 48f94f8c18ac6b04ca9d163e5bab4b76, type: 3}
+  - {fileID: 8300000, guid: 648d6bf9815738c4f921d69e8b0eae7a, type: 3}
+  - {fileID: 8300000, guid: 674213a30bbae064fb4c41c309c31086, type: 3}
+  soundHurtVol: 0.3
 --- !u!195 &4146963292018934837
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -883,6 +912,123 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!82 &2366674707104843998
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5485072437895653505}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!95 &982870031440058555
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5485072437895653505}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
+  m_Controller: {fileID: 9100000, guid: 9552fc0af92d1f0428753430d01544c5, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!136 &8460026800355166771
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -925,29 +1071,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 25
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &982870031440058555
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5485072437895653505}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9552fc0af92d1f0428753430d01544c5, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5927981554538758127
 GameObject:
   m_ObjectHideFlags: 0
