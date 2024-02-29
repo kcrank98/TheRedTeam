@@ -111,12 +111,11 @@ public class playerController : MonoBehaviour, IDamage
     {
         sprint();
         crouch();
-
+        dash();
 
         if (!gameManager.instance.isPaused)
         {
             movement();
-            dash();
 
             if (gunList.Count > 0)
             {
@@ -166,6 +165,13 @@ public class playerController : MonoBehaviour, IDamage
         {
             StartCoroutine(playFootsteps());
         }
+       
+        //if (!controller.isGrounded && Input.GetButtonDown("Dash") && dashCount < dashMax)
+        //{
+        //    playerVel += transform.forward * dashForce;
+        //    StartCoroutine(playDashSound());
+        //    dashCount++;
+        //}
     }
     void crouch()
     {
@@ -189,12 +195,22 @@ public class playerController : MonoBehaviour, IDamage
         {
             return;
         }
-        if (/*!controller.isGrounded && */Input.GetButtonDown("Dash") && dashCount < dashMax)
+        else if (Input.GetButtonDown("Dash") && dashCount < dashMax)
         {
+
             playerVel += transform.forward * dashForce;
+
             StartCoroutine(playDashSound());
             dashCount++;
+
+
         }
+        //if (!controller.isGrounded && Input.GetButtonDown("Dash") && dashCount < dashMax)
+        //{
+        //    playerVel += transform.forward * dashForce;
+        //    StartCoroutine(playDashSound());
+        //    dashCount++;
+        //}
     }
 
     void sprint()
@@ -376,13 +392,13 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1 && !aimedIn)
         {
-          
+
             selectedGun++;
             changeGun();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0 && !aimedIn)
         {
-           
+
             selectedGun--;
             changeGun();
         }
