@@ -33,18 +33,23 @@ public class floorManager : MonoBehaviour
         if (enemyCount <= 0)//if all enemys are dead
         {
             //open the exit door
-            exitDoorController.open();
+            if(exitDoor != null)
+            {
+                exitDoorController.open();
+            }
         }
         //else there are still enemys that spawned
         else//close the exit and open the start
         {
-            exitDoorController.close();
-            startDoorController.open();
+            if(exitDoor != null)
+            {
+                exitDoorController.close();
+            }
+            if (startDoor != null)
+            {
+                startDoorController.open();
+            }
         }
       
-    }
-    public void updateEnemyCount(int count)
-    {
-        enemyCount += count; //when an enemy is added to the floor, the floor manager needs to be told
     }
 }

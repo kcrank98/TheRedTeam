@@ -99,9 +99,9 @@ public class gameManager : MonoBehaviour
         activeMenu = null;// there is no menu open anymore
         timerStart();
     }
-    public void updateGameGoal(int score)//will activly alter the total score until win or loss (same code as class for now)
+    public void updateGameGoal(int enemyTotal)//will activly alter the total score until win or loss (same code as class for now)
     {
-        enemyCount += score;// determent the current score(in this case number of enemys)
+        enemyCount += enemyTotal;// determent the current score(in this case number of enemys)
         if (enemyCount <= 0)// if there are no enemys its a win
         {
             activeMenu = winMenu;

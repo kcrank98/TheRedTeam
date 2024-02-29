@@ -1,10 +1,8 @@
-//using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IPushBack
 {
     [SerializeField] CharacterController controller;
     [SerializeField] GameObject mainCamera;
@@ -34,6 +32,7 @@ public class playerController : MonoBehaviour, IDamage
     [Range(1, 3)][SerializeField] int jumpMax;
     [Range(5, 30)][SerializeField] float jumpForce;
     [Range(-10, -30)][SerializeField] float gravity;
+    [Range(0, 25)][SerializeField] int pushBackResolve;
 
     [Header("---- Crouch")]
     [Range(.1f, 1f)][SerializeField] float crouchSpeedMod;
@@ -85,6 +84,7 @@ public class playerController : MonoBehaviour, IDamage
 
     Vector3 move;
     Vector3 playerVel;
+    Vector3 pushBack;
     bool isShooting;
     bool isSprinting;
     bool isCrouched;
@@ -93,7 +93,7 @@ public class playerController : MonoBehaviour, IDamage
     int jumpCount;
     bool isPlayingSteps;
 
-   
+
 
     // Start is called before the first frame update
     void Start()
@@ -138,6 +138,8 @@ public class playerController : MonoBehaviour, IDamage
 
     private void movement()
     {
+        pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
+
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -159,13 +161,19 @@ public class playerController : MonoBehaviour, IDamage
         }
 
         playerVel.y += gravity * Time.deltaTime;
-        controller.Move(playerVel * Time.deltaTime);
+        controller.Move((playerVel + pushBack) * Time.deltaTime);
 
         if (controller.isGrounded && move.normalized.magnitude > 0.3f && !isPlayingSteps)
         {
             StartCoroutine(playFootsteps());
         }
     }
+
+    public void pushBackDir(Vector3 dir)
+    {
+        pushBack += dir;
+    }
+
     void crouch()
     {
         if (Input.GetButtonDown("Crouch") && controller.isGrounded && !isSprinting)
@@ -235,7 +243,7 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        if(gameManager.instance.updateBullet())
+        if (gameManager.instance.updateBullet())
         {
             aud.PlayOneShot(gunList[selectedGun].shootSound);
             StartCoroutine(showMuzzleFlash());
@@ -343,7 +351,7 @@ public class playerController : MonoBehaviour, IDamage
 
     public void getGunStats(gunStats gun)
     {
-       
+
         gunList.Add(gun);
 
         gunName = gun.gunName;
@@ -364,20 +372,20 @@ public class playerController : MonoBehaviour, IDamage
         //gunAttachment.GetComponent<MeshFilter>().sharedMesh = gun.attachment.GetComponent<MeshFilter>().sharedMesh;
         //gunAttachment.GetComponent<MeshRenderer>().sharedMaterial = gun.attachment.GetComponent<MeshRenderer>().sharedMaterial;
 
-       // gunAttachment.GetComponent <Transform>().position = attachmentPosition;
+        // gunAttachment.GetComponent <Transform>().position = attachmentPosition;
         selectedGun = gunList.Count - 1;
     }
     void selectGun()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1 && !aimedIn)
         {
-          
+            gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
             selectedGun++;
             changeGun();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0 && !aimedIn)
         {
-           
+            gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
             selectedGun--;
             changeGun();
         }
@@ -396,6 +404,8 @@ public class playerController : MonoBehaviour, IDamage
         shootSound = gunList[selectedGun].shootSound;
 
         attachmentPosition = gunList[selectedGun].attachmentPosition;
+
+
         gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
@@ -419,7 +429,4 @@ public class playerController : MonoBehaviour, IDamage
             aimedIn = false;
         }
     }
-
-   
-
 }
