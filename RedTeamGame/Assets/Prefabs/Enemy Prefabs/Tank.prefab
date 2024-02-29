@@ -866,7 +866,6 @@ MonoBehaviour:
   animSpeedTrans: 5
   roamPauseTime: 1
   roamDistance: 15
-  pushBackDivide: 0
   scoreValue: 1000
   moneyValue: 0
   bullet: {fileID: 0}
@@ -883,14 +882,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a31f5ebe52719145ba6ab606d5cc70a, type: 3}
   - {fileID: 8300000, guid: 003d0345f545ab3468ba422176eb6e80, type: 3}
   - {fileID: 8300000, guid: 643e25a0151951f4eaf3a79f684cf148, type: 3}
-  enemyStepsVol: 0.3
-  enemyGunShots: []
-  enemyGunShotsVol: 0
-  enemyAttack:
-  - {fileID: 8300000, guid: a15c0f3fe74004cf89b51cfd5604f582, type: 3}
-  - {fileID: 8300000, guid: 670023a95d5524aa79ad7583b1534d22, type: 3}
-  - {fileID: 8300000, guid: cdfae31f0b58546d3ac1015effc38f01, type: 3}
-  enemyAttackVol: 0.4
+  enemyStepsVol: 0.5
   soundHurt:
   - {fileID: 8300000, guid: c181fdfff6725cc4b8d132570ff463c3, type: 3}
   - {fileID: 8300000, guid: 05d611aba3de2384b8dbb3ceccca9f26, type: 3}

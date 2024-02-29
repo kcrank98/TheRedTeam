@@ -22,11 +22,15 @@ public class floorManager : MonoBehaviour
         //get the floors door controlers
         startDoorController = startDoor.GetComponent<doorControl>();
         exitDoorController = exitDoor.GetComponent<doorControl>();
-        enemyCount = 15;
-        //foreach (spawner spawner in spawners)
-      //  {
-        //    enemyCount = enemyCount + spawner.totalEnemy;
-       // }
+        //enemyCount = 15;
+        //enemyCount = spawners
+        //enemyCount = spawners[0].totalEnemy + 17 ;
+        foreach (spawner spawner in spawners)
+        {
+            enemyCount = spawner.totalEnemy;
+        }
+        
+        manager.enemyCount = enemyCount + 17;
     }
 
     // Update is called once per frame
@@ -35,7 +39,7 @@ public class floorManager : MonoBehaviour
         if (enemyCount <= 0)//if all enemys are dead
         {
             //open the exit door
-            if(exitDoor != null)
+            if (exitDoor != null)
             {
                 exitDoorController.open();
             }
@@ -43,7 +47,7 @@ public class floorManager : MonoBehaviour
         //else there are still enemys that spawned
         else//close the exit and open the start
         {
-            if(exitDoor != null)
+            if (exitDoor != null)
             {
                 exitDoorController.close();
             }
@@ -52,6 +56,6 @@ public class floorManager : MonoBehaviour
                 startDoorController.open();
             }
         }
-      
+
     }
 }

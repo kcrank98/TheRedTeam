@@ -130,10 +130,14 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 selectGun();
                 aim();
 
-                if (Input.GetButton("Shoot") && !isShooting)
+                if (Input.GetButton("Shoot") && !isShooting && gameManager.instance.hasAmmo())
                 {
                     StartCoroutine(shoot());
                 }
+               //else if(gunList.Count > 0)
+               //{
+               //    aud.PlayOneShot(gunList[selectedGun].clickSound);
+               //}
                 //else if (Input.GetButton("Shoot") && !gameManager.instance.updateBullet())
                 //{
 
