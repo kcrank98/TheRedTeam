@@ -53,11 +53,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 9164535455791098150}
+  aud: {fileID: 0}
   model: {fileID: 3778245805063290014}
   agent: {fileID: 7399129449857309045}
   shootPos: {fileID: 9012234688030385143}
   weaponCollider: {fileID: 6164602072392388234}
   headPos: {fileID: 9012234688030385143}
+  HPBar: {fileID: 2833348228063997410}
   Shooter: 0
   Melee: 1
   HP: 50
@@ -67,11 +69,16 @@ MonoBehaviour:
   animSpeedTrans: 5
   roamPauseTime: 2
   roamDistance: 8
-  HPBar: {fileID: 2833348228063997410}
+  scoreValue: 0
+  moneyValue: 0
   bullet: {fileID: 0}
   shootRate: 0
   meleeRate: 1
   meleeRange: 2
+  enemySteps: []
+  enemyStepsVol: 0
+  soundHurt: []
+  soundHurtVol: 0
 --- !u!195 &7399129449857309045
 NavMeshAgent:
   m_ObjectHideFlags: 0

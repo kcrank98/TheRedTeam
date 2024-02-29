@@ -309,8 +309,8 @@ MonoBehaviour:
   playerSpeedOrig: 0
   sprintMod: 1.5
   jumpMax: 2
-  jumpForce: 8
-  gravity: -26
+  jumpForce: 7
+  gravity: -28
   pushBackResolve: 2
   crouchSpeedMod: 0.5
   controllerHeightOrig: 2

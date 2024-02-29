@@ -56,8 +56,6 @@ public class enemyAI : MonoBehaviour, IDamage
     float stoppingDistanceOrig;
     //bool isPlayingSteps;
 
-
-
     void Start()
     {
         HPOrig = HP;
@@ -183,7 +181,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            gameManager.instance.updateGameGoal(-1);
+            gameManager.instance.updateGameGoal(-1);  
             Destroy(gameObject);
         }
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gun - Sniper
   m_EditorClassIdentifier: 
   gunName: Sniper
-  shootDamage: 50
+  shootDamage: 70
   shootDistance: 500
   shootRate: 3
   ammoCurrent: 0

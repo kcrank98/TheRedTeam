@@ -119,11 +119,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         sprint();
         crouch();
-        dash();
 
         if (!gameManager.instance.isPaused)
         {
             movement();
+            dash();
 
             if (gunList.Count > 0)
             {
