@@ -318,7 +318,7 @@ MonoBehaviour:
   controllerCrouchHeight: 1
   controllerCrouchY: -0.7
   dashMax: 1
-  dashForce: 15
+  dashForce: 12
   dashCount: 0
   gunName: 
   shootDamage: 0
