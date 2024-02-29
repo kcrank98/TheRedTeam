@@ -8,11 +8,17 @@ public class spawner : MonoBehaviour
     [SerializeField] int numberToSpawn;
     [SerializeField] int spawnTimer;
     [SerializeField] Transform[] spawnPos;
+   
 
     public int totalEnemy;
     int spawnCount;
     bool isSpawning;
     bool startSpawning;
+
+    [Header("---- Audio")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip gunSpawnSound;
+    [Range(0, 1)][SerializeField] float gunSpawnVol;
 
     // Start is called before the first frame update
     void Start()
@@ -27,12 +33,15 @@ public class spawner : MonoBehaviour
         if (startSpawning && !isSpawning && spawnCount < numberToSpawn)
         {
             StartCoroutine(spawn());
+            if (gunSpawnSound != null)
+                aud.PlayOneShot(gunSpawnSound, gunSpawnVol);
         }
     }
 
     IEnumerator spawn()
     {
         isSpawning = true;
+
 
         int arrayPos = Random.Range(0, spawnPos.Length);
 
