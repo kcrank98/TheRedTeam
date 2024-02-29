@@ -26,6 +26,7 @@ public class gameManager : MonoBehaviour
     //timer
     [SerializeField] TMP_Text timer;
     [SerializeField] TMP_Text winTime;
+    [SerializeField] AudioSource music;
     //player related elements
     public GameObject player;
     public Image damageFlash;
@@ -59,6 +60,7 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
         timerStart();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
+        music.Play();
         //enemySpawnPos = GameObject.FindWithTag("Enemy Spawn Pos");
         
 
@@ -149,7 +151,7 @@ public class gameManager : MonoBehaviour
         bool hasAmmo = true;
         if (activeGun != null && !isPaused)//if there is a gun and game is not paused
         {
-            if (currentMagBullet[activeGun] <= gunMags[activeGun].Count())//if the current bullet is not more than the mags maximum
+            if (hasAmmo)//if the current bullet is not more than the mags maximum
             {
                 gunMags[activeGun][currentMagBullet[activeGun]].SetActive(false);//turn off the current bullet chambered
                 if (currentMagBullet[activeGun] != gunMags[activeGun].Count() - 1)
@@ -161,6 +163,17 @@ public class gameManager : MonoBehaviour
             }
         }
         return !hasAmmo;//else return there is no ammo
+    }
+    public bool hasAmmo()
+    {
+        if (currentMagBullet[activeGun] <= gunMags[activeGun].Count())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public void reloadMag()//re-sets a mag for the active weapon
     {
