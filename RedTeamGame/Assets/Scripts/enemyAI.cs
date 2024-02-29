@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class enemyAI : MonoBehaviour, IDamage
+public class enemyAI : MonoBehaviour, IDamage, IPushBack
 {
     [Header("-----Components-----")]
     [SerializeField] Animator anim;
@@ -29,6 +29,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Range(1, 50)] [SerializeField] int animSpeedTrans;
     [Range(1, 10)] [SerializeField] int roamPauseTime;
     [Range(1, 50)] [SerializeField] int roamDistance;
+    [Range(1, 50)] [SerializeField] int pushBackDivide;
 
     [Header("-----Score Parameters-----")]
     [Range(0, 5000)][SerializeField] int scoreValue;
@@ -43,6 +44,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("-----Audio-----")]
     [SerializeField] AudioClip[] enemySteps;
     [Range(0, 1)][SerializeField] float enemyStepsVol;
+    [SerializeField] AudioClip[] enemyGunShots;
+    [Range(0, 1)][SerializeField] float enemyGunShotsVol;
     [SerializeField] AudioClip[] soundHurt;
     [Range(0, 1)][SerializeField] float soundHurtVol;
 
@@ -54,7 +57,7 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 startingPos;
     bool destinChosen;
     float stoppingDistanceOrig;
-    //bool isPlayingSteps;
+    bool isPlayingSteps;
 
 
 
@@ -118,6 +121,11 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
+                if (agent.velocity.normalized.magnitude > 0.3f && !isPlayingSteps)
+                {
+                    StartCoroutine(playingFootSteps());
+                }
+
                 if (!isAttacking && angleToPlayer <= shootCone)
                 {
                     if(Shooter)
@@ -172,6 +180,8 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         anim.SetTrigger("Damaged");
 
+        aud.PlayOneShot(soundHurt[Random.Range(0, soundHurt.Length)], soundHurtVol);
+
         weaponColliderOff();
 
         agent.SetDestination(gameManager.instance.player.transform.position);
@@ -188,6 +198,11 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
+    public void pushBackDir(Vector3 dir)
+    {
+        agent.velocity += (dir / pushBackDivide);
+    }
+
     IEnumerator flashMat()
     {
         model.material.color = Color.red;
@@ -201,6 +216,7 @@ public class enemyAI : MonoBehaviour, IDamage
         //isShooting = true;
 
         anim.SetTrigger("Shoot");
+        aud.PlayOneShot(enemyGunShots[Random.Range(0, enemyGunShots.Length)], enemyGunShotsVol);
 
 
         yield return new WaitForSeconds(shootRate);
@@ -238,5 +254,15 @@ public class enemyAI : MonoBehaviour, IDamage
     void updateUI()
     {
         HPBar.fillAmount = (float)HP / (float)HPOrig;
+    }
+
+    IEnumerator playingFootSteps()
+    {
+        isPlayingSteps = true;
+
+        aud.PlayOneShot(enemySteps[Random.Range(0, enemySteps.Length)], enemyStepsVol);
+        yield return new WaitForSeconds(0.5f);
+
+        isPlayingSteps = false;
     }
 }

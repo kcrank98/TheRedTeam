@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IPushBack
 {
     [SerializeField] CharacterController controller;
     [SerializeField] GameObject mainCamera;
@@ -34,6 +34,7 @@ public class playerController : MonoBehaviour, IDamage
     [Range(1, 3)][SerializeField] int jumpMax;
     [Range(5, 30)][SerializeField] float jumpForce;
     [Range(-10, -30)][SerializeField] float gravity;
+    [Range(0, 25)][SerializeField] int pushBackResolve;
 
     [Header("---- Crouch")]
     [Range(.1f, 1f)][SerializeField] float crouchSpeedMod;
@@ -85,6 +86,7 @@ public class playerController : MonoBehaviour, IDamage
 
     Vector3 move;
     Vector3 playerVel;
+    Vector3 pushBack;
     bool isShooting;
     bool isSprinting;
     bool isCrouched;
@@ -138,6 +140,8 @@ public class playerController : MonoBehaviour, IDamage
 
     private void movement()
     {
+        pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
+
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -159,13 +163,19 @@ public class playerController : MonoBehaviour, IDamage
         }
 
         playerVel.y += gravity * Time.deltaTime;
-        controller.Move(playerVel * Time.deltaTime);
+        controller.Move((playerVel + pushBack) * Time.deltaTime);
 
         if (controller.isGrounded && move.normalized.magnitude > 0.3f && !isPlayingSteps)
         {
             StartCoroutine(playFootsteps());
         }
     }
+
+    public void pushBackDir(Vector3 dir)
+    {
+        pushBack += dir;
+    }
+
     void crouch()
     {
         if (Input.GetButtonDown("Crouch") && controller.isGrounded && !isSprinting)
@@ -421,7 +431,4 @@ public class playerController : MonoBehaviour, IDamage
             aimedIn = false;
         }
     }
-
-   
-
 }

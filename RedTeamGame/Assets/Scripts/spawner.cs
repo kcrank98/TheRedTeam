@@ -6,7 +6,7 @@ public class spawner : MonoBehaviour
 {
     [SerializeField] GameObject objectToSpawn;
     [SerializeField] int numberToSpawn;
-    [SerializeField] int spawnTimer;
+    [SerializeField] float spawnTimer;
     [SerializeField] Transform[] spawnPos;
 
     int spawnCount;
