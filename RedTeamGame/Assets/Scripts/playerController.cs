@@ -1,7 +1,5 @@
-//using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage, IPushBack
@@ -95,7 +93,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     int jumpCount;
     bool isPlayingSteps;
 
-   
+
 
     // Start is called before the first frame update
     void Start()
@@ -245,7 +243,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     IEnumerator shoot()
     {
         isShooting = true;
-        if(gameManager.instance.updateBullet())
+        if (gameManager.instance.updateBullet())
         {
             aud.PlayOneShot(gunList[selectedGun].shootSound);
             StartCoroutine(showMuzzleFlash());
@@ -353,7 +351,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     public void getGunStats(gunStats gun)
     {
-       
+
         gunList.Add(gun);
 
         gunName = gun.gunName;
@@ -374,7 +372,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         //gunAttachment.GetComponent<MeshFilter>().sharedMesh = gun.attachment.GetComponent<MeshFilter>().sharedMesh;
         //gunAttachment.GetComponent<MeshRenderer>().sharedMaterial = gun.attachment.GetComponent<MeshRenderer>().sharedMaterial;
 
-       // gunAttachment.GetComponent <Transform>().position = attachmentPosition;
+        // gunAttachment.GetComponent <Transform>().position = attachmentPosition;
         selectedGun = gunList.Count - 1;
     }
     void selectGun()
@@ -408,7 +406,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         attachmentPosition = gunList[selectedGun].attachmentPosition;
 
 
-
+        gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
 
