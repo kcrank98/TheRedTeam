@@ -376,13 +376,13 @@ public class playerController : MonoBehaviour, IDamage
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1 && !aimedIn)
         {
-            gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
+          
             selectedGun++;
             changeGun();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0 && !aimedIn)
         {
-            gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
+           
             selectedGun--;
             changeGun();
         }
@@ -400,10 +400,7 @@ public class playerController : MonoBehaviour, IDamage
         clickSound = gunList[selectedGun].clickSound;
         shootSound = gunList[selectedGun].shootSound;
 
-        attachmentPosition = gunList[selectedGun].attachmentPosition;
-
-
-
+        gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
 

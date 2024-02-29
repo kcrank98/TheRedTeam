@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class floorManager : MonoBehaviour
 {
-    public static floorManager instance;
 
     //the floor doors
     [SerializeField] GameObject startDoor;
