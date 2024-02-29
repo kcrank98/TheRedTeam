@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class floorManager : MonoBehaviour
 {
-    public static floorManager instance;
 
     //the floor doors
     [SerializeField] GameObject startDoor;
     [SerializeField] GameObject exitDoor;
     [SerializeField] doorControl startDoorController;
     [SerializeField] doorControl exitDoorController;
+    [SerializeField] List<spawner> spawners;
+    [SerializeField] gameManager manager;
     //public varables
     public int enemyCount;
 
@@ -21,6 +22,15 @@ public class floorManager : MonoBehaviour
         //get the floors door controlers
         startDoorController = startDoor.GetComponent<doorControl>();
         exitDoorController = exitDoor.GetComponent<doorControl>();
+        //enemyCount = 15;
+        //enemyCount = spawners
+        //enemyCount = spawners[0].totalEnemy + 17 ;
+        foreach (spawner spawner in spawners)
+        {
+            enemyCount = spawner.totalEnemy;
+        }
+        
+        manager.enemyCount = enemyCount + 17;
     }
 
     // Update is called once per frame
@@ -29,19 +39,23 @@ public class floorManager : MonoBehaviour
         if (enemyCount <= 0)//if all enemys are dead
         {
             //open the exit door
-            exitDoorController.open();
+            if (exitDoor != null)
+            {
+                exitDoorController.open();
+            }
         }
         //else there are still enemys that spawned
         else//close the exit and open the start
         {
-            exitDoorController.close();
-            startDoorController.open();
+            if (exitDoor != null)
+            {
+                exitDoorController.close();
+            }
+            if (startDoor != null)
+            {
+                startDoorController.open();
+            }
         }
-      
-    }
-    public void updateEnemyCount(int count)
-    {
-        enemyCount += count; //when an enemy is added to the floor, the floor manager needs to be told
-        
+
     }
 }

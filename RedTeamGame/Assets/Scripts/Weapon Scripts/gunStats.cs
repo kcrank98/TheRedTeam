@@ -16,9 +16,15 @@ public class gunStats : ScriptableObject
     public float aimFOV;
     public float aimSpeed;
 
+    [Header(" ---- Transform Local Position ---- ")]
+    public Vector3 attachmentPosition;
+
+
+
     [Header(" ---- Components ---- ")]
 
     public GameObject model;
+    //public GameObject attachment;
     public ParticleSystem hitEffect;
 
     [Header(" ---- Audio ---- ")]

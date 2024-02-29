@@ -1,26 +1,29 @@
-//using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class playerController : MonoBehaviour, IDamage
+public class playerController : MonoBehaviour, IDamage, IPushBack
 {
     [SerializeField] CharacterController controller;
     [SerializeField] GameObject mainCamera;
     [SerializeField] Collider capsuleCollider;
     [SerializeField] float originalFOV;
     [SerializeField] AudioSource aud;
-
+    [SerializeField] GameObject muzzlePos;
+    [SerializeField] ParticleSystem muzzleFlash;
 
     [Header("---- Health")]
-    [Range(0, 50)][SerializeField] int HP;
+    [Range(0, 60)][SerializeField] int HP;
     [SerializeField] int HPOrig;
     [Range(.1f, .99f)][SerializeField] float HPPerc;
 
     [Header("---- Shield")]
     [SerializeField] int shieldAmountOrg;
-    [Range(0, 50)][SerializeField] int shieldAmount;
+    [Range(0, 30)][SerializeField] int shieldAmount;
+
+    [Header("---- Money")]
+    [SerializeField] int coins;
+    [SerializeField] int coinsOrig;
 
     [Header("---- Movement")]
     [Range(3, 25)][SerializeField] float playerSpeed;
@@ -29,6 +32,7 @@ public class playerController : MonoBehaviour, IDamage
     [Range(1, 3)][SerializeField] int jumpMax;
     [Range(5, 30)][SerializeField] float jumpForce;
     [Range(-10, -30)][SerializeField] float gravity;
+    [Range(0, 25)][SerializeField] int pushBackResolve;
 
     [Header("---- Crouch")]
     [Range(.1f, 1f)][SerializeField] float crouchSpeedMod;
@@ -49,26 +53,31 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] float shootRate;
     [SerializeField] float aimFOV;
     [SerializeField] float aimSpeed;
+    [SerializeField] Vector3 attachmentPosition;
 
     [Header("---- Gun")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject gunModel;
+    //[SerializeField] GameObject gunAttachment;
     public AudioClip reloadSound;
     public AudioClip clickSound;
     public AudioClip shootSound;
 
-    [Header("Grenade")]
+    [Header("---- Grenade")]
     [SerializeField] GameObject grenadeModel;
     [SerializeField] int grenadeMax;
     [SerializeField] int grenadeCount;
     [SerializeField] bool isThrowingGrenadee;
 
-    [Header("Audio")]
+    [Header("---- Audio")]
     [SerializeField] AudioClip[] playerSteps;
     [Range(0, 1)][SerializeField] float playerStepsVol;
 
     [SerializeField] AudioClip[] soundHurt;
     [Range(0, 1)][SerializeField] float soundHurtVol;
+
+    [SerializeField] AudioClip[] shieldBreakSound;
+    [Range(0, 1)][SerializeField] float shieldBreakVol;
 
     [SerializeField] AudioClip[] jumpSound;
     [Range(0, 1)][SerializeField] float jumpSoundVol;
@@ -76,8 +85,14 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] dashSound;
     [Range(0, 1)][SerializeField] float dashSoundVol;
 
+    [SerializeField] AudioClip[] gunPickupSound;
+    [Range(0, 1)][SerializeField] float gunPickupVol;
+
+
+
     Vector3 move;
     Vector3 playerVel;
+    Vector3 pushBack;
     bool isShooting;
     bool isSprinting;
     bool isCrouched;
@@ -87,14 +102,13 @@ public class playerController : MonoBehaviour, IDamage
     bool isPlayingSteps;
 
 
-    public int coins = 0;
-
 
     // Start is called before the first frame update
     void Start()
     {
         HPOrig = HP;
         shieldAmountOrg = shieldAmount;
+        coinsOrig = coins;
         playerSpeedOrig = playerSpeed;
         originalFOV = mainCamera.GetComponent<Camera>().fieldOfView;
         respawn();
@@ -105,34 +119,39 @@ public class playerController : MonoBehaviour, IDamage
     {
         sprint();
         crouch();
-        dash();
 
         if (!gameManager.instance.isPaused)
         {
             movement();
+            dash();
 
             if (gunList.Count > 0)
             {
                 selectGun();
                 aim();
 
-                if (Input.GetButton("Shoot") && !isShooting /*&& gameManager.instance.updateBullet()*/)
+                if (Input.GetButton("Shoot") && !isShooting && gameManager.instance.hasAmmo())
                 {
                     StartCoroutine(shoot());
                 }
-                //else if (Input.GetButton("Shoot") && gameManager.instance.updateBullet())
+               //else if(gunList.Count > 0)
+               //{
+               //    aud.PlayOneShot(gunList[selectedGun].clickSound);
+               //}
+                //else if (Input.GetButton("Shoot") && !gameManager.instance.updateBullet())
                 //{
 
                 //    aud.PlayOneShot(clickSound, gunList[selectedGun].clickSoundVol);
-                    
-                //}
 
+                //}
             }
         }
     }
 
     private void movement()
     {
+        pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
+
         if (controller.isGrounded)
         {
             jumpCount = 0;
@@ -154,8 +173,19 @@ public class playerController : MonoBehaviour, IDamage
         }
 
         playerVel.y += gravity * Time.deltaTime;
-        controller.Move(playerVel * Time.deltaTime);
+        controller.Move((playerVel + pushBack) * Time.deltaTime);
+
+        if (controller.isGrounded && move.normalized.magnitude > 0.3f && !isPlayingSteps)
+        {
+            StartCoroutine(playFootsteps());
+        }
     }
+
+    public void pushBackDir(Vector3 dir)
+    {
+        pushBack += dir;
+    }
+
     void crouch()
     {
         if (Input.GetButtonDown("Crouch") && controller.isGrounded && !isSprinting)
@@ -182,7 +212,6 @@ public class playerController : MonoBehaviour, IDamage
         }
     }
 
-
     void sprint()
     {
         if (Input.GetButtonDown("Sprint") && jumpCount < 1)
@@ -195,6 +224,22 @@ public class playerController : MonoBehaviour, IDamage
             playerSpeed = playerSpeedOrig;
             isSprinting = false;
         }
+    }
+    IEnumerator playFootsteps()
+    {
+        isPlayingSteps = true;
+        aud.PlayOneShot(playerSteps[Random.Range(0, playerSteps.Length)], playerStepsVol);
+
+        if (!isSprinting)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        else if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        isPlayingSteps = false;
     }
     IEnumerator playJumpSound()
     {
@@ -210,32 +255,47 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator shoot()
     {
         isShooting = true;
-        aud.PlayOneShot(shootSound, gunList[selectedGun].shootSoundVol);
-
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+        if (gameManager.instance.updateBullet())
         {
-            Debug.Log(hit.collider.name);
-
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-
-            if (hit.transform != transform && dmg != null)
+            aud.PlayOneShot(gunList[selectedGun].shootSound);
+            StartCoroutine(showMuzzleFlash());
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
             {
-                dmg.takeDamage(shootDamage);
+                Debug.Log(hit.collider.name);
+
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+
+                if (hit.transform != transform && dmg != null)
+                {
+                    dmg.takeDamage(shootDamage);
+                }
             }
         }
-
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
 
     }
+    private IEnumerator showMuzzleFlash()
+    {
+        muzzleFlash.Play();
+        yield return new WaitForSeconds(gunList[selectedGun].shootRate);
+        muzzleFlash.Stop();
+    }
 
     public void takeDamage(int amount)
     {
+        aud.PlayOneShot(soundHurt[Random.Range(0, soundHurt.Length)], soundHurtVol);
+
         if (shieldAmount > 0)
         {
             StartCoroutine(flashShieldDamage());
             shieldAmount -= amount;
+
+            if (shieldAmount <= 0)
+            {
+                aud.PlayOneShot(shieldBreakSound[Random.Range(0, shieldBreakSound.Length)], shieldBreakVol);
+            }
         }
         else
         {
@@ -280,6 +340,9 @@ public class playerController : MonoBehaviour, IDamage
     {
         HP = HPOrig;
         shieldAmountOrg = shieldAmount;
+        coinsOrig = coins;
+        playerSpeedOrig = playerSpeed;
+        originalFOV = mainCamera.GetComponent<Camera>().fieldOfView;
 
         controller.enabled = false;
         transform.position = gameManager.instance.playerSpawnPos.transform.position;
@@ -303,11 +366,10 @@ public class playerController : MonoBehaviour, IDamage
         coins += amount;
     }
 
-
-
     public void getGunStats(gunStats gun)
     {
-       
+        aud.PlayOneShot(gunPickupSound[Random.Range(0, gunPickupSound.Length)], gunPickupVol);
+
         gunList.Add(gun);
 
         gunName = gun.gunName;
@@ -320,26 +382,35 @@ public class playerController : MonoBehaviour, IDamage
         clickSound = gun.clickSound;
         shootSound = gun.shootSound;
 
+        attachmentPosition = gun.attachmentPosition;
+
         gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
 
+        //gunAttachment.GetComponent<MeshFilter>().sharedMesh = gun.attachment.GetComponent<MeshFilter>().sharedMesh;
+        //gunAttachment.GetComponent<MeshRenderer>().sharedMaterial = gun.attachment.GetComponent<MeshRenderer>().sharedMaterial;
+
+        // gunAttachment.GetComponent <Transform>().position = attachmentPosition;
         selectedGun = gunList.Count - 1;
     }
     void selectGun()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1 && !aimedIn)
         {
+            gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
             selectedGun++;
             changeGun();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0 && !aimedIn)
         {
+            gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
             selectedGun--;
             changeGun();
         }
     }
     void changeGun()
     {
+        aud.PlayOneShot(gunPickupSound[Random.Range(0, gunPickupSound.Length)], gunPickupVol);
 
         gunName = gunList[selectedGun].gunName;
         shootDamage = gunList[selectedGun].shootDamage;
@@ -351,9 +422,18 @@ public class playerController : MonoBehaviour, IDamage
         clickSound = gunList[selectedGun].clickSound;
         shootSound = gunList[selectedGun].shootSound;
 
+        attachmentPosition = gunList[selectedGun].attachmentPosition;
 
+
+        gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
+
+        //gunAttachment.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].attachment.GetComponent<MeshFilter>().sharedMesh;
+        //gunAttachment.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].attachment.GetComponent<MeshRenderer>().sharedMaterial;
+
+        //gunAttachment.GetComponent<Transform>().position = gunList[selectedGun].attachmentPosition;
+
     }
     private void aim()
     {
@@ -368,7 +448,4 @@ public class playerController : MonoBehaviour, IDamage
             aimedIn = false;
         }
     }
-
-   
-
 }

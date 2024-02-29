@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
@@ -25,6 +26,10 @@ public class gameManager : MonoBehaviour
     //timer
     [SerializeField] TMP_Text timer;
     [SerializeField] TMP_Text winTime;
+    [SerializeField] AudioSource music;
+    [SerializeField] floorManager floor;
+    //score
+    [SerializeField] TMP_Text scoreValue;
     //player related elements
     public GameObject player;
     public Image damageFlash;
@@ -34,15 +39,20 @@ public class gameManager : MonoBehaviour
     public GameObject playerSpawnPos;
    
     //gun elements
-    public Dictionary<GameObject,List<GameObject>> gunMags = new Dictionary<GameObject, List<GameObject>>();
-    public Dictionary<GameObject,int> currentMagBullet = new Dictionary<GameObject,int>();
-   
+    public Dictionary<GameObject,List<GameObject>> gunMags = new Dictionary<GameObject, List<GameObject>>();//refreince to gun mags
+    public Dictionary<GameObject,int> currentMagBullet = new Dictionary<GameObject,int>();//current ammo used per gun
+    public List<GameObject> guns = new List<GameObject>();//refrence to each ui element
+
+
 
 
     //public GameObject enemySpawnPos;
     public TimeSpan currentTime;// unity class to turn delta time into 
     public bool isPaused;
-    int enemyCount;
+    public int currrentGunIndex;
+    public int gunIndex;  
+    public int enemyCount;
+    int score;
     float time;
     bool timerOn;
     //awake will run before any other call crating this object before anything needs to use it
@@ -51,18 +61,14 @@ public class gameManager : MonoBehaviour
         //create the manager and find the object that will be our player in any given instance by tag
         //also find the players script and both enemy and player spawn postitons
         instance = this;
+        //enemyCount = -1;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         timerStart();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
+        
         //enemySpawnPos = GameObject.FindWithTag("Enemy Spawn Pos");
-        //set the dictionary for ammo count
-        //the key is the, and the value is the current bullet the gun is on (this counts up to the mags max)
-        currentMagBullet.Add(pistol, 0);
-        currentMagBullet.Add(rifle, 0);
-        currentMagBullet.Add(shotgun, 0);
-        currentMagBullet.Add(sniper, 0);
-
+        
     }
 
     // Update is called once per frame
@@ -100,17 +106,28 @@ public class gameManager : MonoBehaviour
         activeMenu = null;// there is no menu open anymore
         timerStart();
     }
-    public void updateGameGoal(int score)//will activly alter the total score until win or loss (same code as class for now)
+    public void updateGameGoal(int enemyTotal)//will activly alter the total score until win or loss (same code as class for now)
     {
-        enemyCount += score;// determent the current score(in this case number of enemys)
+        enemyCount += enemyTotal;// determent the current score(in this case number of enemys)
+        //floor.enemyCount--;
         if (enemyCount <= 0)// if there are no enemys its a win
         {
+           
             activeMenu = winMenu;
             winTime.text = currentTime.Minutes + ":" + currentTime.Seconds; 
             activeMenu.SetActive(true);
 
             statePaused();
         }
+    }
+    public void updateScore(int value)
+    {
+        score += value;
+        scoreValue.text = score.ToString();
+    }
+    public void updateFloor()
+    {
+        floor.enemyCount--;
     }
     public void youLose()//on a player death show a loss menu
     {
@@ -147,23 +164,37 @@ public class gameManager : MonoBehaviour
     public bool updateBullet()//call in an "if" statment if the gun has ammo or not returns a bool to reflect
         //will also return false if there is no active gun
     {
-        bool hasAmmo = true;
+        bool ammo = true;
         if (activeGun != null && !isPaused)//if there is a gun and game is not paused
         {
-            if (currentMagBullet[activeGun] <= gunMags[activeGun].Count())//if the current bullet is not more than the mags maximum
+            if (hasAmmo())//if the current bullet is not more than the mags maximum
             {
                 gunMags[activeGun][currentMagBullet[activeGun]].SetActive(false);//turn off the current bullet chambered
-                currentMagBullet[activeGun]++;//set the current bullet for active guns mag
-                return hasAmmo;//return that the gun still has ammo
+                currentMagBullet[activeGun]++;
+               
+                //set the current bullet for active guns mag
+                return ammo;//return that the gun still has ammo
             }
+         
         }
-        return !hasAmmo;//else return there is no ammo
+        return !ammo;//else return there is no ammo
+    }
+    public bool hasAmmo()
+    {
+        if (currentMagBullet[activeGun] <= gunMags[activeGun].Count()-1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public void reloadMag()//re-sets a mag for the active weapon
     {
         if(activeGun != null && !isPaused)//if there is a gun and the game is not paused
         {
-            for (int i = 0; i < gunMags[activeGun].Count() - 1; i++)//while the iterator is not the last bullet
+            for (int i = 0; i < gunMags[activeGun].Count(); i++)//while the iterator is not the last bullet
             {
                 gunMags[activeGun][i].SetActive(true);//set the current iterated bullet to on
             }
@@ -173,32 +204,43 @@ public class gameManager : MonoBehaviour
     List<GameObject> findAllChild(GameObject parent)//find all the children of an object and return them as a list
     {
         List<GameObject> children = new List<GameObject>();
-        foreach (Transform child in transform)
+        foreach (Transform child in parent.transform)
         {
             children.Add(child.gameObject);
         }
         return children;
     }
-    public void addGunUi(string gunName)
+    public GameObject addGunUi(string gunName)
     {
-        if(!string.IsNullOrEmpty(gunName))
-        {
+       
             if(gunName ==  "Pistol")
             {
                 gunMags.Add(pistol, findAllChild(pistol.transform.GetChild(0).gameObject));
+                currentMagBullet.Add(pistol, 0);
+                guns.Add(pistol);
+                return pistol;
             }
             else if(gunName == "Rifle")
             {
                 gunMags.Add(rifle,findAllChild(rifle.transform.GetChild(0).gameObject));
+                currentMagBullet.Add(rifle, 0);
+                guns.Add(rifle);
+                return rifle;
             }
             else if(gunName == "Shotgun")
             {
                 gunMags.Add(shotgun,findAllChild(shotgun.transform.GetChild(0).gameObject));
+                currentMagBullet.Add(shotgun, 0);
+                guns.Add(shotgun);
+                return shotgun;
             }
             else if(gunName == "Sniper")
             {
                 gunMags.Add(sniper,findAllChild(sniper.transform.GetChild(0).gameObject));
+                currentMagBullet.Add(sniper, 0);
+                guns.Add(sniper);
+                return sniper;
             }
-        }
+        return null;
     }
 }
