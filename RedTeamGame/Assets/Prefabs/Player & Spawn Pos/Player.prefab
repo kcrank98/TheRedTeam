@@ -311,6 +311,7 @@ MonoBehaviour:
   jumpMax: 2
   jumpForce: 8
   gravity: -26
+  pushBackResolve: 2
   crouchSpeedMod: 0.5
   controllerHeightOrig: 2
   controllerYOrig: 0
