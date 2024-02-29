@@ -547,6 +547,7 @@ MonoBehaviour:
   winTime: {fileID: 166567901846625064}
   music: {fileID: 0}
   floor: {fileID: 0}
+  scoreValue: {fileID: 7955721625908836319}
   player: {fileID: 0}
   damageFlash: {fileID: 168791148288412015}
   damagePersist: {fileID: 4764889019225457144}
