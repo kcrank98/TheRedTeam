@@ -7,32 +7,46 @@ using UnityEngine.UI;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
+    [Header("-----Components-----")]
     [SerializeField] Animator anim;
+    [SerializeField] AudioSource aud;
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform shootPos;
     [SerializeField] Collider weaponCollider;
     [SerializeField] Transform headPos;
+    [SerializeField] Image HPBar;
+
+    [Header("-----Enemy Type-----")]
     [SerializeField] bool Shooter;
     [SerializeField] bool Melee;
 
-    [SerializeField] int HP;
-    [SerializeField] int viewCone;
-    [SerializeField] int shootCone;
-    [SerializeField] int targetFaceSpeed;
-    [SerializeField] int animSpeedTrans;
-    [SerializeField] int roamPauseTime;
-    [SerializeField] int roamDistance;
-    [SerializeField] Image HPBar;
+    [Header("-----Enemy Parameters-----")]
+    [Range(1, 250)] [SerializeField] int HP;
+    [Range(1, 90)] [SerializeField] int viewCone;
+    [Range(1, 10)] [SerializeField] int shootCone;
+    [Range(1, 50)] [SerializeField] int targetFaceSpeed;
+    [Range(1, 50)] [SerializeField] int animSpeedTrans;
+    [Range(1, 10)] [SerializeField] int roamPauseTime;
+    [Range(1, 50)] [SerializeField] int roamDistance;
 
+    [Header("-----Score Parameters-----")]
+    [Range(0, 5000)][SerializeField] int scoreValue;
+    [Range(0, 5000)][SerializeField] int moneyValue;
+
+    [Header("-----Enemy Attack Stats-----")]
     [SerializeField] GameObject bullet;
-    [SerializeField] float shootRate;
-    [SerializeField] float meleeRate;
-    [SerializeField] float meleeRange;
+    [Range(0, 1)] [SerializeField] float shootRate;
+    [Range(0, 1)] [SerializeField] float meleeRate;
+    [Range(0, 10)] [SerializeField] float meleeRange;
+
+    [Header("-----Audio-----")]
+    [SerializeField] AudioClip[] enemySteps;
+    [Range(0, 1)][SerializeField] float enemyStepsVol;
+    [SerializeField] AudioClip[] soundHurt;
+    [Range(0, 1)][SerializeField] float soundHurtVol;
 
     bool isAttacking;
-    //bool isShooting;
-    //bool isMelee;
     bool playerInRange;
     float angleToPlayer;
     Vector3 playerDir;
@@ -40,6 +54,7 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 startingPos;
     bool destinChosen;
     float stoppingDistanceOrig;
+    //bool isPlayingSteps;
 
 
 
