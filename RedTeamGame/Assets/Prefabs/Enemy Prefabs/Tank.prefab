@@ -859,7 +859,7 @@ MonoBehaviour:
   HPBar: {fileID: 6784830205463727601}
   Shooter: 0
   Melee: 1
-  HP: 100
+  HP: 200
   viewCone: 90
   shootCone: 3
   targetFaceSpeed: 12
