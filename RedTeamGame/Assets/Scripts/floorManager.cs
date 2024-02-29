@@ -12,7 +12,7 @@ public class floorManager : MonoBehaviour
     [SerializeField] doorControl startDoorController;
     [SerializeField] doorControl exitDoorController;
     [SerializeField] List<spawner> spawners;
-
+    [SerializeField] gameManager manager;
     //public varables
     public int enemyCount;
 
@@ -22,10 +22,11 @@ public class floorManager : MonoBehaviour
         //get the floors door controlers
         startDoorController = startDoor.GetComponent<doorControl>();
         exitDoorController = exitDoor.GetComponent<doorControl>();
-        foreach (spawner spawner in spawners)
-        {
-            enemyCount = enemyCount + spawner.totalEnemy;
-        }
+        enemyCount = 15;
+        //foreach (spawner spawner in spawners)
+      //  {
+        //    enemyCount = enemyCount + spawner.totalEnemy;
+       // }
     }
 
     // Update is called once per frame

@@ -27,6 +27,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text timer;
     [SerializeField] TMP_Text winTime;
     [SerializeField] AudioSource music;
+    [SerializeField] floorManager floor;
+    //score
+    [SerializeField] TMP_Text scoreValue;
     //player related elements
     public GameObject player;
     public Image damageFlash;
@@ -104,14 +107,24 @@ public class gameManager : MonoBehaviour
     public void updateGameGoal(int enemyTotal)//will activly alter the total score until win or loss (same code as class for now)
     {
         enemyCount += enemyTotal;// determent the current score(in this case number of enemys)
+        floor.enemyCount--;
         if (enemyCount <= 0)// if there are no enemys its a win
         {
+           
             activeMenu = winMenu;
             winTime.text = currentTime.Minutes + ":" + currentTime.Seconds; 
             activeMenu.SetActive(true);
 
             statePaused();
         }
+    }
+    public void updateScore(int value)
+    {
+        scoreValue.text = value.ToString();
+    }
+    public void updateFloor()
+    {
+        floor.enemyCount--;
     }
     public void youLose()//on a player death show a loss menu
     {
