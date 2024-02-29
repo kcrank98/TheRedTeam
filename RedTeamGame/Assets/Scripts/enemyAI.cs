@@ -46,6 +46,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] AudioClip[] soundHurt;
     [Range(0, 1)][SerializeField] float soundHurtVol;
 
+    [SerializeField] floorManager floorManager;
+
     bool isAttacking;
     bool playerInRange;
     float angleToPlayer;
@@ -182,6 +184,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             gameManager.instance.updateGameGoal(-1);  
+            
             Destroy(gameObject);
         }
     }
