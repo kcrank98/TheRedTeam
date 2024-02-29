@@ -63,14 +63,14 @@ MonoBehaviour:
   Shooter: 0
   Melee: 1
   HP: 50
-  viewCone: 90
-  shootCone: 10
-  targetFaceSpeed: 10
+  viewCone: 300
+  shootCone: 15
+  targetFaceSpeed: 15
   animSpeedTrans: 5
-  roamPauseTime: 2
-  roamDistance: 8
-  scoreValue: 0
-  moneyValue: 0
+  roamPauseTime: 1
+  roamDistance: 20
+  scoreValue: 2
+  moneyValue: 2
   bullet: {fileID: 0}
   shootRate: 0
   meleeRate: 1
@@ -89,8 +89,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.01
-  m_Speed: 6
-  m_Acceleration: 45
+  m_Speed: 9
+  m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 700
   m_StoppingDistance: 1.3
@@ -164,7 +164,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.25
+  m_Radius: 0.37
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &257216435623239177
 GameObject:

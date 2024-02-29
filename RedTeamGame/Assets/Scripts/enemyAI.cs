@@ -23,8 +23,8 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("-----Enemy Parameters-----")]
     [Range(1, 250)] [SerializeField] int HP;
-    [Range(1, 90)] [SerializeField] int viewCone;
-    [Range(1, 10)] [SerializeField] int shootCone;
+    [Range(1, 500)] [SerializeField] int viewCone;
+    [Range(1, 100)] [SerializeField] int shootCone;
     [Range(1, 50)] [SerializeField] int targetFaceSpeed;
     [Range(1, 50)] [SerializeField] int animSpeedTrans;
     [Range(1, 10)] [SerializeField] int roamPauseTime;
@@ -181,8 +181,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            // heres the double decrement
             gameManager.instance.updateGameGoal(-1);
             gameManager.instance.updateFloor();
+            // heres the double decrement
+
             gameManager.instance.updateScore(scoreValue);
             Destroy(gameObject);
         }
