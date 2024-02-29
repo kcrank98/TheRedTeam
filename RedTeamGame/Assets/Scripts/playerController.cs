@@ -82,6 +82,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioClip[] dashSound;
     [Range(0, 1)][SerializeField] float dashSoundVol;
 
+    [SerializeField] AudioClip[] gunPickupSound;
+    [Range(0, 1)][SerializeField] float gunPickupVol;
+
+
+
     Vector3 move;
     Vector3 playerVel;
     Vector3 pushBack;
@@ -351,6 +356,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     public void getGunStats(gunStats gun)
     {
+        aud.PlayOneShot(gunPickupSound[Random.Range(0, gunPickupSound.Length)], gunPickupVol);
 
         gunList.Add(gun);
 
@@ -392,6 +398,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     void changeGun()
     {
+        aud.PlayOneShot(gunPickupSound[Random.Range(0, gunPickupSound.Length)], gunPickupVol);
 
         gunName = gunList[selectedGun].gunName;
         shootDamage = gunList[selectedGun].shootDamage;
