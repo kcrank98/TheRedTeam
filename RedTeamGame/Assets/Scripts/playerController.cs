@@ -76,6 +76,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioClip[] soundHurt;
     [Range(0, 1)][SerializeField] float soundHurtVol;
 
+    [SerializeField] AudioClip[] shieldBreakSound;
+    [Range(0, 1)][SerializeField] float shieldBreakVol;
+
     [SerializeField] AudioClip[] jumpSound;
     [Range(0, 1)][SerializeField] float jumpSoundVol;
 
@@ -284,6 +287,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         {
             StartCoroutine(flashShieldDamage());
             shieldAmount -= amount;
+
+            if (shieldAmount <= 0)
+            {
+                aud.PlayOneShot(shieldBreakSound[Random.Range(0, shieldBreakSound.Length)], shieldBreakVol);
+            }
         }
         else
         {

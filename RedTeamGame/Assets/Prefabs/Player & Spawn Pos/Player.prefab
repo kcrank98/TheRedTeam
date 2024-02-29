@@ -355,6 +355,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 648d6bf9815738c4f921d69e8b0eae7a, type: 3}
   - {fileID: 8300000, guid: 674213a30bbae064fb4c41c309c31086, type: 3}
   soundHurtVol: 0.5
+  shieldBreakSound:
+  - {fileID: 8300000, guid: 90af38775c5bd43c084091ac77fe7257, type: 3}
+  shieldBreakVol: 0.8
   jumpSound:
   - {fileID: 8300000, guid: c369feb045950264d95f23783655092e, type: 3}
   - {fileID: 8300000, guid: 49a8fc246e483df45ad0855f02710527, type: 3}
