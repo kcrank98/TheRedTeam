@@ -853,7 +853,8 @@ PrefabInstance:
       value: floor 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7267647111831958072, guid: 4511dc8b9606c9041b001310236b7d0f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7435327571413703273, guid: 4511dc8b9606c9041b001310236b7d0f, type: 3}
       insertIndex: 0
