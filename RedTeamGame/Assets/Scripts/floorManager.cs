@@ -12,6 +12,7 @@ public class floorManager : MonoBehaviour
     [SerializeField] doorControl startDoorController;
     [SerializeField] doorControl exitDoorController;
     [SerializeField] List<spawner> spawners;
+
     //public varables
     public int enemyCount;
 
