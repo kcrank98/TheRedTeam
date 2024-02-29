@@ -60,10 +60,9 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
         timerStart();
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
-        music.Play();
+        
         //enemySpawnPos = GameObject.FindWithTag("Enemy Spawn Pos");
         
-
     }
 
     // Update is called once per frame

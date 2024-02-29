@@ -363,6 +363,11 @@ MonoBehaviour:
   dashSound:
   - {fileID: 8300000, guid: 89001e92ca492453599bb2bc49326e85, type: 3}
   dashSoundVol: 0.5
+  gunPickupSound:
+  - {fileID: 8300000, guid: e7632c6401c09437e83de45d33c5858e, type: 3}
+  - {fileID: 8300000, guid: cef0fa03af5b747f0abe82cde0b2bccc, type: 3}
+  - {fileID: 8300000, guid: 2dc35d77cfe164a2eab57d08500740e2, type: 3}
+  gunPickupVol: 0.3
 --- !u!143 &1278013717027179020
 CharacterController:
   m_ObjectHideFlags: 0
