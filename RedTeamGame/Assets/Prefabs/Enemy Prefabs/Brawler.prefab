@@ -1741,7 +1741,7 @@ MonoBehaviour:
   roamPauseTime: 0.75
   roamDistance: 10
   pushBackDivide: 0
-  scoreValue: 0
+  scoreValue: 250
   moneyValue: 0
   bullet: {fileID: 8417197538657703367, guid: 07a39ba8a8b7433468d8dcf5acb082a8, type: 3}
   shootRate: 0

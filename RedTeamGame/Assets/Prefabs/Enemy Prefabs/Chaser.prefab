@@ -71,7 +71,7 @@ MonoBehaviour:
   roamPauseTime: 0.5
   roamDistance: 8
   pushBackDivide: 0
-  scoreValue: 0
+  scoreValue: 150
   moneyValue: 0
   bullet: {fileID: 0}
   shootRate: 0
