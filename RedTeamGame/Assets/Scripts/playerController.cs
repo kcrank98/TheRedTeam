@@ -395,6 +395,7 @@ public class playerController : MonoBehaviour, IDamage
         clickSound = gunList[selectedGun].clickSound;
         shootSound = gunList[selectedGun].shootSound;
 
+        attachmentPosition = gunList[selectedGun].attachmentPosition;
         gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;

@@ -9,6 +9,7 @@ public class spawner : MonoBehaviour
     [SerializeField] int spawnTimer;
     [SerializeField] Transform[] spawnPos;
 
+    public int totalEnemy;
     int spawnCount;
     bool isSpawning;
     bool startSpawning;
@@ -17,6 +18,7 @@ public class spawner : MonoBehaviour
     void Start()
     {
         gameManager.instance.updateGameGoal(numberToSpawn);
+        totalEnemy = numberToSpawn;
     }
 
     // Update is called once per frame
