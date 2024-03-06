@@ -1530,6 +1530,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8164488723449629755, guid: e4867d4768d8ecb41b7a040b4cbb2fd1, type: 3}
+      propertyPath: totalEnemy
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164488723449629755, guid: e4867d4768d8ecb41b7a040b4cbb2fd1, type: 3}
+      propertyPath: numberToSpawn
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15098,6 +15106,18 @@ PrefabInstance:
     - target: {fileID: 8635454300704705934, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 9208572760951324073, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
+      propertyPath: dashForce
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 9208572760951324073, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
+      propertyPath: dashCooldown
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9208572760951324073, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
+      propertyPath: pushBackResolve
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

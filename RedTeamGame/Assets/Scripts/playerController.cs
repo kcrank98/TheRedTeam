@@ -28,23 +28,30 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [Header("---- Movement")]
     [Range(3, 25)][SerializeField] float playerSpeed;
     [Range(3, 25)][SerializeField] float playerSpeedOrig;
-    [Range(1.0f, 5)][SerializeField] float sprintMod;
-    [Range(1, 3)][SerializeField] int jumpMax;
-    [Range(5, 30)][SerializeField] float jumpForce;
+
     [Range(-10, -30)][SerializeField] float gravity;
     [Range(0, 25)][SerializeField] int pushBackResolve;
 
-    [Header("---- Crouch")]
+    /* Movement not used
+    [Range(1, 3)][SerializeField] int jumpMax;
+    [Range(5, 30)][SerializeField] float jumpForce;
+    [Range(1.0f, 5)][SerializeField] float sprintMod;
+    */
+
+    /*[Header("---- Crouch")]
     [Range(.1f, 1f)][SerializeField] float crouchSpeedMod;
     [SerializeField] int controllerHeightOrig;
     [SerializeField] float controllerYOrig;
     [SerializeField] int controllerCrouchHeight;
-    [SerializeField] float controllerCrouchY;
+    [SerializeField] float controllerCrouchY;*/
 
     [Header("---- Dash")]
     [Range(1, 3)][SerializeField] int dashMax;
-    [Range(5, 30)][SerializeField] float dashForce;
+    [Range(50, 300)][SerializeField] float dashForce;
+    [Range(1, 5)][SerializeField] float dashCooldown;
+
     [SerializeField] int dashCount;
+    [SerializeField] bool isDashing;
 
     [Header("---- Gun Stats")]
     [SerializeField] string gunName;
@@ -93,6 +100,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     Vector3 move;
     Vector3 playerVel;
     Vector3 pushBack;
+    Vector3 dashDirection;
     bool isShooting;
     bool isSprinting;
     bool isCrouched;
@@ -100,8 +108,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     bool aimedIn;
     int jumpCount;
     bool isPlayingSteps;
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -117,13 +123,12 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     // Update is called once per frame
     void Update()
     {
-        sprint();
-        crouch();
+
 
         if (!gameManager.instance.isPaused)
         {
             movement();
-            dash();
+
 
             if (gunList.Count > 0)
             {
@@ -134,16 +139,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 {
                     StartCoroutine(shoot());
                 }
-               //else if(gunList.Count > 0)
-               //{
-               //    aud.PlayOneShot(gunList[selectedGun].clickSound);
-               //}
-                //else if (Input.GetButton("Shoot") && !gameManager.instance.updateBullet())
-                //{
-
-                //    aud.PlayOneShot(clickSound, gunList[selectedGun].clickSoundVol);
-
-                //}
             }
         }
     }
@@ -154,8 +149,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         if (controller.isGrounded)
         {
-            jumpCount = 0;
-            dashCount = 0;
             playerVel = Vector3.zero;
         }
 
@@ -165,11 +158,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         controller.Move(move * playerSpeed * Time.deltaTime);
 
 
-        if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
+        if (Input.GetButtonDown("Dash") && dashCount < dashMax && !isDashing)
         {
-            playerVel.y = jumpForce;
-            StartCoroutine(playJumpSound());
-            jumpCount++;
+            StartCoroutine(DASH());
         }
 
         playerVel.y += gravity * Time.deltaTime;
@@ -186,45 +177,36 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         pushBack += dir;
     }
 
-    void crouch()
-    {
-        if (Input.GetButtonDown("Crouch") && controller.isGrounded && !isSprinting)
-        {
-            controller.height = controllerCrouchHeight;
-            mainCamera.GetComponent<Camera>().transform.localPosition = mainCamera.GetComponent<Camera>().transform.localPosition + new Vector3(0, -.7f, 0);
-            playerSpeed *= crouchSpeedMod;
-
-        }
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            controller.height = controllerHeightOrig;
-            mainCamera.GetComponent<Camera>().transform.localPosition = new Vector3(0, 1, 0);
-            playerSpeed = playerSpeedOrig;
-        }
-    }
     void dash()
     {
-        if (!controller.isGrounded && Input.GetButtonDown("Dash") && dashCount < dashMax)
+        if (Input.GetButtonDown("Dash") && dashCount < dashMax)
         {
             playerVel += transform.forward * dashForce;
             StartCoroutine(playDashSound());
             dashCount++;
         }
     }
-
-    void sprint()
+    //playerVel += transform.forward * dashForce;
+    //controller.Move(move * dashForce * Time.deltaTime);
+    IEnumerator DASH()
     {
-        if (Input.GetButtonDown("Sprint") && jumpCount < 1)
-        {
-            playerSpeed *= sprintMod;
-            isSprinting = true;
-        }
-        else if (Input.GetButtonUp("Sprint"))
-        {
-            playerSpeed = playerSpeedOrig;
-            isSprinting = false;
-        }
+        isDashing = true;
+        dashCount++;
+
+        //dashDirection = move;
+        //playerVel += dashDirection * dashForce;
+
+        playerVel += transform.forward * dashForce;
+        StartCoroutine(playDashSound());
+        dashCount++;
+
+        StartCoroutine(playDashSound());
+        yield return new WaitForSeconds(dashCooldown);
+        isDashing = false;
+        dashCount = 0;
     }
+
+
     IEnumerator playFootsteps()
     {
         isPlayingSteps = true;
