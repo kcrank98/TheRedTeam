@@ -311,7 +311,8 @@ MonoBehaviour:
   pushBackResolve: 2
   dashMax: 1
   dashForce: 150
-  dashCooldown: 3.5
+  dashCooldown: 1.5
+  dashDeceleration: 1.5
   dashCount: 0
   isDashing: 0
   gunName: 
