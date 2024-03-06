@@ -49,6 +49,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [Range(1, 3)][SerializeField] int dashMax;
     [Range(50, 300)][SerializeField] float dashForce;
     [Range(1, 5)][SerializeField] float dashCooldown;
+    [Range(1, 5)][SerializeField] float dashDeceleration;
 
     [SerializeField] int dashCount;
     [SerializeField] bool isDashing;
@@ -186,8 +187,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             dashCount++;
         }
     }
-    //playerVel += transform.forward * dashForce;
-    //controller.Move(move * dashForce * Time.deltaTime);
+
     IEnumerator DASH()
     {
         isDashing = true;
@@ -204,6 +204,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
         dashCount = 0;
+
+
     }
 
 

@@ -15108,16 +15108,12 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9208572760951324073, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
-      propertyPath: dashForce
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 9208572760951324073, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
       propertyPath: dashCooldown
-      value: 3.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 9208572760951324073, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
-      propertyPath: pushBackResolve
-      value: 2
+      propertyPath: dashDeceleration
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
