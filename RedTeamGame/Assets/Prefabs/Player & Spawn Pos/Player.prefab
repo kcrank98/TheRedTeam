@@ -307,19 +307,14 @@ MonoBehaviour:
   coinsOrig: 0
   playerSpeed: 8
   playerSpeedOrig: 0
-  sprintMod: 1.5
-  jumpMax: 2
-  jumpForce: 7
   gravity: -28
   pushBackResolve: 2
-  crouchSpeedMod: 0.5
-  controllerHeightOrig: 2
-  controllerYOrig: 0
-  controllerCrouchHeight: 1
-  controllerCrouchY: -0.7
   dashMax: 1
-  dashForce: 12
+  dashForce: 150
+  dashCooldown: 1.5
+  dashDeceleration: 1.5
   dashCount: 0
+  isDashing: 0
   gunName: 
   shootDamage: 0
   shootDistance: 0
