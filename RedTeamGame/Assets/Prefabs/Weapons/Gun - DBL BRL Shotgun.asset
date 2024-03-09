@@ -10,22 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
-  m_Name: Gun2 - Pistol
+  m_Name: Gun - DBL BRL Shotgun
   m_EditorClassIdentifier: 
-  gunName: Pistol
-  shootDamage: 30
-  shootDistance: 45
-  shootRate: 0.5
-  ammoCurrent: 0
-  ammoMax: 5
-  aimFOV: 50
-  aimSpeed: 15
-  attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
-  model: {fileID: 100000, guid: dbeb07ce6436fdc4988bcc03b8afc948, type: 3}
+  gunName: Sniper
+  shootDamage: 40
+  shootDistance: 50
+  shootRate: 1
+  ammoCurrent: 6
+  ammoMax: 6
+  aimFOV: 55
+  aimSpeed: 10
+  attachmentPosition: {x: 0, y: 0, z: 0}
+  model: {fileID: 2149736931412995468, guid: 6ad4d210dfd25674aae4bc1b96c4bc24, type: 3}
+  modelSprite: {fileID: 0}
+  sprite: {fileID: -594621956, guid: 34c787351fb81ed4ba42e8871b0aa94b, type: 3}
   hitEffect: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
-  clickSoundVol: 0.5
-  shootSound: {fileID: 8300000, guid: a1a3178f0271f49c5a12bc0c347e6e52, type: 3}
+  clickSoundVol: 0.25
+  shootSound: {fileID: 8300000, guid: d3247579c549643a5b3a95f9224eaf3c, type: 3}
   shootSoundVol: 0.5

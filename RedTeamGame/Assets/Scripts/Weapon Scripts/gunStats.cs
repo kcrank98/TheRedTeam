@@ -24,8 +24,11 @@ public class gunStats : ScriptableObject
     [Header(" ---- Components ---- ")]
 
     public GameObject model;
+    public SpriteRenderer modelSprite;
+    public Sprite sprite;
     //public GameObject attachment;
     public ParticleSystem hitEffect;
+    
 
     [Header(" ---- Audio ---- ")]
 

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.U2D;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage, IPushBack
@@ -61,6 +63,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float shootRate;
+    [SerializeField] int ammoCurrent;
+    [SerializeField] int ammoMax;
     [SerializeField] float aimFOV;
     [SerializeField] float aimSpeed;
     [SerializeField] Vector3 attachmentPosition;
@@ -68,7 +72,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [Header("---- Gun")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] GameObject gunModel;
-    //[SerializeField] GameObject gunAttachment;
+    [SerializeField] Sprite gunSprite;
+    //[SerializeField] SpriteRenderer gunModel;
+
     public AudioClip reloadSound;
     public AudioClip clickSound;
     public AudioClip shootSound;
@@ -130,19 +136,24 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         {
             movement();
 
-
+            // anim test
             if (gunList.Count > 0)
+            //if (gunList.Count >= 0)
             {
                 selectGun();
                 aim();
-                if (Input.GetButtonDown("R"))
+                if (Input.GetButtonDown("R") && ammoCurrent != ammoMax)
                 {
-                    
+                    reload();
                 }
 
-                if (Input.GetButton("Shoot") && !isShooting && gameManager.instance.hasAmmo())
+                if (Input.GetButton("Shoot") && !isShooting && gameManager.instance.hasAmmo() && ammoCurrent > 0)
                 {
                     StartCoroutine(shoot());
+                }
+                else if (Input.GetButton("Shoot") && ammoCurrent < 0)
+                {
+                    aud.PlayOneShot(gunList[selectedGun].clickSound);
                 }
             }
         }
@@ -209,9 +220,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         isDashing = false;
         dashCount = 0;
 
-
     }
-
 
     IEnumerator playFootsteps()
     {
@@ -247,6 +256,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         {
             aud.PlayOneShot(gunList[selectedGun].shootSound);
             StartCoroutine(showMuzzleFlash());
+            ammoCurrent--;
+            //anim.SetTrigger("Shoot");
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
             {
@@ -364,6 +375,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         shootDamage = gun.shootDamage;
         shootDistance = gun.shootDistance;
         shootRate = gun.shootRate;
+        ammoCurrent = gun.ammoCurrent;
+        ammoMax = gun.ammoMax;
         aimFOV = gun.aimFOV;
         aimSpeed = gun.aimSpeed;
         reloadSound = gun.reloadSound;
@@ -372,13 +385,13 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         attachmentPosition = gun.attachmentPosition;
 
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
+        //gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
+        //gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
 
-        //gunAttachment.GetComponent<MeshFilter>().sharedMesh = gun.attachment.GetComponent<MeshFilter>().sharedMesh;
-        //gunAttachment.GetComponent<MeshRenderer>().sharedMaterial = gun.attachment.GetComponent<MeshRenderer>().sharedMaterial;
+        gunModel.GetComponent<SpriteRenderer>().sprite = gun.model.GetComponent<SpriteRenderer>().sprite;
 
-        // gunAttachment.GetComponent <Transform>().position = attachmentPosition;
+        //gunSprite.GetComponent<SpriteRenderer>().sprite = gun.model.GetComponent<SpriteRenderer>().sprite;
+
         selectedGun = gunList.Count - 1;
     }
     void selectGun()
@@ -404,6 +417,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         shootDamage = gunList[selectedGun].shootDamage;
         shootDistance = gunList[selectedGun].shootDistance;
         shootRate = gunList[selectedGun].shootRate;
+        ammoCurrent = gunList[selectedGun].ammoCurrent;
+        ammoMax = gunList[selectedGun].ammoMax;
         aimFOV = gunList[selectedGun].aimFOV;
         aimSpeed = gunList[selectedGun].aimSpeed;
         reloadSound = gunList[selectedGun].reloadSound;
@@ -414,13 +429,12 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
 
         gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
+        //gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
+        //gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
 
-        //gunAttachment.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].attachment.GetComponent<MeshFilter>().sharedMesh;
-        //gunAttachment.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].attachment.GetComponent<MeshRenderer>().sharedMaterial;
+        gunModel.GetComponent<SpriteRenderer>().sprite = gunList[selectedGun].GetComponent<SpriteRenderer>().sprite;
+        //gunSprite.GetComponent<SpriteRenderer>().sprite = gunList[selectedGun].GetComponent<SpriteRenderer>().sprite;
 
-        //gunAttachment.GetComponent<Transform>().position = gunList[selectedGun].attachmentPosition;
 
     }
     private void aim()
@@ -435,5 +449,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, originalFOV, aimSpeed);
             aimedIn = false;
         }
+    }
+    private void reload()
+    {
+        ammoCurrent = ammoMax;
+        aud.PlayOneShot(gunList[selectedGun].reloadSound);
+
     }
 }
