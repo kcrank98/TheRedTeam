@@ -123,6 +123,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &82398102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 353479652718278122, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
+  m_PrefabInstance: {fileID: 8266674892595825214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &82398105
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82398102}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 15a2876eff3f9a543b58ec3f68e3b0c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &451918183 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1718857886038709368, guid: 2a68b7404720f07478b840d971211968, type: 3}
@@ -330,6 +356,32 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6e718a9785b7eb43bc3d00bf266fdce, type: 3}
+--- !u!1 &1173238740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8635454300704705934, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
+  m_PrefabInstance: {fileID: 8266674892595825214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1173238748
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173238740}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1222418850 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 168791148288412015, guid: f6e718a9785b7eb43bc3d00bf266fdce, type: 3}
@@ -1537,6 +1589,18 @@ PrefabInstance:
     - target: {fileID: 8164488723449629755, guid: e4867d4768d8ecb41b7a040b4cbb2fd1, type: 3}
       propertyPath: numberToSpawn
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164488723449629755, guid: e4867d4768d8ecb41b7a040b4cbb2fd1, type: 3}
+      propertyPath: spawnPos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8228149587944370541, guid: e4867d4768d8ecb41b7a040b4cbb2fd1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 77.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8228149587944370541, guid: e4867d4768d8ecb41b7a040b4cbb2fd1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 86.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15108,17 +15172,19 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 9208572760951324073, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
-      propertyPath: dashCooldown
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9208572760951324073, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
-      propertyPath: dashDeceleration
-      value: 1.5
-      objectReference: {fileID: 0}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 1173238748}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8635454300704705934, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1173238748}
+    - targetCorrespondingSourceObject: {fileID: 353479652718278122, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 82398105}
   m_SourcePrefab: {fileID: 100100000, guid: 6f2c95429839fe240aca62a869767b37, type: 3}
 --- !u!33 &8269631739100499467
 MeshFilter:

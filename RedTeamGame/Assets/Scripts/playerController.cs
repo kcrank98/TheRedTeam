@@ -11,6 +11,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioSource aud;
     [SerializeField] GameObject muzzlePos;
     [SerializeField] ParticleSystem muzzleFlash;
+    [SerializeField] Animator anim;
+
 
     [Header("---- Health")]
     [Range(0, 60)][SerializeField] int HP;
@@ -96,8 +98,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioClip[] gunPickupSound;
     [Range(0, 1)][SerializeField] float gunPickupVol;
 
-
-
     Vector3 move;
     Vector3 playerVel;
     Vector3 pushBack;
@@ -135,6 +135,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             {
                 selectGun();
                 aim();
+                if (Input.GetButtonDown("R"))
+                {
+                    
+                }
 
                 if (Input.GetButton("Shoot") && !isShooting && gameManager.instance.hasAmmo())
                 {
