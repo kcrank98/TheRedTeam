@@ -14,7 +14,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] GameObject muzzlePos;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] Animator anim;
-
+    [SerializeField] Animator gunAnimator;
 
     [Header("---- Health")]
     [Range(0, 60)][SerializeField] int HP;
@@ -149,6 +149,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
                 if (Input.GetButton("Shoot") && !isShooting && gameManager.instance.hasAmmo() && ammoCurrent > 0)
                 {
+                    //gunAnimator.SetTrigger("Shoot");
                     StartCoroutine(shoot());
                 }
                 else if (Input.GetButton("Shoot") && ammoCurrent < 0)
@@ -208,9 +209,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         isDashing = true;
         dashCount++;
 
-        //dashDirection = move;
-        //playerVel += dashDirection * dashForce;
-
         playerVel += transform.forward * dashForce;
         StartCoroutine(playDashSound());
         dashCount++;
@@ -257,7 +255,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             aud.PlayOneShot(gunList[selectedGun].shootSound);
             StartCoroutine(showMuzzleFlash());
             ammoCurrent--;
-            //anim.SetTrigger("Shoot");
+            //gunAnimator.SetTrigger("Shoot");
+
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
             {
@@ -273,7 +272,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         }
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
-
     }
     private IEnumerator showMuzzleFlash()
     {

@@ -24,6 +24,8 @@ public class gunStats : ScriptableObject
     [Header(" ---- Components ---- ")]
 
     public GameObject model;
+    [SerializeField] Animator gunAnimator;
+
     public SpriteRenderer modelSprite;
     public Sprite sprite;
     //public GameObject attachment;
