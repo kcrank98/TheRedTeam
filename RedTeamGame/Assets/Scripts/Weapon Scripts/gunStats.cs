@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,22 +8,26 @@ using UnityEngine;
 public class gunStats : ScriptableObject
 {
     [Header(" ---- Gun Stats ---- ")]
+    public string gunSize;
     public string gunName;
     public int shootDamage;
     public int shootDistance;
     public float shootRate;
-    public int ammoCurrent;
-    public int ammoMax;
     public float aimFOV;
     public float aimSpeed;
+
 
     [Header(" ---- Transform Local Position ---- ")]
     public Vector3 attachmentPosition;
 
-
+    [Header(" ---- Ammo ---- ")]
+    public int magazineMax;
+    public int reservesMax;
+    public int magazine;
+    public int reserves;
 
     [Header(" ---- Components ---- ")]
-
+    public Sprite uiImage;
     public GameObject model;
     //public GameObject attachment;
     public ParticleSystem hitEffect;

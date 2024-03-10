@@ -109,7 +109,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     bool aimedIn;
     int jumpCount;
     bool isPlayingSteps;
-
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -136,10 +136,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 selectGun();
                 aim();
 
-                if (Input.GetButton("Shoot") && !isShooting && gameManager.instance.hasAmmo())
-                {
+               // if (Input.GetButton("Shoot") && !isShooting && gameManager.instance.hasAmmo())
+               // {
                     StartCoroutine(shoot());
-                }
+               // }
             }
         }
     }
@@ -238,9 +238,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     IEnumerator shoot()
     {
-        isShooting = true;
-        if (gameManager.instance.updateBullet())
+        if (gunList[selectedGun] != null && gunList[selectedGun].magazine != 0)
         {
+            isShooting = true;
+
             aud.PlayOneShot(gunList[selectedGun].shootSound);
             StartCoroutine(showMuzzleFlash());
             RaycastHit hit;
@@ -255,9 +256,12 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                     dmg.takeDamage(shootDamage);
                 }
             }
+            gunList[selectedGun].magazine -= 1;
+            gameManager.instance.updateAmmo(gunList[selectedGun]);
+
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
         }
-        yield return new WaitForSeconds(shootRate);
-        isShooting = false;
 
     }
     private IEnumerator showMuzzleFlash()
@@ -381,13 +385,13 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1 && !aimedIn)
         {
-            gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
+            //gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
             selectedGun++;
             changeGun();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0 && !aimedIn)
         {
-            gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
+            //gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
             selectedGun--;
             changeGun();
         }
@@ -408,8 +412,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         attachmentPosition = gunList[selectedGun].attachmentPosition;
 
-
-        gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
+        gameManager.instance.setActiveGun(gunList[selectedGun]);
+        //gameManager.instance.setActiveGun(gameManager.instance.guns[selectedGun]);
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
 
@@ -431,5 +435,23 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, originalFOV, aimSpeed);
             aimedIn = false;
         }
+    }
+    public void reloadGun()
+    {
+        if (gunList[selectedGun]!=null)
+        {
+            int difFromMagMax = gunList[selectedGun].magazineMax - gunList[selectedGun].magazine;
+            if (gunList[selectedGun].reserves - difFromMagMax >= 0)
+            {
+                gunList[selectedGun].magazine = gunList[selectedGun].magazineMax;
+            }
+            else
+            {
+                gunList[selectedGun].magazine += gunList[selectedGun].reserves;
+                gunList[selectedGun].reserves = 0;
+            }
+            gameManager.instance.updateAmmo(gunList[selectedGun]);
+        }
+        
     }
 }
