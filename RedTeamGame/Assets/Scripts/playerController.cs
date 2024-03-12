@@ -415,7 +415,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         reserves = gunList[selectedGun].reserves;
         reservesMax = gunList[selectedGun].reservesMax;
 
-        gunModel.GetComponent<SpriteRenderer>().sprite = null;
+        //gunModel.GetComponent<SpriteRenderer>().sprite = null;
         gunModel.GetComponent<SpriteRenderer>().sprite = gunList[selectedGun].GetComponent<SpriteRenderer>().sprite;
 
         gameManager.instance.setActiveGun(gunList[selectedGun]);
