@@ -160,7 +160,7 @@ public class gameManager : MonoBehaviour
         currentTime = TimeSpan.FromSeconds(time);
         timer.text = currentTime.Minutes + ":" + currentTime.Seconds;
     }
-    public void setActiveGun(gunStats gun)//sets the current gun both for ammo tracking and ui
+    public void setActiveGun()//sets the current gun both for ammo tracking and ui
     {
       //GunImg.sprite = playerScript.gunUI
         if(!currentMagAmmo.IsActive())
@@ -168,14 +168,14 @@ public class gameManager : MonoBehaviour
             currentMagAmmo.gameObject.SetActive(true);
             currentReserves.gameObject.SetActive(true);
         }
-        updateAmmo(gun);
+        updateAmmo();
       
     }
-    public void updateAmmo(gunStats gun)
+    public void updateAmmo()
     {
         
-        //currentMagAmmo.text = playerScript.getMag().ToString();
-        //currentReserves.text = playerScript.getReserves().ToString();
+        currentMagAmmo.text = playerScript.magazine.ToString();
+        currentReserves.text = playerScript.reserves.ToString();
     }
    
     List<GameObject> findAllChild(GameObject parent)//find all the children of an object and return them as a list

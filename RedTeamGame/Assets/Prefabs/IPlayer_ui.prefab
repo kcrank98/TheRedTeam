@@ -85,10 +85,9 @@ MonoBehaviour:
   pauseMenu: {fileID: 8948651514299976987}
   loseMenu: {fileID: 8852691393002133191}
   winMenu: {fileID: 7120537883945269406}
-  LargeGunImg: {fileID: 0}
-  SmallGunImg: {fileID: 0}
-  currentMagAmmo: {fileID: 0}
-  currentReserves: {fileID: 0}
+  GunImg: {fileID: 0}
+  currentMagAmmo: {fileID: 3746925670867757311}
+  currentReserves: {fileID: 6602276110626084106}
   timer: {fileID: 7955721625908836319}
   winTime: {fileID: 166567901846625064}
   music: {fileID: 0}

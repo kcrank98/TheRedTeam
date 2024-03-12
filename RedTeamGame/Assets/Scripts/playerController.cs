@@ -52,10 +52,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] float shootRate;
     [SerializeField] float aimFOV;
     [SerializeField] float aimSpeed;
-    [SerializeField] float magazine;
-    [SerializeField] float magazineMax;
-    [SerializeField] float reserves;
-    [SerializeField] float reservesMax;
+    [SerializeField] public int magazine;
+    [SerializeField] int magazineMax;
+    [SerializeField] public int reserves;
+    [SerializeField] int reservesMax;
 
     [Header("---- Gun")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
@@ -257,7 +257,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         {
             aud.PlayOneShot(gunList[selectedGun].clickSound);
         }
-
+        gameManager.instance.updateAmmo();
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
@@ -418,7 +418,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         //gunModel.GetComponent<SpriteRenderer>().sprite = null;
         gunModel.GetComponent<SpriteRenderer>().sprite = gunList[selectedGun].GetComponent<SpriteRenderer>().sprite;
 
-        gameManager.instance.setActiveGun(gunList[selectedGun]);
+        gameManager.instance.setActiveGun();
 
         //gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
         //gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
@@ -442,19 +442,21 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         if (gunList[selectedGun] != null)
         {
-            int difFromMagMax = gunList[selectedGun].magazineMax - gunList[selectedGun].magazine;
-            if (gunList[selectedGun].reserves - difFromMagMax >= 0)
+            int difFromMagMax = magazineMax - magazine;
+            if (reserves - difFromMagMax >= 0)
             {
-                gunList[selectedGun].magazine = gunList[selectedGun].magazineMax;
+                magazine = magazineMax;
+                reserves -= difFromMagMax;
                 gunList[selectedGun].reserves -= difFromMagMax;
             }
             else
             {
-                gunList[selectedGun].magazine += gunList[selectedGun].reserves;
+                magazine += reserves;
+                reserves = 0;
                 gunList[selectedGun].reserves = 0;
             }
-            aud.PlayOneShot(gunList[selectedGun].reloadSound);
-            gameManager.instance.updateAmmo(gunList[selectedGun]);
+            aud.PlayOneShot(reloadSound);
+            gameManager.instance.updateAmmo();
         }
 
     }
