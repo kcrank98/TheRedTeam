@@ -19,5 +19,8 @@ public class buttonFunctions : MonoBehaviour
     {
         Application.Quit();//self explanatory
     }
-
+    public void StartRun()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }

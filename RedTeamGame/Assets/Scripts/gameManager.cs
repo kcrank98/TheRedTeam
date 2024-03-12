@@ -21,8 +21,7 @@ public class gameManager : MonoBehaviour
 
     //gun ui elements
     [Header ("--gun ammo ui--")]
-    [SerializeField] Image LargeGunImg;
-    [SerializeField] Image SmallGunImg;
+    [SerializeField] SpriteRenderer GunImg;
     [SerializeField] TMP_Text currentMagAmmo;
     [SerializeField] TMP_Text currentReserves;
 
@@ -163,81 +162,22 @@ public class gameManager : MonoBehaviour
     }
     public void setActiveGun(gunStats gun)//sets the current gun both for ammo tracking and ui
     {
-        if(gun != null)
+      //GunImg.sprite = playerScript.gunUI
+        if(!currentMagAmmo.IsActive())
         {
-            if (gun.gunSize == "Large")
-            {
-                if (SmallGunImg.IsActive())
-                {
-                    SmallGunImg.gameObject.SetActive(false);
-                }
-                LargeGunImg.sprite = gun.uiImage;
-                LargeGunImg.gameObject.SetActive(true);
-            }
-            else if (gun.gunSize == "Small")
-            {
-                if (LargeGunImg.IsActive())
-                {
-                    LargeGunImg.gameObject.SetActive(false);
-                }
-                SmallGunImg.sprite = gun.uiImage;
-                SmallGunImg.gameObject.SetActive(true);
-            }
-            currentMagAmmo.text = gun.magazine.ToString();
-            currentReserves.text = gun.reserves.ToString();
-            if (!currentMagAmmo.IsActive())
-            {
-                currentMagAmmo.gameObject.SetActive(true);
-                currentReserves.gameObject.SetActive(true);
-            }
+            currentMagAmmo.gameObject.SetActive(true);
+            currentReserves.gameObject.SetActive(true);
         }
+        updateAmmo(gun);
       
     }
     public void updateAmmo(gunStats gun)
     {
-        currentMagAmmo.text = gun.magazine.ToString();
-        currentReserves.text = gun.reserves.ToString();
+        
+        //currentMagAmmo.text = playerScript.getMag().ToString();
+        //currentReserves.text = playerScript.getReserves().ToString();
     }
-    // public bool updateBullet()//call in an "if" statment if the gun has ammo or not returns a bool to reflect
-    //     //will also return false if there is no active gun
-    // {
-    //     bool ammo = true;
-    //     if (activeGun != null && !isPaused)//if there is a gun and game is not paused
-    //     {
-    //         if (hasAmmo())//if the current bullet is not more than the mags maximum
-    //         {
-    //             gunMags[activeGun][currentMagBullet[activeGun]].SetActive(false);//turn off the current bullet chambered
-    //             currentMagBullet[activeGun]++;
-    //            
-    //             //set the current bullet for active guns mag
-    //             return ammo;//return that the gun still has ammo
-    //         }
-    //      
-    //     }
-    //     return !ammo;//else return there is no ammo
-    // }
-    // public bool hasAmmo()
-    // {
-    //     if (currentMagBullet[activeGun] <= gunMags[activeGun].Count()-1)
-    //     {
-    //         return true;
-    //     }
-    //     else
-    //     {
-    //         return false;
-    //     }
-    // }
-    // public void reloadMag()//re-sets a mag for the active weapon
-    // {
-    //     if(activeGun != null && !isPaused)//if there is a gun and the game is not paused
-    //     {
-    //         for (int i = 0; i < gunMags[activeGun].Count(); i++)//while the iterator is not the last bullet
-    //         {
-    //             gunMags[activeGun][i].SetActive(true);//set the current iterated bullet to on
-    //         }
-    //         currentMagBullet[activeGun] = 0;//when the mag is done resetng reset the current bullet counter
-    //     }
-    // }
+   
     List<GameObject> findAllChild(GameObject parent)//find all the children of an object and return them as a list
     {
         List<GameObject> children = new List<GameObject>();
@@ -247,37 +187,5 @@ public class gameManager : MonoBehaviour
         }
         return children;
     }
-   // public GameObject addGunUi(string gunName)
-   // {
-   //    
-   //         if(gunName ==  "Pistol")
-   //         {
-   //             gunMags.Add(pistol, findAllChild(pistol.transform.GetChild(0).gameObject));
-   //             currentMagBullet.Add(pistol, 0);
-   //             guns.Add(pistol);
-   //             return pistol;
-   //         }
-   //         else if(gunName == "Rifle")
-   //         {
-   //             gunMags.Add(rifle,findAllChild(rifle.transform.GetChild(0).gameObject));
-   //             currentMagBullet.Add(rifle, 0);
-   //             guns.Add(rifle);
-   //             return rifle;
-   //         }
-   //         else if(gunName == "Shotgun")
-   //         {
-   //             gunMags.Add(shotgun,findAllChild(shotgun.transform.GetChild(0).gameObject));
-   //             currentMagBullet.Add(shotgun, 0);
-   //             guns.Add(shotgun);
-   //             return shotgun;
-   //         }
-   //         else if(gunName == "Sniper")
-   //         {
-   //             gunMags.Add(sniper,findAllChild(sniper.transform.GetChild(0).gameObject));
-   //             currentMagBullet.Add(sniper, 0);
-   //             guns.Add(sniper);
-   //             return sniper;
-   //         }
-   //     return null;
-   // }
+   
 }
