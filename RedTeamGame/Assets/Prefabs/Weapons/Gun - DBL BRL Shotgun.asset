@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
   m_Name: Gun - DBL BRL Shotgun
   m_EditorClassIdentifier: 
+  gunSize: Large
   gunName: Sniper
   shootDamage: 40
   shootDistance: 50
   shootRate: 1
-  ammoCurrent: 6
-  ammoMax: 6
   aimFOV: 55
   aimSpeed: 10
   attachmentPosition: {x: 0, y: 0, z: 0}
+  magazineMax: 4
+  reservesMax: 16
+  magazine: 4
+  reserves: 16
+  uiImage: {fileID: 0}
   model: {fileID: 2149736931412995468, guid: 6ad4d210dfd25674aae4bc1b96c4bc24, type: 3}
+  gunAnimator: {fileID: 0}
   modelSprite: {fileID: 0}
   sprite: {fileID: -594621956, guid: 34c787351fb81ed4ba42e8871b0aa94b, type: 3}
   hitEffect: {fileID: 0}

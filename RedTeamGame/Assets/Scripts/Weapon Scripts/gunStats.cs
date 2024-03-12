@@ -33,7 +33,6 @@ public class gunStats : ScriptableObject
 
     public SpriteRenderer modelSprite;
     public Sprite sprite;
-    //public GameObject attachment;
     public ParticleSystem hitEffect;
     
 

@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
   m_Name: Gun - Pistol Other Lone
   m_EditorClassIdentifier: 
+  gunSize: Small
   gunName: Pistol
   shootDamage: 14
   shootDistance: 65
   shootRate: 0.25
-  ammoCurrent: 6
-  ammoMax: 6
   aimFOV: 50
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
+  magazineMax: 12
+  reservesMax: 36
+  magazine: 12
+  reserves: 24
+  uiImage: {fileID: 0}
   model: {fileID: 7484657630027589192, guid: 021aa7162a4fa024b997f79e46d21506, type: 3}
+  gunAnimator: {fileID: 0}
   modelSprite: {fileID: 0}
   sprite: {fileID: 859612671, guid: 8e1b5ebaac8200b4ab08317b1cd7d8a3, type: 3}
   hitEffect: {fileID: 0}

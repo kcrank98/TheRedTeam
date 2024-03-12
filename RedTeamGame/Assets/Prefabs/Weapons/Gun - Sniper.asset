@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
   m_Name: Gun - Sniper
   m_EditorClassIdentifier: 
+  gunSize: Large
   gunName: Sniper
   shootDamage: 70
   shootDistance: 500
   shootRate: 3
-  ammoCurrent: 3
-  ammoMax: 3
   aimFOV: 30
   aimSpeed: 5
   attachmentPosition: {x: 0.02, y: 0.14, z: 0.22}
+  magazineMax: 0
+  reservesMax: 0
+  magazine: 0
+  reserves: 0
+  uiImage: {fileID: 0}
   model: {fileID: 2352997721424495953, guid: bb0cd604d12965b48bc6104313af13d8, type: 3}
+  gunAnimator: {fileID: 0}
   modelSprite: {fileID: 0}
   sprite: {fileID: 0}
   hitEffect: {fileID: 0}

@@ -12,16 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
   m_Name: Gun - Axe
   m_EditorClassIdentifier: 
+  gunSize: Melee
   gunName: Axe
   shootDamage: 5
   shootDistance: 15
   shootRate: 0.5
-  ammoCurrent: 10000
-  ammoMax: 10000
   aimFOV: 55
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
+  magazineMax: 0
+  reservesMax: 0
+  magazine: 0
+  reserves: 0
+  uiImage: {fileID: 0}
   model: {fileID: 1403932432879992326, guid: c2b68362777a50646bf91fb54398ce31, type: 3}
+  gunAnimator: {fileID: 0}
   modelSprite: {fileID: 0}
   sprite: {fileID: -233877210, guid: 6a71cc43df2b4ab49830058e6071fd60, type: 3}
   hitEffect: {fileID: 0}
