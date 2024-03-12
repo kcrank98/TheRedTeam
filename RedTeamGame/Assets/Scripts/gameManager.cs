@@ -190,11 +190,17 @@ public class gameManager : MonoBehaviour
                 currentMagAmmo.gameObject.SetActive(true);
                 currentReserves.gameObject.SetActive(true);
             }
+            else if(gun.gunSize == "Melee")
+            {
+                currentMagAmmo.gameObject.SetActive(false);
+                currentReserves.gameObject.SetActive(false);
+            }
         }
       
     }
     public void updateAmmo(gunStats gun)
     {
+        
         currentMagAmmo.text = gun.magazine.ToString();
         currentReserves.text = gun.reserves.ToString();
     }
