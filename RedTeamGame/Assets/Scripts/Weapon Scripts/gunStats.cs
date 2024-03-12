@@ -29,8 +29,12 @@ public class gunStats : ScriptableObject
     [Header(" ---- Components ---- ")]
     public Sprite uiImage;
     public GameObject model;
-    //public GameObject attachment;
+    [SerializeField] Animator gunAnimator;
+
+    public SpriteRenderer modelSprite;
+    public Sprite sprite;
     public ParticleSystem hitEffect;
+    
 
     [Header(" ---- Audio ---- ")]
 

@@ -12,20 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
   m_Name: Gun - Pistol
   m_EditorClassIdentifier: 
+  gunSize: 36
   gunName: Pistol
   shootDamage: 14
   shootDistance: 65
   shootRate: 0.25
-  ammoCurrent: 0
-  ammoMax: 21
   aimFOV: 50
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
-  model: {fileID: 199669651405181594, guid: 41236ddb97b001d499cadd3503c086dc, type: 3}
+  magazineMax: 12
+  reservesMax: 36
+  magazine: 12
+  reserves: 36
+  uiImage: {fileID: 0}
+  model: {fileID: 1975738080416130617, guid: 0b846bb4a0834e045a61597cd03eb1cd, type: 3}
+  gunAnimator: {fileID: 0}
+  modelSprite: {fileID: 0}
+  sprite: {fileID: 859612671, guid: 8e1b5ebaac8200b4ab08317b1cd7d8a3, type: 3}
   hitEffect: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
-  clickSoundVol: 0.5
+  clickSoundVol: 0.25
   shootSound: {fileID: 8300000, guid: 1865e875aa3d06243a92647a885965b9, type: 3}
   shootSoundVol: 0.5

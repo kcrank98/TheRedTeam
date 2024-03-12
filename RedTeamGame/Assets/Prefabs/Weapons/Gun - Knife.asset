@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
+  m_Name: Gun - Knife
+  m_EditorClassIdentifier: 
+  gunSize: Melee
+  gunName: Knife
+  shootDamage: 4
+  shootDistance: 5
+  shootRate: 0.35
+  aimFOV: 55
+  aimSpeed: 15
+  attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
+  magazineMax: 1000
+  reservesMax: 1000
+  magazine: 1000
+  reserves: 1000
+  uiImage: {fileID: 0}
+  model: {fileID: 4592160469289539857, guid: 2778d8c5bee36e5439e36c1db89799a6, type: 3}
+  gunAnimator: {fileID: 0}
+  modelSprite: {fileID: 0}
+  sprite: {fileID: 51408648, guid: 81e09b66d39d630498bfe92c65b7cd2a, type: 3}
+  hitEffect: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
+  reloadSoundVol: 0
+  clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
+  clickSoundVol: 0
+  shootSound: {fileID: 8300000, guid: 9423065c1c0d64ea3a434687a804188b, type: 3}
+  shootSoundVol: 0.5
