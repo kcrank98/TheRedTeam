@@ -13,6 +13,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioSource aud;
     [SerializeField] GameObject muzzlePos;
     [SerializeField] ParticleSystem muzzleFlash;
+    [SerializeField] GameObject muzzleFlashGO;
     [SerializeField] Animator anim;
     [SerializeField] Animator gunAnimator;
     [SerializeField] RuntimeAnimatorController runtimeAnimatorController;
@@ -98,8 +99,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioClip[] gunPickupSound;
     [Range(0, 1)][SerializeField] float gunPickupVol;
 
-
-
     Vector3 move;
     Vector3 playerVel;
     Vector3 pushBack;
@@ -128,7 +127,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     // Update is called once per frame
     void Update()
     {
-
 
         if (!gameManager.instance.isPaused)
         {
@@ -250,13 +248,19 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
         {
+            
             Debug.Log(hit.collider.name);
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
+            //GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.LookRotation(hit.normal));
+            GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.collider.transform.position, Quaternion.LookRotation(hit.normal));
+            Destroy(muzzleFlashInstance, .2f);
+             
+
             if (hit.transform != transform && dmg != null)
             {
-                dmg.takeDamage(shootDamage);
+                dmg.takeDamage(shootDamage);     
             }
         }
         // Blake UI Stuff
@@ -381,6 +385,13 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     public void updateHealth(int amount)
     {
+        int remainingHP;
+        if (HPOrig - HP < amount)
+        {
+            remainingHP = HPOrig - HP;
+            amount = remainingHP;
+            HP += amount;
+        }
         HP += amount;
     }
 
@@ -418,6 +429,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         magazineMax = gun.magazineMax;
         reserves = gun.reserves;
         reservesMax = gun.reservesMax;
+
+        //gameManager.instance.findAllChild(gunModel);
 
         //gunModel.GetComponent<Animator>().runtimeAnimatorController = gun.runtimeAnimatorController;
 
@@ -514,5 +527,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             gameManager.instance.updateAmmo();
         }
 
+    }
+    public void ammoCountUpdate(int amount)
+    {
+        reserves += amount;
+        gameManager.instance.updateAmmo();
     }
 }
