@@ -6,11 +6,15 @@ using UnityEngine;
 public class doorControl : MonoBehaviour
 {
     //door parts
-    [SerializeField] Collider trigger;
-    [SerializeField] Animator anim;
-  
-    //public varables
+    private Animator anim;
     public bool isOpen;
+
+    private void Start()
+    {
+
+        anim = GetComponent<Animator>();
+    }
+    //public varables
     public void toggleDoor()
     {
         anim.SetTrigger("toggleDoor");

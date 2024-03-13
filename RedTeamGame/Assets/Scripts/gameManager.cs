@@ -18,26 +18,22 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject winMenu;
+    [Header("--shield--")]
     [SerializeField] Image LShield;
     [SerializeField] Image RShield;
-    //gun ui elements
+    [Header("--prompt text--")]
+    [SerializeField] TMP_Text popUp;
     [Header ("--gun ammo ui--")]
     [SerializeField] SpriteRenderer GunImg;
     [SerializeField] TMP_Text currentMagAmmo;
     [SerializeField] TMP_Text currentReserves;
-
-    //timer
     [Header("--timer--")]
     [SerializeField] TMP_Text timer;
     [SerializeField] TMP_Text winTime;
-
-    //music
     [Header("--audio--")]
     [SerializeField] public AudioSource music;
     [SerializeField] public AudioClip[] backgroundMusic;
     [Range(0, 1)][SerializeField] public float backgroundMusicVol;
-
-    //score
     [Header("--score--")]
     [SerializeField] TMP_Text scoreValue;
 
@@ -67,6 +63,7 @@ public class gameManager : MonoBehaviour
     int score;
     float time;
     bool timerOn;
+    bool popUpOn;
     //awake will run before any other call crating this object before anything needs to use it
     void Awake()
     {
@@ -186,7 +183,7 @@ public class gameManager : MonoBehaviour
         RShield.fillAmount = tmp;
     }
    
-    List<GameObject> findAllChild(GameObject parent)//find all the children of an object and return them as a list
+    public List<GameObject> findAllChild(GameObject parent)//find all the children of an object and return them as a list
     {
         List<GameObject> children = new List<GameObject>();
         foreach (Transform child in parent.transform)
@@ -194,6 +191,13 @@ public class gameManager : MonoBehaviour
             children.Add(child.gameObject);
         }
         return children;
+    }
+
+    public void popUpTxt(string text = "")
+    {
+        popUp.gameObject.SetActive(!popUpOn);
+        popUpOn = !popUpOn;
+        popUp.text = text;
     }
    
 }
