@@ -29,9 +29,14 @@ public class gameManager : MonoBehaviour
     [Header("--timer--")]
     [SerializeField] TMP_Text timer;
     [SerializeField] TMP_Text winTime;
-    [SerializeField] AudioSource music;
     [SerializeField] floorManager floor;
-    
+
+    //music
+    [Header("--audio--")]
+    [SerializeField] public AudioSource music;
+    [SerializeField] public AudioClip[] backgroundMusic;
+    [Range(0, 1)][SerializeField] public float backgroundMusicVol;
+
     //score
     [Header("--score--")]
     [SerializeField] TMP_Text scoreValue;
