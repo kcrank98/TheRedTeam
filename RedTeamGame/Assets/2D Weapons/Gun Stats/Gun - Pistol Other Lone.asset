@@ -22,13 +22,13 @@ MonoBehaviour:
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
   magazineMax: 13
   reservesMax: 36
-  magazine: 13
+  magazine: 12
   reserves: 24
   uiImage: {fileID: 0}
   model: {fileID: 7484657630027589192, guid: 021aa7162a4fa024b997f79e46d21506, type: 3}
   gunAnimator: {fileID: 0}
-  modelSprite: {fileID: 0}
-  sprite: {fileID: 859612671, guid: 8e1b5ebaac8200b4ab08317b1cd7d8a3, type: 3}
+  runtimeAnimatorController: {fileID: 0}
+  sprite: {fileID: 1033628737, guid: 05cdacd8cbfae8945a47f8f8240cc02d, type: 3}
   hitEffect: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5

@@ -15,6 +15,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] Animator anim;
     [SerializeField] Animator gunAnimator;
+    [SerializeField] RuntimeAnimatorController runtimeAnimatorController;
+
 
     [Header("---- Health")]
     [Range(0, 60)][SerializeField] int HP;
@@ -59,6 +61,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] int magazineMax;
     [SerializeField] public int reserves;
     [SerializeField] int reservesMax;
+  
+
+
 
     [Header("---- Gun")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
@@ -237,6 +242,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         aud.PlayOneShot(gunList[selectedGun].shootSound);
         StartCoroutine(showMuzzleFlash());
+
+        //gunAnimator.SetTrigger("Shoot");
+
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
         {
@@ -375,13 +383,19 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         reserves = gun.reserves;
         reservesMax = gun.reservesMax;
 
+        //gunModel.GetComponent<Animator>().runtimeAnimatorController = gun.runtimeAnimatorController;
+
 
         //gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
         //gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
 
+        //Assign the AC to the right gunstats
+        //gunModel.GetComponent<Animator>().runtimeAnimatorController = gun.model.GetComponent<Animator>().runtimeAnimatorController;
         gunModel.GetComponent<SpriteRenderer>().sprite = gun.model.GetComponent<SpriteRenderer>().sprite;
 
         selectedGun = gunList.Count - 1;
+        gameManager.instance.setActiveGun();
+
     }
     void selectGun()
     {
@@ -415,6 +429,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         reservesMax = gunList[selectedGun].reservesMax;
 
         //gunModel.GetComponent<SpriteRenderer>().sprite = null;
+        //gunModel.GetComponent<Animator>().runtimeAnimatorController = gunList[selectedGun].model.GetComponent<Animator>().runtimeAnimatorController;
+
         gunModel.GetComponent<SpriteRenderer>().sprite = gunList[selectedGun].GetComponent<SpriteRenderer>().sprite;
 
         gameManager.instance.setActiveGun();
