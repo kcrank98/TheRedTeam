@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,10 +30,12 @@ public class gunStats : ScriptableObject
     [Header(" ---- Components ---- ")]
     public Sprite uiImage;
     public GameObject model;
-    public Animator gunAnimator;
-    public RuntimeAnimatorController runtimeAnimatorController;
+    //public Animator gunAnimator;
+    //public RuntimeAnimatorController runtimeAnimatorController;
     public Sprite sprite;
-    public ParticleSystem hitEffect;
+    public ParticleSystem hitEffectPS;
+    [SerializeField] GameObject hitEffectIMG;
+
     
 
     [Header(" ---- Audio ---- ")]

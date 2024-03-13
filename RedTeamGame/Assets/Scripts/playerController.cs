@@ -13,9 +13,12 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioSource aud;
     [SerializeField] GameObject muzzlePos;
     [SerializeField] ParticleSystem muzzleFlash;
+    [SerializeField] GameObject muzzleFlashGO;
     [SerializeField] Animator anim;
     [SerializeField] Animator gunAnimator;
     [SerializeField] RuntimeAnimatorController runtimeAnimatorController;
+    [SerializeField] bool DeathDown;
+
 
 
     [Header("---- Health")]
@@ -38,6 +41,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [Range(-10, -30)][SerializeField] float gravity;
     [Range(-10, -30)][SerializeField] float gravityOrig;
     [Range(0, 25)][SerializeField] int pushBackResolve;
+    [SerializeField] int playerPositionY;
 
     [Header("---- Dash")]
     [Range(1, 3)][SerializeField] int dashMax;
@@ -61,8 +65,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] int magazineMax;
     [SerializeField] public int reserves;
     [SerializeField] int reservesMax;
-  
-
 
 
     [Header("---- Gun")]
@@ -97,8 +99,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioClip[] gunPickupSound;
     [Range(0, 1)][SerializeField] float gunPickupVol;
 
-
-
     Vector3 move;
     Vector3 playerVel;
     Vector3 pushBack;
@@ -120,13 +120,13 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         playerSpeedOrig = playerSpeed;
         gravityOrig = gravity;
         originalFOV = mainCamera.GetComponent<Camera>().fieldOfView;
+        gameManager.instance.UpdateShiieldUi();
         respawn();
     }
 
     // Update is called once per frame
     void Update()
     {
-
 
         if (!gameManager.instance.isPaused)
         {
@@ -248,13 +248,19 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
         {
+            
             Debug.Log(hit.collider.name);
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
+            //GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.LookRotation(hit.normal));
+            GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.collider.transform.position, Quaternion.LookRotation(hit.normal));
+            Destroy(muzzleFlashInstance, .2f);
+             
+
             if (hit.transform != transform && dmg != null)
             {
-                dmg.takeDamage(shootDamage);
+                dmg.takeDamage(shootDamage);     
             }
         }
         // Blake UI Stuff
@@ -300,8 +306,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         if (HP <= 0)
         {
-            gameManager.instance.youLose();
+            StartCoroutine(playDeath());
+            //gameManager.instance.youLose();
         }
+        gameManager.instance.UpdateShiieldUi();
+
     }
 
     void checkHPBelowPerc()
@@ -329,6 +338,37 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         gameManager.instance.damageFlash.gameObject.SetActive(false);
 
     }
+    IEnumerator playDeath()
+    {
+        gameManager.instance.shieldDamage.SetActive(true);
+
+        Vector3 startCamPos = mainCamera.GetComponent<Camera>().transform.position;
+        Vector3 targetCamPosDown = new Vector3(startCamPos.x, startCamPos.y * 1.2f, startCamPos.z);
+        Vector3 targetCamPosUp = new Vector3(startCamPos.x, startCamPos.y / 1.2f, startCamPos.z);
+        float duration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            if (DeathDown)
+            {
+                mainCamera.GetComponent<Camera>().transform.position = Vector3.Lerp(startCamPos, targetCamPosDown, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            if(!DeathDown)
+            {
+                mainCamera.GetComponent<Camera>().transform.position = Vector3.Lerp(startCamPos, targetCamPosUp, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        yield return new WaitForSeconds(.1f);
+
+        gameManager.instance.youLose();
+
+    }
     public void respawn()
     {
         HP = HPOrig;
@@ -345,6 +385,13 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     public void updateHealth(int amount)
     {
+        int remainingHP;
+        if (HPOrig - HP < amount)
+        {
+            remainingHP = HPOrig - HP;
+            amount = remainingHP;
+            HP += amount;
+        }
         HP += amount;
     }
 
@@ -383,6 +430,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         reserves = gun.reserves;
         reservesMax = gun.reservesMax;
 
+        //gameManager.instance.findAllChild(gunModel);
+
         //gunModel.GetComponent<Animator>().runtimeAnimatorController = gun.runtimeAnimatorController;
 
 
@@ -391,7 +440,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         //Assign the AC to the right gunstats
         //gunModel.GetComponent<Animator>().runtimeAnimatorController = gun.model.GetComponent<Animator>().runtimeAnimatorController;
-        gunModel.GetComponent<SpriteRenderer>().sprite = gun.model.GetComponent<SpriteRenderer>().sprite;
+        //gunModel.GetComponent<SpriteRenderer>().sprite = gun.model.GetComponent<SpriteRenderer>().sprite;
+
+        gunModel = gun.model;
 
         selectedGun = gunList.Count - 1;
         gameManager.instance.setActiveGun();
@@ -431,7 +482,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         //gunModel.GetComponent<SpriteRenderer>().sprite = null;
         //gunModel.GetComponent<Animator>().runtimeAnimatorController = gunList[selectedGun].model.GetComponent<Animator>().runtimeAnimatorController;
 
-        gunModel.GetComponent<SpriteRenderer>().sprite = gunList[selectedGun].GetComponent<SpriteRenderer>().sprite;
+        gunModel = gunList[selectedGun].model.gameObject;
+
+        //gunModel.GetComponent<SpriteRenderer>().sprite = gunList[selectedGun].GetComponent<SpriteRenderer>().sprite;
 
         gameManager.instance.setActiveGun();
 
@@ -474,5 +527,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             gameManager.instance.updateAmmo();
         }
 
+    }
+    public void ammoCountUpdate(int amount)
+    {
+        reserves += amount;
+        gameManager.instance.updateAmmo();
     }
 }
