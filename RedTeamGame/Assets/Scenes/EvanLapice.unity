@@ -488,6 +488,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 637813344069439706, guid: f6e718a9785b7eb43bc3d00bf266fdce, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2274119229900812380, guid: f6e718a9785b7eb43bc3d00bf266fdce, type: 3}
       propertyPath: gunManager
       value: 
@@ -663,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5485072437895653505, guid: 536a6e7816d26a545b336d61f6d91e54, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2039,12 +2043,12 @@ MonoBehaviour:
   anim: {fileID: 0}
   gunAnimator: {fileID: 0}
   runtimeAnimatorController: {fileID: 0}
-  DeathDown: 0
-  HP: 10
+  DeathDown: 1
+  HP: 15
   HPOrig: 0
   HPPerc: 0.5
   shieldAmountOrg: 0
-  shieldAmount: 0
+  shieldAmount: 20
   coins: 0
   coinsOrig: 0
   playerSpeed: 8

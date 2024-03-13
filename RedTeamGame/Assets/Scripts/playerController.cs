@@ -121,6 +121,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         playerSpeedOrig = playerSpeed;
         gravityOrig = gravity;
         originalFOV = mainCamera.GetComponent<Camera>().fieldOfView;
+        gameManager.instance.UpdateShiieldUi();
         respawn();
     }
 
@@ -301,11 +302,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         if (HP <= 0)
         {
-            // start depth Couritine for death
-
             StartCoroutine(playDeath());
             //gameManager.instance.youLose();
         }
+        gameManager.instance.UpdateShiieldUi();
+
     }
 
     void checkHPBelowPerc()
@@ -359,10 +360,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             }
         }
 
-        // Ensure the camera reaches the exact target position
-        // mainCamera.GetComponent<Camera>().transform.position = targetCamPos;
-
-        yield return new WaitForSeconds(.1f); // Wait for 1 second before proceeding
+        yield return new WaitForSeconds(.1f);
 
         gameManager.instance.youLose();
 

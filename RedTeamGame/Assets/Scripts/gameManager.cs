@@ -180,7 +180,8 @@ public class gameManager : MonoBehaviour
     }
     public void UpdateShiieldUi()
     {
-        float tmp = playerScript.shieldAmount / playerScript.shieldAmountOrg;
+        float tmp = (float)playerScript.shieldAmount / playerScript.shieldAmountOrg;
+
         LShield.fillAmount = tmp;
         RShield.fillAmount = tmp;
     }
