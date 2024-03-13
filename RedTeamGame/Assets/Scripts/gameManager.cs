@@ -13,29 +13,34 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
     //menu elements
+    [Header ("--menu elements--")]
     [SerializeField] GameObject activeMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject winMenu;
-
-
+    [SerializeField] Image LShield;
+    [SerializeField] Image RShield;
     //gun ui elements
-    [Header("--hud elements--")]
     [Header ("--gun ammo ui--")]
     [SerializeField] SpriteRenderer GunImg;
     [SerializeField] TMP_Text currentMagAmmo;
     [SerializeField] TMP_Text currentReserves;
+
     //timer
     [Header("--timer--")]
     [SerializeField] TMP_Text timer;
     [SerializeField] TMP_Text winTime;
-    [SerializeField] AudioSource music;
+
+    //music
+    [Header("--audio--")]
+    [SerializeField] public AudioSource music;
+    [SerializeField] public AudioClip[] backgroundMusic;
+    [Range(0, 1)][SerializeField] public float backgroundMusicVol;
+
     //score
     [Header("--score--")]
     [SerializeField] TMP_Text scoreValue;
-    [Header("--shield--")]
-    [SerializeField] Image RShield;
-    [SerializeField] Image LShield;
+
     [Header("--player elements--")]
     //player related elements
     public GameObject player;
