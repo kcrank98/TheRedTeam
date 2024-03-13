@@ -19,5 +19,10 @@ public class buttonFunctions : MonoBehaviour
     {
         Application.Quit();//self explanatory
     }
+    public void StartRun()
+    {
+        SceneManager.LoadScene("MainScene");
+        //need to change loading somehow to render all textures
 
+    }
 }
