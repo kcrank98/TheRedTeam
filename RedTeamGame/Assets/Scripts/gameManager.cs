@@ -30,7 +30,6 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text timer;
     [SerializeField] TMP_Text winTime;
     [SerializeField] AudioSource music;
-    [SerializeField] floorManager floor;
     //score
     [Header("--score--")]
     [SerializeField] TMP_Text scoreValue;
@@ -134,10 +133,7 @@ public class gameManager : MonoBehaviour
         score += value;
         scoreValue.text = score.ToString();
     }
-    public void updateFloor()
-    {
-        floor.enemyCount--;
-    }
+  
     public void youLose()//on a player death show a loss menu
     {
         statePaused();
