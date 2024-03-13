@@ -24,8 +24,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [Range(.1f, .99f)][SerializeField] float HPPerc;
 
     [Header("---- Shield")]
-    [SerializeField] int shieldAmountOrg;
-    [Range(0, 30)][SerializeField] int shieldAmount;
+    [SerializeField] public int shieldAmountOrg;
+    [Range(0, 30)][SerializeField] public int shieldAmount;
 
     [Header("---- Money")]
     [SerializeField] int coins;
