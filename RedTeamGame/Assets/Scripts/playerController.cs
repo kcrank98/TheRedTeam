@@ -34,11 +34,14 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [Range(3, 25)][SerializeField] float playerSpeedOrig;
 
     [Range(-10, -30)][SerializeField] float gravity;
+    [Range(-10, -30)][SerializeField] float gravityOrig;
     [Range(0, 25)][SerializeField] int pushBackResolve;
 
     [Header("---- Dash")]
     [Range(1, 3)][SerializeField] int dashMax;
-    [Range(50, 300)][SerializeField] float dashForce;
+    [Range(1, 500)][SerializeField] float dashForce;
+    [Range(.1f, 5)][SerializeField] float dashDuration;
+    [Range(3, 25)][SerializeField] float maxDashSpeed;
     [Range(1, 5)][SerializeField] float dashCooldown;
     [Range(1, 5)][SerializeField] float dashDeceleration;
 
@@ -110,6 +113,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         shieldAmountOrg = shieldAmount;
         coinsOrig = coins;
         playerSpeedOrig = playerSpeed;
+        gravityOrig = gravity;
         originalFOV = mainCamera.GetComponent<Camera>().fieldOfView;
         respawn();
     }
@@ -166,39 +170,35 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         }
     }
 
-    public void pushBackDir(Vector3 dir)
-    {
-        pushBack += dir;
-    }
 
-    void dash()
-    {
-        if (Input.GetButtonDown("Dash") && dashCount < dashMax)
-        {
-            playerVel += transform.forward * dashForce;
-            StartCoroutine(playDashSound());
-            dashCount++;
-        }
-    }
+
 
     IEnumerator DASH()
     {
         isDashing = true;
         dashCount++;
 
-        playerVel += transform.forward * dashForce;
+        //gravity = 0;
+        //playerVel += transform.forward * dashForce;
+
+        Vector3 dashTarget = move.normalized * dashForce * Time.deltaTime;
+        //controller.Move(move.normalized * dashForce * Time.deltaTime);
+
+        controller.Move(Vector3.MoveTowards(move, dashTarget, dashDuration));
+
         StartCoroutine(playDashSound());
         dashCount++;
 
-        StartCoroutine(playDashSound());
         yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
         dashCount = 0;
-
-
+        //gravity = gravityOrig;
     }
 
-
+    public void pushBackDir(Vector3 dir)
+    {
+        pushBack += dir;
+    }
     IEnumerator playFootsteps()
     {
         isPlayingSteps = true;
@@ -229,9 +229,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     IEnumerator shoot()
     {
         // Need to save the magezine-- for each gun
-            // list of floats for magezine and reserves
-
-
+        // list of floats for magezine and reserves
         magazine--;
         gunList[selectedGun].magazine--;
 
@@ -329,6 +327,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         shieldAmountOrg = shieldAmount;
         coinsOrig = coins;
         playerSpeedOrig = playerSpeed;
+        gravityOrig = gravity;
         originalFOV = mainCamera.GetComponent<Camera>().fieldOfView;
 
         controller.enabled = false;
@@ -356,7 +355,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     public void getGunStats(gunStats gun)
     {
         // Need to save the magezine-- for each gun
-            // list of floats for magezine and reserves
+        // list of floats for magezine and reserves
 
         aud.PlayOneShot(gunPickupSound[Random.Range(0, gunPickupSound.Length)], gunPickupVol);
 

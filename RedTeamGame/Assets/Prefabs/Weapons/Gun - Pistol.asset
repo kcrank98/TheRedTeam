@@ -20,10 +20,10 @@ MonoBehaviour:
   aimFOV: 50
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
-  magazineMax: 12
+  magazineMax: 11
   reservesMax: 36
-  magazine: -127
-  reserves: 0
+  magazine: 11
+  reserves: 36
   uiImage: {fileID: 0}
   model: {fileID: 1975738080416130617, guid: 0b846bb4a0834e045a61597cd03eb1cd, type: 3}
   gunAnimator: {fileID: 0}
