@@ -3,17 +3,10 @@ using UnityEngine;
 
 public class HealthPack : MonoBehaviour
 {
-    public GameObject useText;
-    public static bool hasPickedUpHealthPack = false;
-    private bool hasEnteredTrigger = false;
-    public gameManager gameManager;
+    [SerializeField] int restoreHealthAmount;
+    //public GameObject useText;
+    bool hasEnteredTrigger = false;
     //public GameObject player;
-
-
-    private void Start()
-    {
-        gameManager = GetComponent<gameManager>();
-    }
 
 
     void Update()
@@ -22,25 +15,29 @@ public class HealthPack : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                hasPickedUpHealthPack = true;
-                gameManager.instance.playerScript.updateHealth(10);
+                gameManager.instance.playerScript.updateHealth(restoreHealthAmount);
                 hasEnteredTrigger = false;
                 gameObject.SetActive(false);
-                useText.SetActive(false);
+                //useText.SetActive(false);
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        useText.SetActive(true);
-        hasEnteredTrigger = true;
+        if (other.CompareTag("Player"))
+        {
+            //useText.SetActive(true);
+            hasEnteredTrigger = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        useText.SetActive(false);
-        hasPickedUpHealthPack = false;
-        hasEnteredTrigger = false;
+        if (other.CompareTag("Player"))
+        {
+            //useText.SetActive(false);
+            hasEnteredTrigger = false;
+        }
     }
 }
