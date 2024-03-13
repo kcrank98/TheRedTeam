@@ -18,7 +18,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject winMenu;
-
+    [SerializeField] Image LShield;
+    [SerializeField] Image RShield;
     //gun ui elements
     [Header ("--gun ammo ui--")]
     [SerializeField] SpriteRenderer GunImg;
@@ -29,7 +30,6 @@ public class gameManager : MonoBehaviour
     [Header("--timer--")]
     [SerializeField] TMP_Text timer;
     [SerializeField] TMP_Text winTime;
-    [SerializeField] floorManager floor;
 
     //music
     [Header("--audio--")]
@@ -138,10 +138,7 @@ public class gameManager : MonoBehaviour
         score += value;
         scoreValue.text = score.ToString();
     }
-    public void updateFloor()
-    {
-        floor.enemyCount--;
-    }
+  
     public void youLose()//on a player death show a loss menu
     {
         statePaused();
@@ -181,6 +178,12 @@ public class gameManager : MonoBehaviour
         
         currentMagAmmo.text = playerScript.magazine.ToString();
         currentReserves.text = playerScript.reserves.ToString();
+    }
+    public void UpdateShiieldUi()
+    {
+        float tmp = playerScript.shieldAmount / playerScript.shieldAmountOrg;
+        LShield.fillAmount = tmp;
+        RShield.fillAmount = tmp;
     }
    
     List<GameObject> findAllChild(GameObject parent)//find all the children of an object and return them as a list
