@@ -13,29 +13,30 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
     //menu elements
-    [Header ("--menu elements--")]
     [SerializeField] GameObject activeMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject winMenu;
 
+
     //gun ui elements
+    [Header("--hud elements--")]
     [Header ("--gun ammo ui--")]
     [SerializeField] SpriteRenderer GunImg;
     [SerializeField] TMP_Text currentMagAmmo;
     [SerializeField] TMP_Text currentReserves;
-
     //timer
     [Header("--timer--")]
     [SerializeField] TMP_Text timer;
     [SerializeField] TMP_Text winTime;
     [SerializeField] AudioSource music;
     [SerializeField] floorManager floor;
-    
     //score
     [Header("--score--")]
     [SerializeField] TMP_Text scoreValue;
-
+    [Header("--shield--")]
+    [SerializeField] Image RShield;
+    [SerializeField] Image LShield;
     [Header("--player elements--")]
     //player related elements
     public GameObject player;
@@ -176,6 +177,12 @@ public class gameManager : MonoBehaviour
         
         currentMagAmmo.text = playerScript.magazine.ToString();
         currentReserves.text = playerScript.reserves.ToString();
+    }
+    public void UpdateShiieldUi()
+    {
+        float tmp = playerScript.shieldAmount / playerScript.shieldAmountOrg;
+        LShield.fillAmount = tmp;
+        RShield.fillAmount = tmp;
     }
    
     List<GameObject> findAllChild(GameObject parent)//find all the children of an object and return them as a list
