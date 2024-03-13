@@ -16,6 +16,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] Animator anim;
     [SerializeField] Animator gunAnimator;
     [SerializeField] RuntimeAnimatorController runtimeAnimatorController;
+    [SerializeField] bool DeathDown;
+
 
 
     [Header("---- Health")]
@@ -38,6 +40,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [Range(-10, -30)][SerializeField] float gravity;
     [Range(-10, -30)][SerializeField] float gravityOrig;
     [Range(0, 25)][SerializeField] int pushBackResolve;
+    [SerializeField] int playerPositionY;
 
     [Header("---- Dash")]
     [Range(1, 3)][SerializeField] int dashMax;
@@ -61,8 +64,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] int magazineMax;
     [SerializeField] public int reserves;
     [SerializeField] int reservesMax;
-  
-
 
 
     [Header("---- Gun")]
@@ -300,7 +301,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         if (HP <= 0)
         {
-            gameManager.instance.youLose();
+            // start depth Couritine for death
+
+            StartCoroutine(playDeath());
+            //gameManager.instance.youLose();
         }
     }
 
@@ -327,6 +331,40 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         gameManager.instance.damageFlash.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         gameManager.instance.damageFlash.gameObject.SetActive(false);
+
+    }
+    IEnumerator playDeath()
+    {
+        gameManager.instance.shieldDamage.SetActive(true);
+
+        Vector3 startCamPos = mainCamera.GetComponent<Camera>().transform.position;
+        Vector3 targetCamPosDown = new Vector3(startCamPos.x, startCamPos.y * 1.2f, startCamPos.z);
+        Vector3 targetCamPosUp = new Vector3(startCamPos.x, startCamPos.y / 1.2f, startCamPos.z);
+        float duration = 1f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            if (DeathDown)
+            {
+                mainCamera.GetComponent<Camera>().transform.position = Vector3.Lerp(startCamPos, targetCamPosDown, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            if(!DeathDown)
+            {
+                mainCamera.GetComponent<Camera>().transform.position = Vector3.Lerp(startCamPos, targetCamPosUp, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        // Ensure the camera reaches the exact target position
+        // mainCamera.GetComponent<Camera>().transform.position = targetCamPos;
+
+        yield return new WaitForSeconds(.1f); // Wait for 1 second before proceeding
+
+        gameManager.instance.youLose();
 
     }
     public void respawn()
@@ -391,7 +429,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         //Assign the AC to the right gunstats
         //gunModel.GetComponent<Animator>().runtimeAnimatorController = gun.model.GetComponent<Animator>().runtimeAnimatorController;
-        gunModel.GetComponent<SpriteRenderer>().sprite = gun.model.GetComponent<SpriteRenderer>().sprite;
+        //gunModel.GetComponent<SpriteRenderer>().sprite = gun.model.GetComponent<SpriteRenderer>().sprite;
+
+        gunModel = gun.model;
 
         selectedGun = gunList.Count - 1;
         gameManager.instance.setActiveGun();
@@ -431,7 +471,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         //gunModel.GetComponent<SpriteRenderer>().sprite = null;
         //gunModel.GetComponent<Animator>().runtimeAnimatorController = gunList[selectedGun].model.GetComponent<Animator>().runtimeAnimatorController;
 
-        gunModel.GetComponent<SpriteRenderer>().sprite = gunList[selectedGun].GetComponent<SpriteRenderer>().sprite;
+        gunModel = gunList[selectedGun].model.gameObject;
+
+        //gunModel.GetComponent<SpriteRenderer>().sprite = gunList[selectedGun].GetComponent<SpriteRenderer>().sprite;
 
         gameManager.instance.setActiveGun();
 
