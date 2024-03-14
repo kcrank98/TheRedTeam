@@ -237,6 +237,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2a8374bf184f8d4894128b2d5aac42a, type: 3}
+--- !u!1001 &1217425008
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 312441969773041476, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.7342207
+      objectReference: {fileID: 0}
+    - target: {fileID: 312441969773041476, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.42500058
+      objectReference: {fileID: 0}
+    - target: {fileID: 312441969773041476, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -37.772263
+      objectReference: {fileID: 0}
+    - target: {fileID: 312441969773041476, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 312441969773041476, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 312441969773041476, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 312441969773041476, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 312441969773041476, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 312441969773041476, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 312441969773041476, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723244418132671022, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
+      propertyPath: m_Name
+      value: Shield potion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b88ad14c84b06e848bc35f4553297c96, type: 3}
 --- !u!1001 &1433602969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -414,6 +471,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a51fd41749c074e4da98f028f53c5c78, type: 3}
+--- !u!1001 &1604778111
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 434210534803466213, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.3815002
+      objectReference: {fileID: 0}
+    - target: {fileID: 434210534803466213, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.42499962
+      objectReference: {fileID: 0}
+    - target: {fileID: 434210534803466213, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -37.92823
+      objectReference: {fileID: 0}
+    - target: {fileID: 434210534803466213, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 434210534803466213, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434210534803466213, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434210534803466213, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434210534803466213, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434210534803466213, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 434210534803466213, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526066154415546901, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
+      propertyPath: m_Name
+      value: Health Potion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 27c5becf5224e3246a81658903bdbe8e, type: 3}
 --- !u!1 &1624338144 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1393526397903246453, guid: f6e718a9785b7eb43bc3d00bf266fdce, type: 3}
@@ -697,3 +811,5 @@ SceneRoots:
   - {fileID: 1525066629}
   - {fileID: 2137097359}
   - {fileID: 157440241}
+  - {fileID: 1217425008}
+  - {fileID: 1604778111}

@@ -385,13 +385,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     public void updateHealth(int amount)
     {
-        int remainingHP;
-        if (HPOrig - HP < amount)
-        {
-            remainingHP = HPOrig - HP;
-            amount = remainingHP;
-            HP += amount;
-        }
         HP += amount;
     }
 

@@ -1,37 +1,43 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShieldPickUp : MonoBehaviour
 {
-    public GameObject useText;
-    public static bool hasPickedUpShieldPack = false;
-    private bool hasEnteredTrigger = false;
-    public gameManager gameManager;
+    [SerializeField] int restoreShieldAmount;
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip usePotion;
+    [Range(0, 1)][SerializeField] float usePotionVol;
+    //public GameObject useText;
+    bool hasEnteredTrigger = false;
+    MeshRenderer bottle;
+    //public GameObject player;
 
-    private void Start()
+
+    void Start()
     {
-        gameManager = FindObjectOfType<gameManager>(); 
+        bottle = GetComponent<MeshRenderer>();
     }
-
     void Update()
     {
         if (hasEnteredTrigger)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                hasPickedUpShieldPack = true;
-                gameManager.instance.playerScript.updateShield(25); 
+                aud.PlayOneShot(usePotion, usePotionVol);
+                gameManager.instance.playerScript.updateShield(restoreShieldAmount);
                 hasEnteredTrigger = false;
-                gameObject.SetActive(false);
-                useText.SetActive(false);
+                bottle.enabled = false;
+                Destroy(gameObject, 3);
+                //useText.SetActive(false);
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
         {
-            useText.SetActive(true);
+            //useText.SetActive(true);
             hasEnteredTrigger = true;
         }
     }
@@ -40,8 +46,7 @@ public class ShieldPickUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            useText.SetActive(false);
-            hasPickedUpShieldPack = false;
+            //useText.SetActive(false);
             hasEnteredTrigger = false;
         }
     }
