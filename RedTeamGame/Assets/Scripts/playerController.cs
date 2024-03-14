@@ -18,8 +18,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] Animator gunAnimator;
     [SerializeField] RuntimeAnimatorController runtimeAnimatorController;
     [SerializeField] bool DeathDown;
-
-
+    public bool hasKey;
 
     [Header("---- Health")]
     [Range(0, 60)][SerializeField] int HP;
@@ -114,6 +113,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     // Start is called before the first frame update
     void Start()
     {
+        hasKey = false;
         HPOrig = HP;
         shieldAmountOrg = shieldAmount;
         coinsOrig = coins;
