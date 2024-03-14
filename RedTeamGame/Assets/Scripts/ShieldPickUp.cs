@@ -9,13 +9,13 @@ public class ShieldPickUp : MonoBehaviour
     [Range(0, 1)][SerializeField] float usePotionVol;
     //public GameObject useText;
     bool hasEnteredTrigger = false;
-    MeshRenderer bottle;
+    SpriteRenderer bottle;
     //public GameObject player;
 
 
     void Start()
     {
-        bottle = GetComponent<MeshRenderer>();
+        bottle = GetComponent<SpriteRenderer>();
     }
     void Update()
     {

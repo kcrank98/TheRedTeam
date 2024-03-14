@@ -1,33 +1,27 @@
-using Unity.VisualScripting;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPack : MonoBehaviour
+public class ChestScript : MonoBehaviour
 {
-    [SerializeField] int restoreHealthAmount;
-    [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip usePotion;
-    [Range(0, 1)][SerializeField] float usePotionVol;
-    //public GameObject useText;
-    bool hasEnteredTrigger = false;
-    SpriteRenderer bottle;
-    //public GameObject player;
+    bool hasEnteredTrigger;
 
-
+    // Start is called before the first frame update
     void Start()
     {
-        bottle = GetComponent<SpriteRenderer>();
+        hasEnteredTrigger = false;
     }
+
+    // Update is called once per frame
     void Update()
     {
         if (hasEnteredTrigger)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                aud.PlayOneShot(usePotion, usePotionVol);
-                gameManager.instance.playerScript.updateHealth(restoreHealthAmount);
+                GetComponent<LootBag>().instantiateLoot(transform.position);
                 hasEnteredTrigger = false;
-                bottle.enabled = false;
-                Destroy(gameObject, 3);
+                Destroy(gameObject);
                 //useText.SetActive(false);
             }
         }
