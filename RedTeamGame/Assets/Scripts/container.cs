@@ -35,11 +35,16 @@ public class container : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
-        StartCoroutine(flashMat());
+
+        if(model != null)
+        {
+            StartCoroutine(flashMat());
+        }
         aud.PlayOneShot(metalSound);
 
         if (HP <= 0)
         {
+            GetComponent<LootBag>().instantiateLoot(transform.position);
             Destroy(gameObject);
             //navMeshSurface.BuildNavMesh();
         }
