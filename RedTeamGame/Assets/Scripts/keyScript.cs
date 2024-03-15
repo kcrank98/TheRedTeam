@@ -20,7 +20,7 @@ public class keyScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 hasEnteredTrigger = false;
-                //gameManager.instance.playerScript.hasKey = true;
+                gameManager.instance.playerScript.hasKey = true;
                 Destroy(gameObject);
                 //useText.SetActive(false);
             }

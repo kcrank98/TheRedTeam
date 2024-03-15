@@ -18,7 +18,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] Animator gunAnimator;
     [SerializeField] RuntimeAnimatorController runtimeAnimatorController;
     [SerializeField] bool DeathDown;
-    public bool hasKey = false;
+    public bool hasKey;
     public bool isAlive = true;
 
 
@@ -131,6 +131,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         gravityOrig = gravity;
         originalFOV = mainCamera.GetComponent<Camera>().fieldOfView;
         gameManager.instance.UpdateShiieldUi();
+        hasKey = false;
         respawn();
     }
 
