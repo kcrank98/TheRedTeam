@@ -18,7 +18,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] Animator gunAnimator;
     [SerializeField] RuntimeAnimatorController runtimeAnimatorController;
     [SerializeField] bool DeathDown;
-
+    public bool hasKey = false;
+    public bool isAlive = true;
 
 
     [Header("---- Health")]
@@ -55,6 +56,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] bool isDashing;
 
     [Header("---- Gun Stats")]
+
     [SerializeField] string gunName;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
@@ -69,7 +71,13 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     [Header("---- Gun")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    [SerializeField] List<GameObject> gunGameObjectList = new List<GameObject>();
     [SerializeField] GameObject gunModel;
+    public Transform gunparentObject;
+    public int selectedGunGameObject;
+
+    [Header("---- Gun Audio")]
+
     public AudioClip reloadSound;
     public AudioClip clickSound;
     public AudioClip shootSound;
@@ -107,6 +115,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     bool isSprinting;
     bool isCrouched;
     int selectedGun;
+    //int selectedGunGameObject;
     bool aimedIn;
     int jumpCount;
     bool isPlayingSteps;
@@ -114,6 +123,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     // Start is called before the first frame update
     void Start()
     {
+        //hasKey = false;
         HPOrig = HP;
         shieldAmountOrg = shieldAmount;
         coinsOrig = coins;
@@ -128,7 +138,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     void Update()
     {
 
-        if (!gameManager.instance.isPaused)
+        if (!gameManager.instance.isPaused && isAlive)
         {
             movement();
 
@@ -140,7 +150,15 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
                 if (Input.GetButton("Shoot") && !isShooting)
                 {
-                    StartCoroutine(shoot());
+                    if (magazine > 0)
+                    {
+                        StartCoroutine(shoot());
+                    }
+                    else if(magazine <=0) 
+                    {
+                        aud.PlayOneShot(clickSound);
+
+                    }
                 }
             }
         }
@@ -174,9 +192,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             StartCoroutine(playFootsteps());
         }
     }
-
-
-
 
     IEnumerator DASH()
     {
@@ -233,10 +248,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     IEnumerator shoot()
     {
-        // Need to save the magezine-- for each gun
-        // list of floats for magezine and reserves
         magazine--;
-        gunList[selectedGun].magazine--;
+        //gunList[selectedGun].magazine--;
 
         isShooting = true;
 
@@ -248,23 +261,21 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
         {
-            
+
             Debug.Log(hit.collider.name);
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
-            //GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.LookRotation(hit.normal));
-            GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.collider.transform.position, Quaternion.LookRotation(hit.normal));
-            Destroy(muzzleFlashInstance, .2f);
-             
+            GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
+            Destroy(muzzleFlashInstance, .05f);
+
 
             if (hit.transform != transform && dmg != null)
             {
-                dmg.takeDamage(shootDamage);     
+                dmg.takeDamage(shootDamage);
             }
         }
-        // Blake UI Stuff
-        //gameManager.instance.updateAmmo(gunList[selectedGun]);
+
         else if (gunList[selectedGun].magazine == 0)
         {
             aud.PlayOneShot(gunList[selectedGun].clickSound);
@@ -340,6 +351,13 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     IEnumerator playDeath()
     {
+        if (gunGameObjectList.Count > 0)
+        {
+            gunGameObjectList[selectedGunGameObject].SetActive(false);
+        }
+
+        isAlive = false;
+        controller.enabled = false;
         gameManager.instance.shieldDamage.SetActive(true);
 
         Vector3 startCamPos = mainCamera.GetComponent<Camera>().transform.position;
@@ -356,7 +374,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-            if(!DeathDown)
+            if (!DeathDown)
             {
                 mainCamera.GetComponent<Camera>().transform.position = Vector3.Lerp(startCamPos, targetCamPosUp, elapsedTime / duration);
                 elapsedTime += Time.deltaTime;
@@ -402,9 +420,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     public void getGunStats(gunStats gun)
     {
-        // Need to save the magezine-- for each gun
-        // list of floats for magezine and reserves
-
         aud.PlayOneShot(gunPickupSound[Random.Range(0, gunPickupSound.Length)], gunPickupVol);
 
         gunList.Add(gun);
@@ -423,21 +438,23 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         reserves = gun.reserves;
         reservesMax = gun.reservesMax;
 
-        //gameManager.instance.findAllChild(gunModel);
-
-        //gunModel.GetComponent<Animator>().runtimeAnimatorController = gun.runtimeAnimatorController;
-
-
-        //gunModel.GetComponent<MeshFilter>().sharedMesh = gun.model.GetComponent<MeshFilter>().sharedMesh;
-        //gunModel.GetComponent<MeshRenderer>().sharedMaterial = gun.model.GetComponent<MeshRenderer>().sharedMaterial;
-
-        //Assign the AC to the right gunstats
-        //gunModel.GetComponent<Animator>().runtimeAnimatorController = gun.model.GetComponent<Animator>().runtimeAnimatorController;
-        //gunModel.GetComponent<SpriteRenderer>().sprite = gun.model.GetComponent<SpriteRenderer>().sprite;
-
-        gunModel = gun.model;
+        GameObject gunGun = Instantiate(gun.model);
+        gunGun.transform.SetParent(gunparentObject);
+        gunGun.transform.localPosition = Vector3.zero;
+        gunGun.transform.localRotation = Quaternion.identity;
+        gunGun.transform.localScale = Vector3.one;
+        if (gunGameObjectList.Count <= 0)
+        {
+            gunGameObjectList.Add(gunGun);
+        }
+        else if (gunGameObjectList.Count > 0)
+        {
+            gunGameObjectList[selectedGunGameObject].SetActive(false);
+            gunGameObjectList.Add(gunGun);
+        }
 
         selectedGun = gunList.Count - 1;
+        selectedGunGameObject = gunList.Count - 1;
         gameManager.instance.setActiveGun();
 
     }
@@ -445,13 +462,21 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1 && !aimedIn)
         {
+            gunGameObjectList[selectedGunGameObject].SetActive(false);
+            selectedGunGameObject++;
+
             selectedGun++;
             changeGun();
+            changeGunObject();
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0 && !aimedIn)
         {
+            gunGameObjectList[selectedGunGameObject].SetActive(false);
+            selectedGunGameObject--;
+
             selectedGun--;
             changeGun();
+            changeGunObject();
         }
     }
     void changeGun()
@@ -472,20 +497,14 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         reserves = gunList[selectedGun].reserves;
         reservesMax = gunList[selectedGun].reservesMax;
 
-        //gunModel.GetComponent<SpriteRenderer>().sprite = null;
-        //gunModel.GetComponent<Animator>().runtimeAnimatorController = gunList[selectedGun].model.GetComponent<Animator>().runtimeAnimatorController;
-
-        gunModel = gunList[selectedGun].model.gameObject;
-
-        //gunModel.GetComponent<SpriteRenderer>().sprite = gunList[selectedGun].GetComponent<SpriteRenderer>().sprite;
-
         gameManager.instance.setActiveGun();
 
-        //gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].model.GetComponent<MeshFilter>().sharedMesh;
-        //gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].model.GetComponent<MeshRenderer>().sharedMaterial;
-
-
     }
+    void changeGunObject()
+    {
+        gunGameObjectList[selectedGunGameObject].SetActive(true);
+    }
+
     private void aim()
     {
         if (Input.GetButtonDown("Aim"))
@@ -508,13 +527,13 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             {
                 magazine = magazineMax;
                 reserves -= difFromMagMax;
-                gunList[selectedGun].reserves -= difFromMagMax;
+                //gunList[selectedGun].reserves -= difFromMagMax;
             }
             else
             {
                 magazine += reserves;
                 reserves = 0;
-                gunList[selectedGun].reserves = 0;
+                //gunList[selectedGun].reserves = 0;
             }
             aud.PlayOneShot(reloadSound);
             gameManager.instance.updateAmmo();

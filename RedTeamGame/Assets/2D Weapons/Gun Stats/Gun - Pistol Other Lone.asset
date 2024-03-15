@@ -22,8 +22,8 @@ MonoBehaviour:
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
   magazineMax: 13
   reservesMax: 36
-  magazine: -24
-  reserves: 0
+  magazine: 13
+  reserves: 36
   uiImage: {fileID: 0}
   model: {fileID: 7484657630027589192, guid: 021aa7162a4fa024b997f79e46d21506, type: 3}
   sprite: {fileID: 1033628737, guid: 05cdacd8cbfae8945a47f8f8240cc02d, type: 3}

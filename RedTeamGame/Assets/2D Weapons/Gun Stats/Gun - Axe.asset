@@ -20,16 +20,15 @@ MonoBehaviour:
   aimFOV: 55
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
-  magazineMax: 0
-  reservesMax: 0
-  magazine: 0
-  reserves: 0
+  magazineMax: 1000
+  reservesMax: 1000
+  magazine: 1000
+  reserves: 1000
   uiImage: {fileID: 0}
   model: {fileID: 1403932432879992326, guid: c2b68362777a50646bf91fb54398ce31, type: 3}
-  gunAnimator: {fileID: 0}
-  modelSprite: {fileID: 0}
   sprite: {fileID: -233877210, guid: 6a71cc43df2b4ab49830058e6071fd60, type: 3}
-  hitEffect: {fileID: 0}
+  hitEffectPS: {fileID: 0}
+  hitEffectIMG: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
