@@ -42,6 +42,7 @@ public class LootBag : MonoBehaviour
             HealthPack healthPotion = lootGameObject.GetComponent<HealthPack>();
             ShieldPickUp shieldPotion = lootGameObject.GetComponent<ShieldPickUp>();
             keyScript key = lootGameObject.GetComponent<keyScript>();
+            ammoDrop ammo = lootGameObject.GetComponent<ammoDrop>();
 
             if (droppedLoot.lootName == "Health Potion")
             {
@@ -56,6 +57,11 @@ public class LootBag : MonoBehaviour
             if (droppedLoot.lootName == "Key Drop")
             {
                 key.enabled = true;
+            }
+
+            if (droppedLoot.lootName == "Ammo Drop")
+            {
+                ammo.enabled = true;
             }
 
             Vector3 dropDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
