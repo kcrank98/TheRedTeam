@@ -4842,6 +4842,7 @@ GameObject:
   - component: {fileID: 5825974593011608883}
   - component: {fileID: 7604143899717806647}
   - component: {fileID: 2004381592217487820}
+  - component: {fileID: 957607692823076664}
   m_Layer: 0
   m_Name: Gun Pickup - Pistol 2D Other Lone
   m_TagString: Untagged
@@ -4857,7 +4858,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7484657630027589192}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.0000004023313, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.32, y: -4.05, z: -46.8}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
@@ -4951,6 +4952,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: d90df2ae2e2f3c3448f585afccfbebae, type: 2}
+  parentObject: {fileID: 0}
+--- !u!95 &957607692823076664
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7484657630027589192}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e63a385f3aef086468986f03d9b0a06e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8908692465595372745
 GameObject:
   m_ObjectHideFlags: 0

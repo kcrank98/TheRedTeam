@@ -73,6 +73,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
     [SerializeField] List<GameObject> gunGameObjectList = new List<GameObject>();
     [SerializeField] GameObject gunModel;
+    [SerializeField] GameObject gunGameObject;
     public Transform gunparentObject;
     public int selectedGunGameObject;
 
@@ -155,7 +156,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                     {
                         StartCoroutine(shoot());
                     }
-                    else if(magazine <=0) 
+                    else if (magazine <= 0)
                     {
                         aud.PlayOneShot(clickSound);
 
@@ -255,9 +256,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         isShooting = true;
 
         aud.PlayOneShot(gunList[selectedGun].shootSound);
-        StartCoroutine(showMuzzleFlash());
+        //StartCoroutine(showMuzzleFlash());
 
-        //gunAnimator.SetTrigger("Shoot");
+        gunAnimator.SetTrigger("Shoot");
+
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
@@ -413,10 +415,17 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         shieldAmount += amount;
 
     }
-
     public void updateCoins(int amount)
     {
         coins += amount;
+    }
+    public void updateSpeed(int amount)
+    {
+        playerSpeed += amount;
+    }
+    public void updateDashSpeed(int amount)
+    {
+        dashForce += amount;
     }
 
     public void getGunStats(gunStats gun)
@@ -439,23 +448,25 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         reserves = gun.reserves;
         reservesMax = gun.reservesMax;
 
-        GameObject gunGun = Instantiate(gun.model);
-        gunGun.transform.SetParent(gunparentObject);
-        gunGun.transform.localPosition = Vector3.zero;
-        gunGun.transform.localRotation = Quaternion.identity;
-        gunGun.transform.localScale = Vector3.one;
+        gunGameObject = Instantiate(gun.model);
+        gunGameObject.transform.SetParent(gunparentObject);
+        gunGameObject.transform.localPosition = Vector3.zero;
+        gunGameObject.transform.localRotation = Quaternion.identity;
+        gunGameObject.transform.localScale = Vector3.one;
         if (gunGameObjectList.Count <= 0)
         {
-            gunGameObjectList.Add(gunGun);
+            gunGameObjectList.Add(gunGameObject);
         }
         else if (gunGameObjectList.Count > 0)
         {
             gunGameObjectList[selectedGunGameObject].SetActive(false);
-            gunGameObjectList.Add(gunGun);
+            gunGameObjectList.Add(gunGameObject);
         }
 
         selectedGun = gunList.Count - 1;
         selectedGunGameObject = gunList.Count - 1;
+        gunAnimator = gunGameObject.GetComponent<Animator>();
+
         gameManager.instance.setActiveGun();
 
     }
@@ -479,6 +490,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             changeGun();
             changeGunObject();
         }
+
     }
     void changeGun()
     {
@@ -504,6 +516,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     void changeGunObject()
     {
         gunGameObjectList[selectedGunGameObject].SetActive(true);
+
+        gunAnimator = gunGameObjectList[selectedGunGameObject].GetComponent<Animator>();
+
     }
 
     private void aim()

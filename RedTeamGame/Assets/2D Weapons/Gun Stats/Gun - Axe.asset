@@ -16,7 +16,7 @@ MonoBehaviour:
   gunName: Axe
   shootDamage: 5
   shootDistance: 15
-  shootRate: 0.5
+  shootRate: 1.25
   aimFOV: 55
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
@@ -33,5 +33,5 @@ MonoBehaviour:
   reloadSoundVol: 0
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
   clickSoundVol: 0
-  shootSound: {fileID: 8300000, guid: 65a8e1f13143c47ab9b96881eac40dff, type: 3}
+  shootSound: {fileID: 8300000, guid: b52a70b897972404c8d1a96f003db713, type: 3}
   shootSoundVol: 0.5

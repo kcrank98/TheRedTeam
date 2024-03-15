@@ -4874,6 +4874,7 @@ GameObject:
   - component: {fileID: 4694455088601882065}
   - component: {fileID: 6740865186819054426}
   - component: {fileID: 5333102053171621323}
+  - component: {fileID: 6743679535135750230}
   m_Layer: 0
   m_Name: Gun Pickup - Shotgun 2D
   m_TagString: Untagged
@@ -4984,3 +4985,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 900c67685dc6b3445a5eea325e2c3ff3, type: 2}
   parentObject: {fileID: 0}
+--- !u!95 &6743679535135750230
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8148111589519263119}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cef2a91cbcddf4440a5d1cc8346d59f1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
