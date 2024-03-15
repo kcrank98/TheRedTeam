@@ -351,7 +351,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     IEnumerator playDeath()
     {
-        gunGameObjectList[selectedGunGameObject].SetActive(false);
+        if (gunGameObjectList.Count > 0)
+        {
+            gunGameObjectList[selectedGunGameObject].SetActive(false);
+        }
+
         isAlive = false;
         controller.enabled = false;
         gameManager.instance.shieldDamage.SetActive(true);
