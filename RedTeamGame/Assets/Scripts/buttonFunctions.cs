@@ -25,4 +25,12 @@ public class buttonFunctions : MonoBehaviour
         //need to change loading somehow to render all textures
 
     }
+    public void togglePrompt()
+    {
+        gameManager.instance.togglePromptNewScore();
+    }
+    public void toggleScoreBoard()
+    {
+        gameManager.instance.toggleLeaderBoard();
+    }
 }
