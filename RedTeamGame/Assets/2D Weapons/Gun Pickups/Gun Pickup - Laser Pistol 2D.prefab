@@ -4842,6 +4842,7 @@ GameObject:
   - component: {fileID: 6253958838947060309}
   - component: {fileID: 3001447448081921821}
   - component: {fileID: 4041954016225155750}
+  - component: {fileID: 2984663607991572729}
   m_Layer: 0
   m_Name: Gun Pickup - Laser Pistol 2D
   m_TagString: Untagged
@@ -4952,6 +4953,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 44e6d793fa7eb6d429caf1bf1b4424ce, type: 2}
   parentObject: {fileID: 0}
+--- !u!95 &2984663607991572729
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092107793040825322}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6fa44f5b2b764e041a68c50e46663e38, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9135280704097565042
 GameObject:
   m_ObjectHideFlags: 0

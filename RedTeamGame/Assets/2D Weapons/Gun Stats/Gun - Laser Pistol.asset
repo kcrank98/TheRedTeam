@@ -16,13 +16,13 @@ MonoBehaviour:
   gunName: Pistol
   shootDamage: 14
   shootDistance: 65
-  shootRate: 0.25
+  shootRate: 0.75
   aimFOV: 50
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
-  magazineMax: 6
-  reservesMax: 12
-  magazine: 6
+  magazineMax: 3
+  reservesMax: 9
+  magazine: 3
   reserves: 9
   uiImage: {fileID: 0}
   model: {fileID: 9092107793040825322, guid: e7f680ff25fedee4da56e4994b05ad47, type: 3}

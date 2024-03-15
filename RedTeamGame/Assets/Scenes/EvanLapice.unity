@@ -665,10 +665,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun Pickup - Pistol 2D Other Lone
       objectReference: {fileID: 0}
-    - target: {fileID: 7484657630027589192, guid: 021aa7162a4fa024b997f79e46d21506, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2121,10 +2117,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gun Pickup - Laser Pistol 2D
       objectReference: {fileID: 0}
-    - target: {fileID: 9092107793040825322, guid: e7f680ff25fedee4da56e4994b05ad47, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2678,10 +2670,10 @@ SceneRoots:
   - {fileID: 373967589}
   - {fileID: 1772677838}
   - {fileID: 1089210209}
-  - {fileID: 1740631118}
-  - {fileID: 696340646}
-  - {fileID: 594725172}
   - {fileID: 403672238}
+  - {fileID: 696340646}
   - {fileID: 293648148}
   - {fileID: 384699784}
   - {fileID: 960721458}
+  - {fileID: 594725172}
+  - {fileID: 1740631118}

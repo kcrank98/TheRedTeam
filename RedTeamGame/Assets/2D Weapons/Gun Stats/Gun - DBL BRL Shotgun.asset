@@ -20,10 +20,10 @@ MonoBehaviour:
   aimFOV: 55
   aimSpeed: 10
   attachmentPosition: {x: 0, y: 0, z: 0}
-  magazineMax: 4
+  magazineMax: 2
   reservesMax: 16
-  magazine: 4
-  reserves: 5
+  magazine: 2
+  reserves: 8
   uiImage: {fileID: 0}
   model: {fileID: 2149736931412995468, guid: 6ad4d210dfd25674aae4bc1b96c4bc24, type: 3}
   sprite: {fileID: -594621956, guid: 34c787351fb81ed4ba42e8871b0aa94b, type: 3}
