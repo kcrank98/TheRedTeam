@@ -23,13 +23,12 @@ MonoBehaviour:
   magazineMax: 4
   reservesMax: 12
   magazine: 4
-  reserves: 12
+  reserves: 7
   uiImage: {fileID: 0}
   model: {fileID: 8148111589519263119, guid: 82eab398c185199498b0aa7a6ae12fbe, type: 3}
-  gunAnimator: {fileID: 0}
-  modelSprite: {fileID: 0}
   sprite: {fileID: -2093800616, guid: baf94468d5375da42a2766024a34f185, type: 3}
-  hitEffect: {fileID: 0}
+  hitEffectPS: {fileID: 0}
+  hitEffectIMG: {fileID: 0}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}

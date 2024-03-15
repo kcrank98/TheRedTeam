@@ -4891,7 +4891,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.48, y: -4.05, z: -46.5}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.48999998, y: 0.48999998, z: 0.48999998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3386474874458152845}
@@ -4983,3 +4983,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 900c67685dc6b3445a5eea325e2c3ff3, type: 2}
+  parentObject: {fileID: 0}
