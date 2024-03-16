@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1753065097026751480}
   - component: {fileID: 8298346116439536134}
   - component: {fileID: 3776514219775059794}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Enemy UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 4093110127591524421}
   - component: {fileID: 5718138714150600807}
   - component: {fileID: 354805636194288288}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HP Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 4464506402933097788}
   - component: {fileID: 5093306028430360519}
   - component: {fileID: 8787988482736156625}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Enemy Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 6079081249531583449}
   - component: {fileID: 7791981041144368114}
   - component: {fileID: 1764302478664159364}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: HP Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5377563680982489039}
   - component: {fileID: 5486216495106037670}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Shoot Pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,9 +501,9 @@ GameObject:
   - component: {fileID: 4256773245994843823}
   - component: {fileID: 674986799203816394}
   - component: {fileID: 5290164438713938627}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Boss - test
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -543,6 +543,7 @@ MonoBehaviour:
   agent: {fileID: 5081303528573133130}
   headPos: {fileID: 4464506402933097788}
   HPBar: {fileID: 1764302478664159364}
+  cCollider: {fileID: 0}
   HP: 10
   viewCone: 90
   shootCone: 0

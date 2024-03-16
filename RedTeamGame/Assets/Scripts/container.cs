@@ -4,7 +4,8 @@ using UnityEngine;
 public class container : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
-   
+    [SerializeField] Collider cCollider;
+
     [Header("---- HP")]
     [SerializeField] int HP;
     [SerializeField] int HPOrig;
