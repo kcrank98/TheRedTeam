@@ -11,6 +11,8 @@ public class bossScript : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform headPos;
     [SerializeField] Image HPBar;
+    [SerializeField] Collider cCollider;
+
 
     [Header("-----Enemy Parameters-----")]
     [Range(1, 250)][SerializeField] int HP;
@@ -87,7 +89,7 @@ public class bossScript : MonoBehaviour, IDamage
             {
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                
+
 
                 if (agent.remainingDistance < agent.stoppingDistance)
                 {
@@ -115,6 +117,7 @@ public class bossScript : MonoBehaviour, IDamage
         {
             playerInRange = true;
         }
+       
     }
 
     void OnTriggerExit(Collider other)
@@ -124,6 +127,7 @@ public class bossScript : MonoBehaviour, IDamage
             playerInRange = false;
             agent.stoppingDistance = 0;
         }
+
     }
 
 
