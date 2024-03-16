@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &51275672 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 109420495109293931, guid: a51fd41749c074e4da98f028f53c5c78, type: 3}
+  m_PrefabInstance: {fileID: 1525066629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &147793044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -361,15 +366,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 782261186232597480, guid: d2a8374bf184f8d4894128b2d5aac42a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6000001
+      value: 4.7
       objectReference: {fileID: 0}
     - target: {fileID: 782261186232597480, guid: d2a8374bf184f8d4894128b2d5aac42a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1
+      value: 23.45
       objectReference: {fileID: 0}
     - target: {fileID: 782261186232597480, guid: d2a8374bf184f8d4894128b2d5aac42a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -41.25
+      value: 86.450005
       objectReference: {fileID: 0}
     - target: {fileID: 782261186232597480, guid: d2a8374bf184f8d4894128b2d5aac42a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -650,6 +655,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4830077720345552949, guid: a51fd41749c074e4da98f028f53c5c78, type: 3}
+      propertyPath: m_SceneBindings.Array.data[0].value
+      value: 
+      objectReference: {fileID: 2070666380}
+    - target: {fileID: 4830077720345552949, guid: a51fd41749c074e4da98f028f53c5c78, type: 3}
+      propertyPath: m_SceneBindings.Array.data[1].value
+      value: 
+      objectReference: {fileID: 51275672}
+    - target: {fileID: 4830077720345552949, guid: a51fd41749c074e4da98f028f53c5c78, type: 3}
+      propertyPath: m_SceneBindings.Array.data[2].value
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5399271760163672275, guid: a51fd41749c074e4da98f028f53c5c78, type: 3}
       propertyPath: m_Name
       value: Final Level
@@ -971,6 +988,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9b394e1a57c01040930ded766e1167a, type: 3}
+--- !u!1 &2070666380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3454675959321267807, guid: a51fd41749c074e4da98f028f53c5c78, type: 3}
+  m_PrefabInstance: {fileID: 1525066629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2083988188
 PrefabInstance:
   m_ObjectHideFlags: 0

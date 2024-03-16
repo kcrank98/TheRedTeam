@@ -5,7 +5,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour, IDamage, IPushBack
 {
     [SerializeField] CharacterController controller;
-    [SerializeField] GameObject mainCamera;
+    [SerializeField] public GameObject mainCamera;
     [SerializeField] Collider capsuleCollider;
     [SerializeField] float originalFOV;
     [SerializeField] AudioSource aud;
