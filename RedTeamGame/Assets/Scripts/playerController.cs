@@ -549,6 +549,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 reserves = 0;
                 //gunList[selectedGun].reserves = 0;
             }
+            gunAnimator.SetTrigger("Reload");
+            
             aud.PlayOneShot(reloadSound);
             gameManager.instance.updateAmmo();
         }
