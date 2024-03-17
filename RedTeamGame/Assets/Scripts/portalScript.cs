@@ -10,7 +10,7 @@ public class portalScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        newPos = new Vector3(-8f, 4f, 0.1f);
+        newPos = new Vector3(-6f, 23f, 93f);
 
         count = 0;
     }
@@ -19,8 +19,10 @@ public class portalScript : MonoBehaviour
     {
         if (other.CompareTag("Player") && count == 0)
         {
+            gameManager.instance.playerScript.controller.enabled = false;
             gameManager.instance.player.transform.position = newPos;
             gameManager.instance.playerSpawnPos.transform.position = newPos;
+            gameManager.instance.playerScript.controller.enabled = true;
 
             count++;
         }

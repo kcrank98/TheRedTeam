@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage, IPushBack
 {
-    [SerializeField] CharacterController controller;
+    [SerializeField] public CharacterController controller;
     [SerializeField] public GameObject mainCamera;
     [SerializeField] Collider capsuleCollider;
     [SerializeField] float originalFOV;
