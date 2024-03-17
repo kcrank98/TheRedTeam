@@ -417,7 +417,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         coins += amount;
     }
-    public void updateSpeed(int amount)
+    public void updateSpeed(float amount)
     {
         playerSpeed += amount;
     }
