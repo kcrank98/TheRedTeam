@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gun - DBL BRL Shotgun
   m_EditorClassIdentifier: 
   gunSize: Large
-  gunName: Sniper
+  gunName: Double Barrel Shotgun
   shootDamage: 40
   shootDistance: 50
   shootRate: 1

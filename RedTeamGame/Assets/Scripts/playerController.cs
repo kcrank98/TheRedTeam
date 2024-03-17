@@ -417,7 +417,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         coins += amount;
     }
-    public void updateSpeed(int amount)
+    public void updateSpeed(float amount)
     {
         playerSpeed += amount;
     }
@@ -464,6 +464,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         selectedGun = gunList.Count - 1;
         selectedGunGameObject = gunList.Count - 1;
         gunAnimator = gunGameObject.GetComponent<Animator>();
+        gunGameObjectList[selectedGunGameObject].SetActive(true);
+
 
         gameManager.instance.setActiveGun();
 
@@ -549,6 +551,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 reserves = 0;
                 //gunList[selectedGun].reserves = 0;
             }
+            gunAnimator.SetTrigger("Reload");
+            
             aud.PlayOneShot(reloadSound);
             gameManager.instance.updateAmmo();
         }

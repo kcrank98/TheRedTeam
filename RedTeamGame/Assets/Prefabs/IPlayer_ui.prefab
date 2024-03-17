@@ -642,6 +642,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 8948651514299976987}
   loseMenu: {fileID: 8852691393002133191}
   winMenu: {fileID: 7120537883945269406}
+  shieldUI: {fileID: 4806634382027946574}
   LShield: {fileID: 8888379078905250379}
   RShield: {fileID: 637813344069439706}
   popUp: {fileID: 3876018646765991942}
@@ -649,16 +650,16 @@ MonoBehaviour:
   currentMagAmmo: {fileID: 3746925670867757311}
   currentReserves: {fileID: 6602276110626084106}
   timer: {fileID: 7955721625908836319}
-  winTime: {fileID: 166567901846625064}
+  winScore: {fileID: 166567901846625064}
   music: {fileID: 0}
   backgroundMusic: []
   backgroundMusicVol: 0
-  bonusScoreMultiplyer: 0
-  scoreParent: {fileID: 0}
+  bonusScoreMultiplyer: 100
+  scoreParent: {fileID: 4260149005978960244}
   scoreValue: {fileID: 8288538656369313228}
-  leaderBoard: {fileID: 0}
-  scorePreFap: {fileID: 0}
-  newScoreMenu: {fileID: 0}
+  leaderBoard: {fileID: 7993955392970417621}
+  scorePreFap: {fileID: 8168125940902759026, guid: 9c208f5a18508734eafbcb0d29e58820, type: 3}
+  newScoreMenu: {fileID: 1780881630048752678}
   player: {fileID: 0}
   damageFlash: {fileID: 168791148288412015}
   damagePersist: {fileID: 4764889019225457144}
@@ -1912,7 +1913,7 @@ GameObject:
   - component: {fileID: 3160484007641748069}
   - component: {fileID: 166567901846625064}
   m_Layer: 5
-  m_Name: time
+  m_Name: score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3821,7 +3822,7 @@ MonoBehaviour:
     m_Left: 24
     m_Right: 24
     m_Top: 0
-    m_Bottom: 24
+    m_Bottom: 0
   m_ChildAlignment: 0
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
@@ -4472,6 +4473,42 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &4806634382027946574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6633501717372592035}
+  m_Layer: 5
+  m_Name: shield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6633501717372592035
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806634382027946574}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8919895435219584111}
+  m_Father: {fileID: 8017905127482059057}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -100, y: 480}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4811165147859948769
 GameObject:
   m_ObjectHideFlags: 0
@@ -4505,7 +4542,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.882415, y: 0}
+  m_AnchoredPosition: {x: 16.10161, y: 0}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &4816960105580609461
@@ -5685,18 +5722,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6138211214629926609}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4683715915172743405}
   - {fileID: 7048503947923532624}
-  m_Father: {fileID: 8017905127482059057}
+  m_Father: {fileID: 6633501717372592035}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -100, y: -60}
+  m_AnchoredPosition: {x: 0, y: -25}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3355420415150281067
@@ -6449,7 +6486,7 @@ GameObject:
   - component: {fileID: 6734732059394272527}
   - component: {fileID: 2922195254474100026}
   m_Layer: 5
-  m_Name: win time
+  m_Name: win score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6884,7 +6921,7 @@ RectTransform:
   - {fileID: 1390988579231181553}
   - {fileID: 3592320831802864340}
   - {fileID: 1685584851848641960}
-  - {fileID: 8919895435219584111}
+  - {fileID: 6633501717372592035}
   - {fileID: 2711659259153518671}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
