@@ -11,11 +11,14 @@ public class bossRoomController : MonoBehaviour
         
     }
     private void OnTriggerEnter(Collider other)
-    { 
-        if (!playerInFight)
-        {
-            door.toggleDoor();
-            playerInFight=true;
+    {
+        if (other.CompareTag("Player")){
+
+            if (!playerInFight)
+            {
+                door.toggleDoor();
+                playerInFight=true;
+            }
         }
     }
     

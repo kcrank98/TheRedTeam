@@ -193,7 +193,7 @@ public class gameManager : MonoBehaviour
         return children;//return the childeren list
     }
 
-    public void popUpTxt(string text = "")//toggles a pop up text
+    public void togglePopUpTxt(string text = "")//toggles a pop up text
     {
         popUp.gameObject.SetActive(!popUpOn);//if pop up is off turn on if on turn off
         popUpOn = !popUpOn;//toggle pop up bool

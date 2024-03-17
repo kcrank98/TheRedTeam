@@ -21,6 +21,7 @@ public class ChestScript : MonoBehaviour
             {
                 GetComponent<LootBag>().instantiateLoot(transform.position);
                 hasEnteredTrigger = false;
+                gameManager.instance.togglePopUpTxt();
                 Destroy(gameObject);
                 //useText.SetActive(false);
             }
@@ -31,7 +32,7 @@ public class ChestScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //useText.SetActive(true);
+            gameManager.instance.togglePopUpTxt("Press 'E' to interact");
             hasEnteredTrigger = true;
         }
     }
@@ -40,7 +41,7 @@ public class ChestScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //useText.SetActive(false);
+            gameManager.instance.togglePopUpTxt();
             hasEnteredTrigger = false;
         }
     }
