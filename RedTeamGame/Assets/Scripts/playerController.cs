@@ -464,6 +464,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         selectedGun = gunList.Count - 1;
         selectedGunGameObject = gunList.Count - 1;
         gunAnimator = gunGameObject.GetComponent<Animator>();
+        gunGameObjectList[selectedGunGameObject].SetActive(true);
+
 
         gameManager.instance.setActiveGun();
 
