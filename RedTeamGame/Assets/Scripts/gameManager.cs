@@ -15,6 +15,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject loseMenu;
     [SerializeField] GameObject winMenu;
     [Header("--shield--")]
+    [SerializeField] GameObject shieldUI;
     [SerializeField] Image LShield;
     [SerializeField] Image RShield;
     [Header("--prompt text--")]
@@ -78,6 +79,8 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();//get the player script
         toggleTimer();//turn on the timer
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");//get the player spawn
+        scoreList = new List<TMP_Text>();
+        loadScores();
     }
 
     // Update is called once per frame
@@ -103,7 +106,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;//set time to zero
         Cursor.visible = true;//return cursor to visable
         Cursor.lockState = CursorLockMode.None;//unlick the cursor
-        LShield.gameObject.SetActive(false);//tirn off the shield
+        shieldUI.gameObject.SetActive(false);//tirn off the shield
         toggleTimer();//toggle the timer
 
     }
@@ -115,7 +118,7 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;// lock the cursor
         activeMenu.SetActive(false);//turns off the current menu
         activeMenu = null;// there is no menu open anymore
-        LShield.gameObject.SetActive(true);
+        shieldUI.gameObject.SetActive(true);
         toggleTimer();//toggle the timer
     }
     public void updateGameGoal(int enemyTotal)//will activly alter the total score until win or loss (same code as class for now)
@@ -210,9 +213,9 @@ public class gameManager : MonoBehaviour
     }
     public void saveScore(string s)
     {
-        scoreList.Add(createScore(s + " " + 0.ToString() + " " + bonusScoreCalc(playerScore).ToString() + " " + time.ToString()));//set the score to be the same as current score values and add it to the list
+        scoreList.Add(createScore(s.ToUpper() + " " + 0.ToString() + " " + bonusScoreCalc(playerScore).ToString() + " " + time.ToString()));//set the score to be the same as current score values and add it to the list
         sortByWinner();//re order the score board and list
-        togglePromptNewScore();// turn off the prompt
+        togglePromptNewScore();// turn osff the prompt
         toggleLeaderBoard();// turn on the score board
     }
     public int bonusScoreCalc(int score)
@@ -223,29 +226,25 @@ public class gameManager : MonoBehaviour
     public void sortByWinner()// sorts the leaderboard by highest score
     {
         List<int> tmpInt = new List<int>();
-        List<TMP_Text> tmpScr = new List<TMP_Text>();
         foreach(TMP_Text score in scoreList)//for each score find the score and add it to a list
         {
             tmpInt.Add(findScore(score));
         }
         tmpInt.Sort();//sort the scores by lowest to highest
         tmpInt.Reverse();//reverse the scores to high to low
-        tmpScr = scoreList;//make a copy of refrences to the scores
-        scoreList.Clear();//clear out the refrences to the scores in score list
         int index = 0;//create an index to the first object
         while (index < tmpInt.Count)//while there is still a score
         {
             foreach (int score in tmpInt)//check each score
             {
-                if(score == findScore(tmpScr[index]))//if the score is the current postion on the index
+                if(score == findScore(scoreList[index]))//if the score is the current postion on the index
                 {
-                    tmpScr[index].text = alterPosistion(splitScore(tmpScr[index]), index);//change its postion on the leader board to be the index(so this will decrement from first place)
-                    scoreList.Add(tmpScr[index]);//add it back to the score list 
+                    scoreList[index].text = alterPosistion(splitScore(scoreList[index]), index);//change its postion on the leader board to be the index(so this will decrement from first place)
                     ++index;//increase the current index
                 }
             }
         }
-        for (int i = scoreList.Count; i > 0; --i)//starting from the last score
+        for (int i = scoreList.Count -1; i >= 0; --i)//starting from the last score
         {
             scoreList[i].transform.SetAsFirstSibling();//set each score in assending order to be the frstplace (this will re arange them in the vertical list component)
         }
@@ -262,11 +261,18 @@ public class gameManager : MonoBehaviour
     }
     string alterPosistion(string[] strings, int pos)//takes a split score and alters the postition (first place, second place ext..)on the leader board by the passed in int
     {
+        bool skipSpace = true;//skip the first space
         string returnString = "";// make a tmp string for return
         strings[1] = pos.ToString();//get the positon
         foreach (string s in strings)// for each part of the split string
         {
-            returnString = returnString + " " + s;// add a space and the current string to itself I + " " + AM, I AM + " " + SMART?
+            if (skipSpace == true)
+            {
+                returnString += s;//skip the first space
+                skipSpace = false;//set skip space to false
+            }
+            else
+            returnString += " " + s;// add a space and the current string to itself I + " " + AM, I AM + " " + SMART?
         }
         return returnString;// return the full stirng
     }

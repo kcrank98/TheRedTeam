@@ -18,6 +18,7 @@ public class buttonFunctions : MonoBehaviour
     public void quit()//closes application
     {
         Application.Quit();//self explanatory
+        gameManager.instance.saveScores();
     }
     public void StartRun()
     {
