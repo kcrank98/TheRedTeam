@@ -62,6 +62,7 @@ public class container : MonoBehaviour, IDamage
             if (!other.isTrigger /*&& !other.CompareTag("Player")*/)
             {
                 dmg.takeDamage(damageAmount);
+                aud.PlayOneShot(metalSound);
 
                 HP -= damageTaken;
             }
