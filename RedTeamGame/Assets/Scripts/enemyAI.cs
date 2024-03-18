@@ -185,7 +185,6 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             // heres the double decrement
             gameManager.instance.updateGameGoal(-1);
-            gameManager.instance.updateFloor();
             // heres the double decrement
 
             gameManager.instance.updateScore(scoreValue);

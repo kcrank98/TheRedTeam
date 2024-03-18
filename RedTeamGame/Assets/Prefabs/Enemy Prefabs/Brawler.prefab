@@ -1731,7 +1731,7 @@ MonoBehaviour:
   weaponCollider: {fileID: 4205193191728281857}
   headPos: {fileID: 3839885616169725934}
   HPBar: {fileID: 7284881990498091878}
-  Shooter: 0
+  Shooter: 1
   Melee: 1
   HP: 75
   viewCone: 90

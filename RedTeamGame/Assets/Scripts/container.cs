@@ -1,16 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.AI.Navigation;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class container : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
-   
+    [SerializeField] Collider cCollider;
+
     [Header("---- HP")]
     [SerializeField] int HP;
     [SerializeField] int HPOrig;
+
+    [Header("---- Damage")]
+    [SerializeField] int damageAmount;
+    [SerializeField] int damageTaken;
 
     [Header("---- Audio")]
     [SerializeField] AudioSource aud;
@@ -30,24 +32,56 @@ public class container : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        
+        die();
     }
     public void takeDamage(int amount)
     {
         HP -= amount;
-        StartCoroutine(flashMat());
+
+        if(model != null)
+        {
+            StartCoroutine(flashMat());
+        }
         aud.PlayOneShot(metalSound);
 
-        if (HP <= 0)
-        {
-            Destroy(gameObject);
-            //navMeshSurface.BuildNavMesh();
-        }
+        die();
     }
     IEnumerator flashMat()
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.25f);
         model.material.color = Color.white;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        IDamage dmg = other.GetComponent<IDamage>();
+
+        if (dmg != null)
+        {
+            if (!other.isTrigger /*&& !other.CompareTag("Player")*/)
+            {
+                dmg.takeDamage(damageAmount);
+                aud.PlayOneShot(metalSound);
+
+                HP -= damageTaken;
+            }
+        }
+    }
+
+    void die()
+    {
+        if (HP <= 0)
+        {
+            LootBag loot = gameObject.GetComponent<LootBag>();
+
+            if (loot != null)
+            {
+                GetComponent<LootBag>().instantiateLoot(transform.position);
+            }
+
+            Destroy(gameObject);
+            //navMeshSurface.BuildNavMesh();
+        }
     }
 }

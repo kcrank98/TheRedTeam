@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 142283340879222328}
   - component: {fileID: 7830741611416583387}
+  - component: {fileID: 7834909228726853734}
   m_Layer: 0
   m_Name: Weapon Holder
   m_TagString: Untagged
@@ -47,6 +48,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   sensitivityMultiplier: 4
+--- !u!95 &7834909228726853734
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353479652718278122}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 15a2876eff3f9a543b58ec3f68e3b0c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5869851376620594706
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +278,7 @@ GameObject:
   - component: {fileID: 2918235134314128205}
   - component: {fileID: 8792165001967449541}
   - component: {fileID: 6833546462715036539}
+  - component: {fileID: 2101201537101888272}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -273,7 +296,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9659259, z: -0, w: -0.25881898}
   m_LocalPosition: {x: 13.2, y: 1, z: 10.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8163715490802572813}
@@ -298,6 +321,7 @@ MonoBehaviour:
   aud: {fileID: 6833546462715036539}
   muzzlePos: {fileID: 7351574798940520122}
   muzzleFlash: {fileID: 1711574114516548582}
+  anim: {fileID: 2101201537101888272}
   HP: 50
   HPOrig: 0
   HPPerc: 0.5
@@ -561,6 +585,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2101201537101888272
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8635454300704705934}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7180530255041431716
 PrefabInstance:
   m_ObjectHideFlags: 0

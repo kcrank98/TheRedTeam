@@ -18,6 +18,20 @@ public class buttonFunctions : MonoBehaviour
     public void quit()//closes application
     {
         Application.Quit();//self explanatory
+        gameManager.instance.saveScores();
     }
+    public void StartRun()
+    {
+        SceneManager.LoadScene("MainScene");
+        //need to change loading somehow to render all textures
 
+    }
+    public void togglePrompt()
+    {
+        gameManager.instance.togglePromptNewScore();
+    }
+    public void toggleScoreBoard()
+    {
+        gameManager.instance.toggleLeaderBoard();
+    }
 }
