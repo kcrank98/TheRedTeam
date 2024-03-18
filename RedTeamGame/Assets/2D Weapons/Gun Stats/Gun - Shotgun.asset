@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
+  m_Name: Gun - Shotgun
+  m_EditorClassIdentifier: 
+  gunSize: Large
+  gunName: Shotgun
+  shootDamage: 40
+  shootDistance: 50
+  shootRate: 1
+  aimFOV: 55
+  aimSpeed: 10
+  attachmentPosition: {x: 0, y: 0, z: 0}
+  magazineMax: 5
+  reservesMax: 15
+  magazine: 5
+  reserves: 15
+  uiImage: {fileID: 0}
+  model: {fileID: 8148111589519263119, guid: 82eab398c185199498b0aa7a6ae12fbe, type: 3}
+  sprite: {fileID: -2093800616, guid: baf94468d5375da42a2766024a34f185, type: 3}
+  hitEffectPS: {fileID: 0}
+  hitEffectIMG: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
+  reloadSoundVol: 0.5
+  clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
+  clickSoundVol: 0.25
+  shootSound: {fileID: 8300000, guid: 65201ddabb4144f6a8fb9480120b7656, type: 3}
+  shootSoundVol: 0.5

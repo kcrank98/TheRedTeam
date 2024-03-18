@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe7269e912aa4b4eabb454bf6a02ed8, type: 3}
+  m_Name: Gun - Laser Pistol
+  m_EditorClassIdentifier: 
+  gunSize: Small
+  gunName: Pistol
+  shootDamage: 14
+  shootDistance: 65
+  shootRate: 0.75
+  aimFOV: 50
+  aimSpeed: 15
+  attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
+  magazineMax: 3
+  reservesMax: 9
+  magazine: 3
+  reserves: 9
+  uiImage: {fileID: 0}
+  model: {fileID: 9092107793040825322, guid: e7f680ff25fedee4da56e4994b05ad47, type: 3}
+  sprite: {fileID: -387467046, guid: 37c49daaa05c83f479ee05e20635ebf7, type: 3}
+  hitEffectPS: {fileID: 0}
+  hitEffectIMG: {fileID: 0}
+  reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
+  reloadSoundVol: 0.5
+  clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
+  clickSoundVol: 0.25
+  shootSound: {fileID: 8300000, guid: e4b3eebf8db3281408435766d1b57f98, type: 3}
+  shootSoundVol: 0.5
