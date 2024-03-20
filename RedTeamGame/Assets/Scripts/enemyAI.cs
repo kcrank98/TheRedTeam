@@ -22,13 +22,13 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] bool Melee;
 
     [Header("-----Enemy Parameters-----")]
-    [Range(1, 250)] [SerializeField] int HP;
-    [Range(1, 500)] [SerializeField] int viewCone;
-    [Range(1, 100)] [SerializeField] int shootCone;
-    [Range(1, 50)] [SerializeField] int targetFaceSpeed;
-    [Range(1, 50)] [SerializeField] int animSpeedTrans;
-    [Range(1, 10)] [SerializeField] int roamPauseTime;
-    [Range(1, 50)] [SerializeField] int roamDistance;
+    [Range(1, 250)][SerializeField] int HP;
+    [Range(1, 500)][SerializeField] int viewCone;
+    [Range(1, 100)][SerializeField] int shootCone;
+    [Range(1, 50)][SerializeField] int targetFaceSpeed;
+    [Range(1, 50)][SerializeField] int animSpeedTrans;
+    [Range(1, 10)][SerializeField] int roamPauseTime;
+    [Range(1, 50)][SerializeField] int roamDistance;
 
     [Header("-----Score Parameters-----")]
     [Range(0, 5000)][SerializeField] int scoreValue;
@@ -36,9 +36,9 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("-----Enemy Attack Stats-----")]
     [SerializeField] GameObject bullet;
-    [Range(0, 1)] [SerializeField] float shootRate;
-    [Range(0, 1)] [SerializeField] float meleeRate;
-    [Range(0, 10)] [SerializeField] float meleeRange;
+    [Range(0, 1)][SerializeField] float shootRate;
+    [Range(0, 1)][SerializeField] float meleeRate;
+    [Range(0, 10)][SerializeField] float meleeRange;
 
     [Header("-----Audio-----")]
     [SerializeField] AudioClip[] enemySteps;
@@ -84,6 +84,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (agent.remainingDistance < 0.05f && !destinChosen)
         {
+            anim.SetTrigger("Roam");
             destinChosen = true;
             agent.stoppingDistance = 0;
             yield return new WaitForSeconds(roamPauseTime);
@@ -118,12 +119,12 @@ public class enemyAI : MonoBehaviour, IDamage
 
                 if (!isAttacking && angleToPlayer <= shootCone)
                 {
-                    if(Shooter)
+                    if (Shooter)
                         StartCoroutine(shoot());
 
                     if (Melee)
                     {
-                        if(agent.remainingDistance <= meleeRange)
+                        if (agent.remainingDistance <= meleeRange)
                             StartCoroutine(melee());
                     }
                 }
@@ -168,6 +169,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int amount)
     {
+
         anim.SetTrigger("Damaged");
 
         weaponColliderOff();

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:RedTeamGame/Assets/Audio/A.M.P. DEMO.meta
+guid: fad47ff0d3fdb5b44a6eb4ac1b21ac21
+========
 guid: 40cf7daab1c910745867ddb6c4cf6631
+>>>>>>>> 960db66c58b3a28d2d7a4c0290a5a34b905aea58:RedTeamGame/Assets/2D Weapons.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
