@@ -74,6 +74,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] GameObject gunGameObject;
     public Transform gunparentObject;
     public int selectedGunGameObject;
+    public bool hasInfiniteAmmo;
 
     [Header("---- Gun Audio")]
 
@@ -248,7 +249,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     IEnumerator shoot()
     {
-        magazine--;
+        if (!hasInfiniteAmmo)
+        {
+            magazine--;
+        }
         //gunList[selectedGun].magazine--;
 
         isShooting = true;
@@ -562,5 +566,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         reserves += amount;
         gameManager.instance.updateAmmo();
+    }
+    public void updateInfiteAmmo()
+    {
+        hasInfiniteAmmo = !hasInfiniteAmmo;
     }
 }
