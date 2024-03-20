@@ -41,7 +41,7 @@ public class floorManager : MonoBehaviour
             //open the exit door
             if (exitDoor != null)
             {
-                exitDoorController.open();
+                //exitDoorController.open();
             }
         }
         //else there are still enemys that spawned
@@ -49,11 +49,11 @@ public class floorManager : MonoBehaviour
         {
             if (exitDoor != null)
             {
-                exitDoorController.close();
+                //exitDoorController.close();
             }
             if (startDoor != null)
             {
-                startDoorController.open();
+                //startDoorController.open();
             }
         }
 
