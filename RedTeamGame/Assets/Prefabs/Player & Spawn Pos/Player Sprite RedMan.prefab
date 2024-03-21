@@ -327,7 +327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4070973147949394114}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.0000004023313, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.25, y: -4.68, z: -64.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -361,11 +361,14 @@ MonoBehaviour:
   DeathDown: 1
   hasKey: 1
   isAlive: 1
-  HP: 15
+  audioPitch: 0
+  origPitch: 0
+  randomPitch: 0
+  HP: 30
   HPOrig: 0
   HPPerc: 0.5
   shieldAmountOrg: 0
-  shieldAmount: 20
+  shieldAmount: 30
   coins: 0
   coinsOrig: 0
   playerSpeed: 8
@@ -395,8 +398,11 @@ MonoBehaviour:
   gunList: []
   gunGameObjectList: []
   gunModel: {fileID: 3198198116027125896}
+  gunGameObject: {fileID: 0}
   gunparentObject: {fileID: 1136109567677685443}
   selectedGunGameObject: 0
+  hasInfiniteAmmo: 0
+  isReloading: 0
   reloadSound: {fileID: 0}
   clickSound: {fileID: 0}
   shootSound: {fileID: 0}
@@ -439,6 +445,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cef0fa03af5b747f0abe82cde0b2bccc, type: 3}
   - {fileID: 8300000, guid: 2dc35d77cfe164a2eab57d08500740e2, type: 3}
   gunPickupVol: 0.3
+  deathSound: {fileID: 8300000, guid: abe51da8c6fe75b41ad7630da684b66c, type: 3}
+  deathSoundVol: 0.3
 --- !u!143 &1320439118626046671
 CharacterController:
   m_ObjectHideFlags: 0

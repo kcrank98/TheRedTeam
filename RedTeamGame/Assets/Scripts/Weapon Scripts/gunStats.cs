@@ -10,6 +10,7 @@ public class gunStats : ScriptableObject
     public int shootDamage;
     public int shootDistance;
     public float shootRate;
+    public float reloadRate;
     public float aimFOV;
     public float aimSpeed;
 

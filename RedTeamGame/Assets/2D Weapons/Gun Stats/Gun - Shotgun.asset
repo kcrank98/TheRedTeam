@@ -17,6 +17,7 @@ MonoBehaviour:
   shootDamage: 40
   shootDistance: 50
   shootRate: 1
+  reloadRate: 0.5
   aimFOV: 55
   aimSpeed: 10
   attachmentPosition: {x: 0, y: 0, z: 0}

@@ -18,6 +18,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] bool DeathDown;
     public bool hasKey;
     public bool isAlive = true;
+    public float audioPitch;
+    public float origPitch;
+    public float randomPitch;
+
 
 
     [Header("---- Health")]
@@ -54,7 +58,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] bool isDashing;
 
     [Header("---- Gun Stats")]
-
     [SerializeField] string gunName;
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
@@ -75,6 +78,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     public Transform gunparentObject;
     public int selectedGunGameObject;
     public bool hasInfiniteAmmo;
+    public bool isReloading;
 
     [Header("---- Gun Audio")]
 
@@ -107,6 +111,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioClip[] gunPickupSound;
     [Range(0, 1)][SerializeField] float gunPickupVol;
 
+    public AudioClip deathSound;
+    [Range(0, 1)] public float deathSoundVol;
+
     Vector3 move;
     Vector3 playerVel;
     Vector3 pushBack;
@@ -123,6 +130,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     // Start is called before the first frame update
     void Start()
     {
+        audioPitch = aud.pitch;
         //hasKey = false;
         HPOrig = HP;
         shieldAmountOrg = shieldAmount;
@@ -149,7 +157,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 selectGun();
                 aim();
 
-                if (Input.GetButton("Shoot") && !isShooting)
+                if (Input.GetButton("Shoot") && !isShooting && !isReloading)
                 {
                     if (magazine > 0)
                     {
@@ -257,7 +265,13 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         isShooting = true;
 
+        origPitch = aud.pitch;
+        randomPitch = Random.Range(.8f, 1.9f);
+        aud.pitch = randomPitch;
         aud.PlayOneShot(gunList[selectedGun].shootSound);
+        //aud.pitch = origPitch;
+
+
         //StartCoroutine(showMuzzleFlash());
 
         gunAnimator.SetTrigger("Shoot");
@@ -281,10 +295,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             }
         }
 
-        else if (gunList[selectedGun].magazine == 0)
-        {
-            aud.PlayOneShot(gunList[selectedGun].clickSound);
-        }
+        //else if (magazine == 0 && gunName != "Axe" || gunName != "Knife")
+        //{
+        //    aud.PlayOneShot(gunList[selectedGun].clickSound);
+        //}
         gameManager.instance.updateAmmo();
 
         yield return new WaitForSeconds(shootRate);
@@ -356,6 +370,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     IEnumerator playDeath()
     {
+        origPitch = aud.pitch;
+        randomPitch = Random.Range(.8f, 1.9f);
+        aud.pitch = randomPitch;
+        aud.PlayOneShot(deathSound, deathSoundVol);
+
         if (gunGameObjectList.Count > 0)
         {
             gunGameObjectList[selectedGunGameObject].SetActive(false);
@@ -440,6 +459,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         shootDamage = gun.shootDamage;
         shootDistance = gun.shootDistance;
         shootRate = gun.shootRate;
+        shootRate = gun.reloadRate;
         aimFOV = gun.aimFOV;
         aimSpeed = gun.aimSpeed;
         reloadSound = gun.reloadSound;
@@ -504,6 +524,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         shootDamage = gunList[selectedGun].shootDamage;
         shootDistance = gunList[selectedGun].shootDistance;
         shootRate = gunList[selectedGun].shootRate;
+        shootRate = gunList[selectedGun].reloadRate;
         aimFOV = gunList[selectedGun].aimFOV;
         aimSpeed = gunList[selectedGun].aimSpeed;
         reloadSound = gunList[selectedGun].reloadSound;
@@ -540,6 +561,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     public void reloadGun()
     {
+        int bulletsLeft = magazine;
+        if (isReloading) { return; }
+
         if (gunList[selectedGun] != null)
         {
             int difFromMagMax = magazineMax - magazine;
@@ -555,13 +579,54 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 reserves = 0;
                 //gunList[selectedGun].reserves = 0;
             }
-            gunAnimator.SetTrigger("Reload");
-            
-            aud.PlayOneShot(reloadSound);
+            if (gunName == "Shotgun")
+            {
+                //for (int i = bulletsLeft; i < magazineMax; i++)
+                //{ 
+                //gunAnimator.SetTrigger("Reload");
+                StartCoroutine(ReloadShotgunWithDelay(bulletsLeft));
+
+                //}
+
+            }
+            else if (gunName == "Axe" || gunName == "Knife")
+            {
+                return;
+            }
+            else
+            {
+                gunAnimator.SetTrigger("Reload");
+                aud.PlayOneShot(reloadSound);
+
+            }
+            //gunAnimator.SetTrigger("Reload");
+
+            StartCoroutine(updateIsReloading());
+            // notReloading();
+
             gameManager.instance.updateAmmo();
         }
 
     }
+    IEnumerator updateIsReloading()
+    {
+        isReloading = true;
+        yield return new WaitForSeconds(gunList[selectedGun].reloadRate);
+        isReloading = false;
+
+
+    }
+    IEnumerator ReloadShotgunWithDelay(int mageLeft)
+    {
+        for (int i = mageLeft; i < magazineMax; i++)
+        {
+            gunAnimator.SetTrigger("Reload");
+            aud.PlayOneShot(reloadSound);
+
+            yield return new WaitForSeconds(0.5f); // Wait for 0.5 seconds
+        }
+    }
+
     public void ammoCountUpdate(int amount)
     {
         reserves += amount;
@@ -571,4 +636,5 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         hasInfiniteAmmo = !hasInfiniteAmmo;
     }
+
 }
