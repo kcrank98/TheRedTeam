@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class ChestScript : MonoBehaviour
 {
+    //[SerializeField] Renderer model;
+
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip openSound;
+    //[SerializeField] AudioClip damagedSound;
+
     bool hasEnteredTrigger;
 
     // Start is called before the first frame update
@@ -19,10 +25,11 @@ public class ChestScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                GetComponent<LootBag>().instantiateLoot(transform.position);
+                aud.PlayOneShot(openSound);
+                GetComponent<LootBag>().instantiateLoot(transform.position, 1);
                 hasEnteredTrigger = false;
                 gameManager.instance.togglePopUpTxt();
-                Destroy(gameObject);
+                Destroy(gameObject, 1);
                 //useText.SetActive(false);
             }
         }
