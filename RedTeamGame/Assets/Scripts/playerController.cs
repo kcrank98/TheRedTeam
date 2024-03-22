@@ -12,6 +12,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] AudioSource aud;
     [SerializeField] GameObject muzzlePos;
     [SerializeField] ParticleSystem muzzleFlash;
+    [SerializeField] GameObject muzzleFlashMissEffect;
     [SerializeField] GameObject muzzleFlashGO;
     [SerializeField] Animator anim;
     [SerializeField] Animator gunAnimator;
@@ -22,8 +23,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     public float audioPitch;
     public float origPitch;
     public float randomPitch;
-
-
 
     [Header("---- Health")]
     [Range(0, 60)][SerializeField] int HP;
@@ -269,7 +268,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         {
             magazine--;
         }
-        //gunList[selectedGun].magazine--;
 
         isShooting = true;
 
@@ -277,10 +275,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         randomPitch = Random.Range(.8f, 1.7f);
         aud.pitch = randomPitch;
         aud.PlayOneShot(gunList[selectedGun].shootSound);
-        //aud.pitch = origPitch;
-
-
-        //StartCoroutine(showMuzzleFlash());
 
         gunAnimator.SetTrigger("Shoot");
 
@@ -291,22 +285,29 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
             Debug.Log(hit.collider.name);
 
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
 
             GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
             Destroy(muzzleFlashInstance, .05f);
 
+            ////if (hit.collider.CompareTag("Enemy"))
+            //if (hit.collider.GetComponent<IDamage>() != null)
+            //{
+            //    GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
+            //    Destroy(muzzleFlashInstance, .05f);
+            //}
+            //else
+            //{
+            //    GameObject muzzleFlashInstance = Instantiate(muzzleFlashMissEffect, hit.point, Quaternion.identity);
+            //    Destroy(muzzleFlashInstance, .05f);
+            //}
+
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
 
             if (hit.transform != transform && dmg != null)
             {
                 dmg.takeDamage(shootDamage);
             }
         }
-
-        //else if (magazine == 0 && gunName != "Axe" || gunName != "Knife")
-        //{
-        //    aud.PlayOneShot(gunList[selectedGun].clickSound);
-        //}
         gameManager.instance.updateAmmo();
 
         yield return new WaitForSeconds(shootRate);
@@ -477,6 +478,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         magazineMax = gun.magazineMax;
         reserves = gun.reserves;
         reservesMax = gun.reservesMax;
+        muzzleFlashGO = gun.muzzleFlashGO;
 
         gunGameObject = Instantiate(gun.model);
         gunGameObject.transform.SetParent(gunparentObject);
@@ -542,6 +544,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         magazineMax = gunList[selectedGun].magazineMax;
         reserves = gunList[selectedGun].reserves;
         reservesMax = gunList[selectedGun].reservesMax;
+        muzzleFlashGO = gunList[selectedGun].muzzleFlashGO;
 
         gameManager.instance.setActiveGun();
 

@@ -32,8 +32,10 @@ public class gunStats : ScriptableObject
     public Sprite sprite;
     public ParticleSystem hitEffectPS;
     [SerializeField] GameObject hitEffectIMG;
+    public GameObject muzzleFlashGO;
 
-    
+
+
 
     [Header(" ---- Audio ---- ")]
 
