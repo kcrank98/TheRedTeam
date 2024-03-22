@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1959115397200259024}
   - component: {fileID: 1832294683438131720}
   - component: {fileID: 1758761080925014808}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: muzzleflash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4843,7 +4843,7 @@ GameObject:
   - component: {fileID: 7604143899717806647}
   - component: {fileID: 2004381592217487820}
   - component: {fileID: 957607692823076664}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun Pickup - Pistol 2D Other Lone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4983,7 +4983,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3242946120738594916}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: muzzle pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

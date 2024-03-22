@@ -9,6 +9,10 @@ public class cameraController : MonoBehaviour
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
 
+    [SerializeField] Animator animator;
+    public bool isWalking;
+    public float playerVelCheck;
+
     float rotX;
 
     // Start is called before the first frame update
@@ -16,7 +20,7 @@ public class cameraController : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
+        isWalking = false;
     }
 
     // Update is called once per frame
@@ -46,5 +50,21 @@ public class cameraController : MonoBehaviour
         // rotate the player on the y-axis
         transform.parent.Rotate(Vector3.up * mouseX);
 
+        checkForWalking();
+        animator.SetBool("isWalking", isWalking);
+        playerVelCheck = gameManager.instance.playerScript.move.magnitude;
+
+    }
+    
+    void checkForWalking()
+    {
+        if (gameManager.instance.playerScript.move.magnitude > .1f)
+        {
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
+        }
     }
 }

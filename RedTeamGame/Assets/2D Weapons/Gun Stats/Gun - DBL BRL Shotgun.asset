@@ -18,7 +18,7 @@ MonoBehaviour:
   shootDistance: 50
   shootRate: 1
   reloadRate: 1
-  aimFOV: 55
+  aimFOV: 57
   aimSpeed: 10
   attachmentPosition: {x: 0, y: 0, z: 0}
   magazineMax: 2
@@ -30,9 +30,9 @@ MonoBehaviour:
   sprite: {fileID: -594621956, guid: 34c787351fb81ed4ba42e8871b0aa94b, type: 3}
   hitEffectPS: {fileID: 0}
   hitEffectIMG: {fileID: 0}
-  reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
+  reloadSound: {fileID: 8300000, guid: 72337d6d0c42245448ed34bdac72a992, type: 3}
   reloadSoundVol: 0.5
-  clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
+  clickSound: {fileID: 8300000, guid: d6a733244f684704685a3868040eae16, type: 3}
   clickSoundVol: 0.25
   shootSound: {fileID: 8300000, guid: d3247579c549643a5b3a95f9224eaf3c, type: 3}
   shootSoundVol: 0.5

@@ -6,6 +6,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 {
     [SerializeField] public CharacterController controller;
     [SerializeField] public GameObject mainCamera;
+    [SerializeField] public GameObject weaponCamera;
     [SerializeField] Collider capsuleCollider;
     [SerializeField] float originalFOV;
     [SerializeField] AudioSource aud;
@@ -53,6 +54,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [Range(3, 25)][SerializeField] float maxDashSpeed;
     [Range(1, 5)][SerializeField] float dashCooldown;
     [Range(1, 5)][SerializeField] float dashDeceleration;
+    [SerializeField] float dashFOV;
+    [SerializeField] float dashFOVChangeTime;
 
     [SerializeField] int dashCount;
     [SerializeField] bool isDashing;
@@ -114,8 +117,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     public AudioClip deathSound;
     [Range(0, 1)] public float deathSoundVol;
 
-    Vector3 move;
-    Vector3 playerVel;
+    public Vector3 move;
+    public Vector3 playerVel;
     Vector3 pushBack;
     Vector3 dashDirection;
     bool isShooting;
@@ -165,8 +168,10 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                     }
                     else if (magazine <= 0)
                     {
+                        origPitch = aud.pitch;
+                        randomPitch = Random.Range(.9f, 1.3f);
+                        aud.pitch = randomPitch;
                         aud.PlayOneShot(clickSound);
-
                     }
                 }
             }
@@ -188,7 +193,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         controller.Move(move * playerSpeed * Time.deltaTime);
 
 
-        if (Input.GetButtonDown("Dash") && dashCount < dashMax && !isDashing)
+        if (Input.GetButtonDown("Dash") && dashCount < dashMax && !isDashing && move.normalized.magnitude > 0.1f)
         {
             StartCoroutine(DASH());
         }
@@ -204,6 +209,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     IEnumerator DASH()
     {
+        mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, dashFOV, dashFOVChangeTime);
         isDashing = true;
         dashCount++;
 
@@ -221,6 +227,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         yield return new WaitForSeconds(dashCooldown);
         isDashing = false;
         dashCount = 0;
+        mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, originalFOV, dashFOVChangeTime);
+
         //gravity = gravityOrig;
     }
 
@@ -266,7 +274,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         isShooting = true;
 
         origPitch = aud.pitch;
-        randomPitch = Random.Range(.8f, 1.9f);
+        randomPitch = Random.Range(.8f, 1.7f);
         aud.pitch = randomPitch;
         aud.PlayOneShot(gunList[selectedGun].shootSound);
         //aud.pitch = origPitch;
@@ -552,17 +560,74 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         {
             aimedIn = true;
             mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, aimFOV, aimSpeed);
+            weaponCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(weaponCamera.GetComponent<Camera>().fieldOfView, aimFOV, aimSpeed);
         }
         else if (Input.GetButtonUp("Aim"))
         {
             mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, originalFOV, aimSpeed);
+            weaponCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(weaponCamera.GetComponent<Camera>().fieldOfView, originalFOV, aimSpeed);
             aimedIn = false;
         }
     }
     public void reloadGun()
     {
+        StartCoroutine(updateIsReloading());
+
+        //int bulletsLeft = magazine;
+        //if (isReloading) { return; }
+
+        //if (gunList[selectedGun] != null)
+        //{
+        //    int difFromMagMax = magazineMax - magazine;
+        //    if (reserves - difFromMagMax >= 0)
+        //    {
+        //        magazine = magazineMax;
+        //        reserves -= difFromMagMax;
+        //        //gunList[selectedGun].reserves -= difFromMagMax;
+        //    }
+        //    else
+        //    {
+        //        magazine += reserves;
+        //        reserves = 0;
+        //        //gunList[selectedGun].reserves = 0;
+        //    }
+        //    if (gunName == "Shotgun")
+        //    {
+        //        //for (int i = bulletsLeft; i < magazineMax; i++)
+        //        //{ 
+        //        //gunAnimator.SetTrigger("Reload");
+        //        StartCoroutine(ReloadShotgunWithDelay(bulletsLeft));
+
+        //        //}
+
+        //    }
+        //    else if (gunName == "Axe" || gunName == "Knife")
+        //    {
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        gunAnimator.SetTrigger("Reload");
+        //        aud.PlayOneShot(reloadSound);
+
+        //    }
+        //    //gunAnimator.SetTrigger("Reload");
+
+        //    StartCoroutine(updateIsReloading());
+        //    // notReloading();
+
+        //    gameManager.instance.updateAmmo();
+        //}
+
+    }
+    IEnumerator updateIsReloading()
+    {
+        isReloading = true;
+
+        /////
+
         int bulletsLeft = magazine;
-        if (isReloading) { return; }
+        if (isReloading) { yield return null; }
 
         if (gunList[selectedGun] != null)
         {
@@ -571,27 +636,25 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             {
                 magazine = magazineMax;
                 reserves -= difFromMagMax;
-                //gunList[selectedGun].reserves -= difFromMagMax;
+
             }
             else
             {
                 magazine += reserves;
                 reserves = 0;
-                //gunList[selectedGun].reserves = 0;
+
             }
             if (gunName == "Shotgun")
             {
-                //for (int i = bulletsLeft; i < magazineMax; i++)
-                //{ 
-                //gunAnimator.SetTrigger("Reload");
+
                 StartCoroutine(ReloadShotgunWithDelay(bulletsLeft));
 
-                //}
+
 
             }
             else if (gunName == "Axe" || gunName == "Knife")
             {
-                return;
+                yield return null;
             }
             else
             {
@@ -599,32 +662,29 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 aud.PlayOneShot(reloadSound);
 
             }
-            //gunAnimator.SetTrigger("Reload");
 
-            StartCoroutine(updateIsReloading());
-            // notReloading();
 
+            /////
+            ///
+            yield return new WaitForSeconds(gunList[selectedGun].reloadRate);
             gameManager.instance.updateAmmo();
+
+            isReloading = false;
         }
 
     }
-    IEnumerator updateIsReloading()
+    IEnumerator ReloadShotgunWithDelay(int bulletsLeft)
     {
-        isReloading = true;
-        yield return new WaitForSeconds(gunList[selectedGun].reloadRate);
-        isReloading = false;
-
-
-    }
-    IEnumerator ReloadShotgunWithDelay(int mageLeft)
-    {
-        for (int i = mageLeft; i < magazineMax; i++)
+        for (int i = bulletsLeft; i < magazineMax; i++)
         {
+            origPitch = aud.pitch;
+            randomPitch = Random.Range(.9f, 1.3f);
+            aud.pitch = randomPitch;
             gunAnimator.SetTrigger("Reload");
             aud.PlayOneShot(reloadSound);
-
             yield return new WaitForSeconds(0.5f); // Wait for 0.5 seconds
         }
+
     }
 
     public void ammoCountUpdate(int amount)

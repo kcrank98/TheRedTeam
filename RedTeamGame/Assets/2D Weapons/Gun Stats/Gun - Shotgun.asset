@@ -15,10 +15,10 @@ MonoBehaviour:
   gunSize: Large
   gunName: Shotgun
   shootDamage: 40
-  shootDistance: 50
+  shootDistance: 95
   shootRate: 1
   reloadRate: 0.5
-  aimFOV: 55
+  aimFOV: 45
   aimSpeed: 10
   attachmentPosition: {x: 0, y: 0, z: 0}
   magazineMax: 5
@@ -30,7 +30,7 @@ MonoBehaviour:
   sprite: {fileID: -2093800616, guid: baf94468d5375da42a2766024a34f185, type: 3}
   hitEffectPS: {fileID: 0}
   hitEffectIMG: {fileID: 0}
-  reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
+  reloadSound: {fileID: 8300000, guid: f5b01f1d252f0144ea7572d17dcdf1be, type: 3}
   reloadSoundVol: 0.5
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
   clickSoundVol: 0.25

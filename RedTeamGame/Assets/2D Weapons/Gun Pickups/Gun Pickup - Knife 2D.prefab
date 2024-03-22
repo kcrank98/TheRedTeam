@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6395930659477775680}
   - component: {fileID: 6155523670507422103}
   - component: {fileID: 8547432019473051352}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun Pickup - Knife 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 2469962111440865062}
   - component: {fileID: 3452226927113070387}
   - component: {fileID: 6974551509090950381}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: muzzleflash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4983,7 +4983,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 699265642742092179}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: muzzle pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

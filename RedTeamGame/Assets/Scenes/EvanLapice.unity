@@ -2966,9 +2966,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Sprite RedMan
       objectReference: {fileID: 0}
+    - target: {fileID: 4665765336712629986, guid: fb6e64864ac54434db7aae92aa926d97, type: 3}
+      propertyPath: m_ClearFlags
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6253060982689680567, guid: fb6e64864ac54434db7aae92aa926d97, type: 3}
-      propertyPath: deathSoundVol
-      value: 0.7
+      propertyPath: dashFOV
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253060982689680567, guid: fb6e64864ac54434db7aae92aa926d97, type: 3}
+      propertyPath: dashFOVChangeTime
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

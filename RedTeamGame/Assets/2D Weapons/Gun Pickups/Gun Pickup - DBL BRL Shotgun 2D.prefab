@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6736036194546973608}
   - component: {fileID: 7006015303302278236}
   - component: {fileID: 1882644868214461610}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun Pickup - DBL BRL Shotgun 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8622594991035222338}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: muzzle pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 3167484550583311311}
   - component: {fileID: 3744561634256943020}
   - component: {fileID: 275910976985618436}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: muzzleflash
   m_TagString: Untagged
   m_Icon: {fileID: 0}

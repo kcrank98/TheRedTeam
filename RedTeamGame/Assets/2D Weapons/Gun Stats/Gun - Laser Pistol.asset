@@ -18,7 +18,7 @@ MonoBehaviour:
   shootDistance: 65
   shootRate: 1
   reloadRate: 2.4
-  aimFOV: 50
+  aimFOV: 47
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
   magazineMax: 3
