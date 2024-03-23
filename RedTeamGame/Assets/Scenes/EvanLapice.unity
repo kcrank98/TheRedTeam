@@ -2999,6 +2999,10 @@ PrefabInstance:
       value: Player Sprite RedMan
       objectReference: {fileID: 0}
     - target: {fileID: 6253060982689680567, guid: fb6e64864ac54434db7aae92aa926d97, type: 3}
+      propertyPath: HPLabel
+      value: 
+      objectReference: {fileID: 100000, guid: 57ff52a6b9d134c9689be872547ab590, type: 3}
+    - target: {fileID: 6253060982689680567, guid: fb6e64864ac54434db7aae92aa926d97, type: 3}
       propertyPath: muzzleFlashGO
       value: 
       objectReference: {fileID: 0}
@@ -3006,6 +3010,10 @@ PrefabInstance:
       propertyPath: muzzleFlashMissEffect
       value: 
       objectReference: {fileID: 1491359990764140, guid: 18c0a8b63ea8b4448a595b0c24c1384a, type: 3}
+    - target: {fileID: 7307864892395197453, guid: fb6e64864ac54434db7aae92aa926d97, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 3071
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage, IPushBack
 {
+    public string dmg;
+
     [SerializeField] public CharacterController controller;
     [SerializeField] public GameObject mainCamera;
     [SerializeField] public GameObject weaponCamera;
+    [SerializeField] public GameObject HPLabel;
     [SerializeField] Collider capsuleCollider;
     [SerializeField] float originalFOV;
     [SerializeField] AudioSource aud;
@@ -73,7 +76,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
 
     [Header("---- Gun")]
-    [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    public List<gunStats> gunList = new List<gunStats>();
     [SerializeField] List<GameObject> gunGameObjectList = new List<GameObject>();
     [SerializeField] GameObject gunModel;
     [SerializeField] GameObject gunGameObject;
@@ -123,7 +126,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     bool isShooting;
     bool isSprinting;
     bool isCrouched;
-    int selectedGun;
+    public int selectedGun;
     //int selectedGunGameObject;
     bool aimedIn;
     int jumpCount;
@@ -132,6 +135,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     // Start is called before the first frame update
     void Start()
     {
+        //HPLabel = gameObject.transform.Find("HPLabel").gameObject;
+       
+
         audioPitch = aud.pitch;
         //hasKey = false;
         HPOrig = HP;
@@ -288,6 +294,12 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
             GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
             Destroy(muzzleFlashInstance, .05f);
+
+            //HPLabel.GetComponent<TextMesh>().text = gunList[selectedGun].shootDamage.ToString();
+
+            GameObject hpLabel = Instantiate(HPLabel, hit.point, Quaternion.identity);
+            Destroy(hpLabel, 2f);
+
 
             ////if (hit.collider.CompareTag("Enemy"))
             //if (hit.collider.GetComponent<IDamage>() != null)
@@ -500,6 +512,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         gunAnimator = gunGameObject.GetComponent<Animator>();
         gunGameObjectList[selectedGunGameObject].SetActive(true);
 
+        returnShootDamage(shootDamage);
+        
+        //HPLabel.GetComponent<TextMesh>().text = returnShootDamage(shootDamage);
 
         gameManager.instance.setActiveGun();
 
@@ -545,6 +560,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         reserves = gunList[selectedGun].reserves;
         reservesMax = gunList[selectedGun].reservesMax;
         muzzleFlashGO = gunList[selectedGun].muzzleFlashGO;
+
+        returnShootDamage(shootDamage);
+        //HPLabel.GetComponent<TextMesh>().text = returnShootDamage(shootDamage);
 
         gameManager.instance.setActiveGun();
 
@@ -700,4 +718,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         hasInfiniteAmmo = !hasInfiniteAmmo;
     }
 
+    public string returnShootDamage(int damage)
+    {
+        dmg = "- " + damage.ToString();
+        return dmg;
+    }
 }
