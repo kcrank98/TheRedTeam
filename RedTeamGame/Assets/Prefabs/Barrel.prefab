@@ -101,6 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 5773337614318416981}
+  brokenModel: {fileID: 0}
+  hasBrokenModel: 0
   cCollider: {fileID: 0}
   HP: 1
   HPOrig: 0
@@ -125,7 +127,7 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  dropForce: 0
+  objTrans: {fileID: 3329760273113411136}
 --- !u!64 &8147192559883067201
 MeshCollider:
   m_ObjectHideFlags: 0

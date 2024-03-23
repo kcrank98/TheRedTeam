@@ -6,7 +6,33 @@ public class LootBag : MonoBehaviour
 {
     [SerializeField] GameObject lootPrefab;
     [SerializeField] List<Loot> lootList = new List<Loot>();
-    [SerializeField] float dropForce;
+
+    //[Header("---Splash Effect---")]
+    //[SerializeField] Transform objTrans;
+    //private float delay = 0;
+    //private float pastTime = 0;
+    //private float when = 1f;
+    //private Vector3 off;
+    //[SerializeField] float dropForce;
+
+    private void Start()
+    {
+        //off = new Vector3 (Random.Range(-3, 3), off.y, off.z);
+        //off = new Vector3(off.x, Random.Range(-3, 3), off.z);
+        //off = new Vector3(off.x, off.y, Random.Range(-3, 3));
+    }
+
+    private void Update()
+    {
+        //make the loot pop out of the object
+        //if(when >= delay)
+        //{
+        //    pastTime = Time.deltaTime;
+
+        //    objTrans.position += off * Time.deltaTime;
+        //    delay += pastTime;
+        //}
+    }
 
     Loot getLoot()
     {
@@ -97,7 +123,7 @@ public class LootBag : MonoBehaviour
             }
 
             //Vector3 dropDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            //lootGameObject.GetComponent<Rigidbody>().AddForce(dropDirection * dropForce, ForceMode.Impulse);
+            //lootGameObject.GetComponent<Rigidbody>().AddForce(dropDirection * dropForce);
         }
 
         if (droppedLootList != null)
@@ -133,10 +159,9 @@ public class LootBag : MonoBehaviour
                 {
                     ammo.enabled = true;
                 }
+                //Vector3 dropDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                //lootGameObject.GetComponent<Rigidbody>().AddForce(dropDirection * dropForce);
             }
-
-            //Vector3 dropDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            //lootGameObject.GetComponent<Rigidbody>().AddForce(dropDirection * dropForce, ForceMode.Impulse);
         }
     }
 }
