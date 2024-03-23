@@ -30,7 +30,7 @@ MonoBehaviour:
   sprite: {fileID: -233877210, guid: 6a71cc43df2b4ab49830058e6071fd60, type: 3}
   hitEffectPS: {fileID: 0}
   hitEffectIMG: {fileID: 0}
-  muzzleFlashGO: {fileID: 1039002645070054727, guid: e1d8bbd6e0f5b4a4a97a0d63fd4e04ff, type: 3}
+  muzzleFlashGO: {fileID: 1491359990764140, guid: 18c0a8b63ea8b4448a595b0c24c1384a, type: 3}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}

@@ -16,7 +16,7 @@ MonoBehaviour:
   gunName: Pistol
   shootDamage: 14
   shootDistance: 65
-  shootRate: 1
+  shootRate: 0.75
   reloadRate: 2.4
   aimFOV: 47
   aimSpeed: 15
@@ -30,7 +30,7 @@ MonoBehaviour:
   sprite: {fileID: -387467046, guid: 37c49daaa05c83f479ee05e20635ebf7, type: 3}
   hitEffectPS: {fileID: 0}
   hitEffectIMG: {fileID: 0}
-  muzzleFlashGO: {fileID: 1039002645070054727, guid: e1d8bbd6e0f5b4a4a97a0d63fd4e04ff, type: 3}
+  muzzleFlashGO: {fileID: 1202522996400206, guid: f87e7926fd589094b8a269e14b8bea5e, type: 3}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
