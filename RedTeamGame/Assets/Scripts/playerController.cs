@@ -67,6 +67,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float shootRate;
+    [SerializeField] float reloadRate;
     [SerializeField] float aimFOV;
     [SerializeField] float aimSpeed;
     [SerializeField] public int magazine;
@@ -270,7 +271,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
     IEnumerator shoot()
     {
-        if (!hasInfiniteAmmo)
+        if (!hasInfiniteAmmo && gunName != "Knife" || gunName != "Axe")
         {
             magazine--;
         }
@@ -480,7 +481,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         shootDamage = gun.shootDamage;
         shootDistance = gun.shootDistance;
         shootRate = gun.shootRate;
-        shootRate = gun.reloadRate;
+        reloadRate = gun.reloadRate;
         aimFOV = gun.aimFOV;
         aimSpeed = gun.aimSpeed;
         reloadSound = gun.reloadSound;
@@ -511,6 +512,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         selectedGunGameObject = gunList.Count - 1;
         gunAnimator = gunGameObject.GetComponent<Animator>();
         gunGameObjectList[selectedGunGameObject].SetActive(true);
+
+        SphereCollider gunCollider = gunGameObject.GetComponent<SphereCollider>();
+        gunCollider.isTrigger = false;
 
         returnShootDamage(shootDamage);
         
@@ -549,7 +553,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         shootDamage = gunList[selectedGun].shootDamage;
         shootDistance = gunList[selectedGun].shootDistance;
         shootRate = gunList[selectedGun].shootRate;
-        shootRate = gunList[selectedGun].reloadRate;
+        reloadRate = gunList[selectedGun].reloadRate;
         aimFOV = gunList[selectedGun].aimFOV;
         aimSpeed = gunList[selectedGun].aimSpeed;
         reloadSound = gunList[selectedGun].reloadSound;
