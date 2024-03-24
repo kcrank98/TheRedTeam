@@ -80,6 +80,7 @@ public class gameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");//get the player spawn
         scoreList = new List<TMP_Text>();
         loadScores();
+        backgroundMusicVol = dataManager.instance.GetOption("volume");
     }
 
     // Update is called once per frame

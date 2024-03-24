@@ -26,5 +26,13 @@ public class dataManager : MonoBehaviour
             sliderController.currentValue = (int)sliderController.slider.value;//set the value copy as well
         }
     }
+    public int GetOption(string key)
+    {
+        if ((PlayerPrefs.HasKey(key)))
+        {
+            return PlayerPrefs.GetInt(key);
+        }
+        else return 0;
+    }
    
 }
