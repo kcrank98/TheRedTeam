@@ -1469,7 +1469,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 7282927480521265732}
 --- !u!23 &9026386981185787779
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8394,7 +8393,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 2674535978716246265}
 --- !u!23 &8880266070045837322
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10864,7 +10862,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 2960524969154307182}
 --- !u!23 &3480817603520567867
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12369,7 +12366,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 2531325848992846411}
 --- !u!23 &1382269192668612680
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14011,7 +14007,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 2746402612970668729}
 --- !u!23 &4015242841771091302
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16720,7 +16715,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 346764117072698915}
 --- !u!23 &6182415683490152235
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20863,7 +20857,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 8191142259174648970}
 --- !u!23 &3336635205082959913
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21606,7 +21599,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 7055918681034799203}
 --- !u!135 &6718222929727736317
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -28346,7 +28338,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
   - {fileID: 11400000, guid: 14647400de01deb41b5e8b0f55c0bdea, type: 2}
-  objTrans: {fileID: 8654357894237775392}
 --- !u!135 &5079195973163134062
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -29594,7 +29585,6 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 6027012067211908727}
 --- !u!64 &901059325626181494
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35809,7 +35799,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 4242970212186176204}
 --- !u!23 &4709366342385138275
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36570,7 +36559,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 5470493002240146674}
 --- !u!23 &1543679836666404693
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42908,7 +42896,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 2362003140196573989}
 --- !u!23 &6830066654546669629
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44365,7 +44352,6 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 4922964376898214571}
 --- !u!64 &2675373869293260497
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -45811,7 +45797,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 3134584075249973665}
 --- !u!135 &1679846076322908223
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -46709,7 +46694,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 2887949003532028620}
 --- !u!23 &2442985565541022497
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -48153,7 +48137,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 7073462872321646852}
 --- !u!23 &2277194291406120658
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52265,7 +52248,6 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 986101960523923302}
 --- !u!64 &8953203446001995065
 MeshCollider:
   m_ObjectHideFlags: 0
