@@ -624,6 +624,7 @@ MonoBehaviour:
   LShield: {fileID: 8888379078905250379}
   RShield: {fileID: 637813344069439706}
   popUp: {fileID: 3876018646765991942}
+  aimReticalInRange: {fileID: 3449744607500246124}
   GunImg: {fileID: 0}
   currentMagAmmo: {fileID: 3746925670867757311}
   currentReserves: {fileID: 6602276110626084106}
