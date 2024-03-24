@@ -4,7 +4,10 @@ using UnityEngine;
 public class container : MonoBehaviour, IDamage
 {
     [SerializeField] Renderer model;
+    [SerializeField] GameObject brokenModel;
+    public bool hasBrokenModel;
     [SerializeField] Collider cCollider;
+    private int count;
 
     [Header("---- HP")]
     [SerializeField] int HP;
@@ -26,6 +29,7 @@ public class container : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
+        count = 0;
         //navMeshSurface = GetComponent<NavMeshSurface>();
     }
 
@@ -75,12 +79,18 @@ public class container : MonoBehaviour, IDamage
         {
             LootBag loot = gameObject.GetComponent<LootBag>();
 
-            if (loot != null)
+            if (loot != null && count < 1)
             {
                 GetComponent<LootBag>().instantiateLoot(transform.position);
             }
 
-            Destroy(gameObject);
+            if(hasBrokenModel && count < 1)
+            {
+                Instantiate(brokenModel, transform.position, transform.rotation);
+            }
+            count++;
+            model.enabled = false;
+            Destroy(gameObject, 1);
             //navMeshSurface.BuildNavMesh();
         }
     }

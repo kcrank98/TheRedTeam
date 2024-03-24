@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSize: Melee
   gunName: Knife
-  shootDamage: 4
-  shootDistance: 5
+  shootDamage: 5
+  shootDistance: 2
   shootRate: 1
-  aimFOV: 55
+  reloadRate: 0.5
+  aimFOV: 57
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
   magazineMax: 1000
@@ -29,9 +30,10 @@ MonoBehaviour:
   sprite: {fileID: 51408648, guid: 81e09b66d39d630498bfe92c65b7cd2a, type: 3}
   hitEffectPS: {fileID: 0}
   hitEffectIMG: {fileID: 0}
+  muzzleFlashGO: {fileID: 1491359990764140, guid: 18c0a8b63ea8b4448a595b0c24c1384a, type: 3}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
   clickSoundVol: 0
-  shootSound: {fileID: 8300000, guid: b52a70b897972404c8d1a96f003db713, type: 3}
+  shootSound: {fileID: 8300000, guid: 627d83db26e5884439f6258b85ed119e, type: 3}
   shootSoundVol: 0.5

@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSize: Small
   gunName: Pistol
-  shootDamage: 14
+  shootDamage: 70
   shootDistance: 65
   shootRate: 0.75
-  aimFOV: 50
+  reloadRate: 1.5
+  aimFOV: 47
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}
   magazineMax: 3
@@ -29,6 +30,7 @@ MonoBehaviour:
   sprite: {fileID: -387467046, guid: 37c49daaa05c83f479ee05e20635ebf7, type: 3}
   hitEffectPS: {fileID: 0}
   hitEffectIMG: {fileID: 0}
+  muzzleFlashGO: {fileID: 1202522996400206, guid: f87e7926fd589094b8a269e14b8bea5e, type: 3}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
