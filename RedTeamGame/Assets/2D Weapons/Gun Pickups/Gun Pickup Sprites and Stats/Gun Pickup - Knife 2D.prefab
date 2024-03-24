@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 6c2ad6658a2c96c4ab8cfc194819968f, type: 2}
-  parentObject: {fileID: 0}
+  parentObject: {fileID: 1500034230089989708, guid: 0181ff2e423217144aa0c575403490e6, type: 3}
 --- !u!95 &8547432019473051352
 Animator:
   serializedVersion: 5

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSize: Melee
   gunName: Knife
-  shootDamage: 4
+  shootDamage: 5
   shootDistance: 2
   shootRate: 1
   reloadRate: 0.5

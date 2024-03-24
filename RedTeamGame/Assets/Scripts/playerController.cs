@@ -10,6 +10,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] public GameObject mainCamera;
     [SerializeField] public GameObject weaponCamera;
     [SerializeField] public GameObject HPLabel;
+    //public TextMesh gunDmg;
     [SerializeField] Collider capsuleCollider;
     [SerializeField] float originalFOV;
     [SerializeField] AudioSource aud;
@@ -31,6 +32,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [Range(0, 60)][SerializeField] int HP;
     [SerializeField] int HPOrig;
     [Range(.1f, .99f)][SerializeField] float HPPerc;
+    [Header("---- HP Hit Marker")]
+
+    [SerializeField] float lerpHeight;
 
     [Header("---- Shield")]
     [SerializeField] public int shieldAmountOrg;
@@ -219,11 +223,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         isDashing = true;
         dashCount++;
 
-        //gravity = 0;
-        //playerVel += transform.forward * dashForce;
-
         Vector3 dashTarget = move.normalized * dashForce * Time.deltaTime;
-        //controller.Move(move.normalized * dashForce * Time.deltaTime);
+
 
         controller.Move(Vector3.MoveTowards(move, dashTarget, dashDuration));
 
@@ -235,7 +236,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         dashCount = 0;
         mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, originalFOV, dashFOVChangeTime);
 
-        //gravity = gravityOrig;
     }
 
     public void pushBackDir(Vector3 dir)
@@ -299,7 +299,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             //HPLabel.GetComponent<TextMesh>().text = gunList[selectedGun].shootDamage.ToString();
 
             GameObject hpLabel = Instantiate(HPLabel, hit.point, Quaternion.identity);
-            Destroy(hpLabel, 2f);
+            //hpLabel.transform.position = Vector3.Lerp(hpLabel.transform.position, hpLabel.transform.position + Vector3.up * lerpHeight, 5);
+            hpLabel.transform.position = Vector3.MoveTowards(hpLabel.transform.position, hpLabel.transform.position + Vector3.up * lerpHeight, 5);
+            Destroy(hpLabel, .5f);
 
 
             ////if (hit.collider.CompareTag("Enemy"))
@@ -359,7 +361,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         if (HP <= 0)
         {
             StartCoroutine(playDeath());
-            //gameManager.instance.youLose();
         }
         gameManager.instance.UpdateShiieldUi();
 
@@ -722,9 +723,13 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         hasInfiniteAmmo = !hasInfiniteAmmo;
     }
 
-    public string returnShootDamage(int damage)
+    public void returnShootDamage(int damage)
     {
         dmg = "- " + damage.ToString();
-        return dmg;
+        //HPLabel = gameObject.transform.Find("HPLabel").gameObject;
+
+        HPLabel.GetComponent<TextMesh>().text = dmg;
+
+        //return dmg;
     }
 }

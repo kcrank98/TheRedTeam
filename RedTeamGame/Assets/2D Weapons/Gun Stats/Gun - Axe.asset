@@ -16,7 +16,7 @@ MonoBehaviour:
   gunName: Axe
   shootDamage: 5
   shootDistance: 2
-  shootRate: 1.25
+  shootRate: 1
   reloadRate: 0.5
   aimFOV: 55
   aimSpeed: 15

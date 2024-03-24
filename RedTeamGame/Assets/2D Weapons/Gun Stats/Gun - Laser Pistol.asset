@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSize: Small
   gunName: Pistol
-  shootDamage: 14
+  shootDamage: 70
   shootDistance: 65
   shootRate: 0.75
-  reloadRate: 2.4
+  reloadRate: 1.5
   aimFOV: 47
   aimSpeed: 15
   attachmentPosition: {x: 0, y: 0.117, z: 0.1926}

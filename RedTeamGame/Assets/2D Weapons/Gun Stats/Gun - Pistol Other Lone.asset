@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSize: Small
   gunName: Pistol
-  shootDamage: 10
+  shootDamage: 15
   shootDistance: 65
-  shootRate: 0.25
+  shootRate: 0.35
   reloadRate: 0.75
   aimFOV: 50
   aimSpeed: 15

@@ -21,7 +21,7 @@ public class HPParticleScript : MonoBehaviour
     {
         //gunDmg.text = playerScriptC.dmg;
         //HPLabel.GetComponent<TextMesh>().text = gunDmg;
-
+        updateGunDMGHitMarker();
         //gunDmg = playerScriptC.dmg;
         //HPLabel.GetComponent<TextMesh>().text = playerScriptC.gunList[playerScriptC.selectedGun].shootDamage.ToString();
 
@@ -29,6 +29,6 @@ public class HPParticleScript : MonoBehaviour
     public void updateGunDMGHitMarker()
     {
         gunDmg.text = playerScriptC.dmg;
-
+        
     }
 }

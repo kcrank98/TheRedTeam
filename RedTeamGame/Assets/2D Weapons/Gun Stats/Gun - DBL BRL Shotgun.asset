@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSize: Large
   gunName: Double Barrel Shotgun
-  shootDamage: 40
+  shootDamage: 50
   shootDistance: 50
   shootRate: 1
   reloadRate: 1
