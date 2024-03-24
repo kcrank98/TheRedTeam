@@ -20,6 +20,7 @@ public class gameManager : MonoBehaviour
     [Header("--prompt text--")]
     [SerializeField] TMP_Text popUp;
     [Header ("--gun ammo ui--")]
+    public Image aimReticalInRange;
     [SerializeField] SpriteRenderer GunImg;
     [SerializeField] TMP_Text currentMagAmmo;
     [SerializeField] TMP_Text currentReserves;

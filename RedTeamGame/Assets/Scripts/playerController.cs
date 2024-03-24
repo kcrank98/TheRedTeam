@@ -164,11 +164,12 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         {
             movement();
 
-
             if (gunList.Count > 0)
             {
                 selectGun();
                 aim();
+                inRange();
+
 
                 if (Input.GetButton("Shoot") && !isShooting && !isReloading)
                 {
@@ -292,7 +293,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
             Debug.Log(hit.collider.name);
 
-
             GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
             Destroy(muzzleFlashInstance, .05f);
 
@@ -327,6 +327,28 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         yield return new WaitForSeconds(shootRate);
         isShooting = false;
+
+    }
+    void inRange()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistance))
+        {
+            Debug.DrawRay(hit.point, hit.normal, Color.green);
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                gameManager.instance.aimReticalInRange.color = Color.red;
+            }
+            else
+            {
+                gameManager.instance.aimReticalInRange.color = Color.white;
+
+            }
+        }
+        //else
+        //{
+        //    gameManager.instance.aimReticalInRange.enabled = false;
+        //}
 
     }
     private IEnumerator showMuzzleFlash()
