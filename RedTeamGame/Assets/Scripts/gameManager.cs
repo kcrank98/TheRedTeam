@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
@@ -65,8 +64,7 @@ public class gameManager : MonoBehaviour
     float time;
     bool timerOn;
     bool popUpOn;
-    bool leaderBoardOn;
-    bool promptForInitalsOn;
+    bool menuToggled;
     List<TMP_Text> scoreList;
     //awake will run before any other call crating this object before anything needs to use it
     void Awake()
@@ -76,6 +74,7 @@ public class gameManager : MonoBehaviour
         instance = this;//any refreance to this game manager is this
         //enemyCount = -1;
         player = GameObject.FindWithTag("Player");//get the player
+        if(player != null)
         playerScript = player.GetComponent<playerController>();//get the player script
         toggleTimer();//turn on the timer
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");//get the player spawn
@@ -97,6 +96,7 @@ public class gameManager : MonoBehaviour
             playerScript.reloadGun();
             //reloadMag();//reload gun(will not work while paused)
         }
+        if(timer != null)
         timerUpdate();// update the timer
 
     }
@@ -168,7 +168,6 @@ public class gameManager : MonoBehaviour
             currentReserves.gameObject.SetActive(true);//current reserves is turned on
         }
         updateAmmo();//update the ammo count
-      
     }
     public void updateAmmo()//updates the ammo ui
     {
@@ -201,15 +200,23 @@ public class gameManager : MonoBehaviour
     }
     public void togglePromptNewScore()// toggles the score prompt
     {
-        activeMenu.SetActive(promptForInitalsOn);//turn on or off the preveus menu based on if promp is on or off
-        newScoreMenu.SetActive(!promptForInitalsOn);//toggle leader board on if its off, its not turning on, if on it turns off
-        promptForInitalsOn = !promptForInitalsOn;//toggle the bool to match the state of prompt
+        activeMenu.SetActive(menuToggled);//turn on or off the preveus menu based on if promp is on or off
+        newScoreMenu.SetActive(!menuToggled);//toggle leader board on if its off, its not turning on, if on it turns off
+        menuToggled = !menuToggled;//toggle the bool to match the state of prompt
     }
     public void toggleLeaderBoard()//toggles the leader board
     {
-        activeMenu.SetActive(leaderBoard);//turn off or on the previous menu if the leader board is on
-        leaderBoard.SetActive(!leaderBoardOn);//if leader bord is not on turn on, otherwise turn off
-        leaderBoardOn = !leaderBoardOn;//toggle the leader board bool
+        activeMenu.SetActive(menuToggled);//turn off or on the previous menu if the leader board is on
+        leaderBoard.SetActive(!menuToggled);//if leader bord is not on turn on, otherwise turn off
+        menuToggled = !menuToggled;//toggle the leader board bool
+        if (!menuToggled)//if the leader board is turning off
+            saveScores();//save the scores
+    }
+    public void togglePauseOptions()
+    {
+        activeMenu.SetActive(menuToggled);
+        //options set active
+        menuToggled = !menuToggled;
     }
     public void saveScore(string s)
     {
@@ -248,7 +255,6 @@ public class gameManager : MonoBehaviour
         {
             scoreList[i].transform.SetAsFirstSibling();//set each score in assending order to be the frstplace (this will re arange them in the vertical list component)
         }
-        
     }
     int findScore(TMP_Text score)//finds the score string and converts it to an int
     {
