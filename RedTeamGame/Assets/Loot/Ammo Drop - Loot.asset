@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootSprite: {fileID: 21300002, guid: 2f84b5c8ce2b18549a175522847db7d6, type: 3}
   lootName: Ammo Drop
-  dropChance: 100
+  dropChance: 50

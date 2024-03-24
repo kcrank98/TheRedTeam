@@ -10,6 +10,7 @@ public class gunStats : ScriptableObject
     public int shootDamage;
     public int shootDistance;
     public float shootRate;
+    public float reloadRate;
     public float aimFOV;
     public float aimSpeed;
 
@@ -31,8 +32,10 @@ public class gunStats : ScriptableObject
     public Sprite sprite;
     public ParticleSystem hitEffectPS;
     [SerializeField] GameObject hitEffectIMG;
+    public GameObject muzzleFlashGO;
 
-    
+
+
 
     [Header(" ---- Audio ---- ")]
 

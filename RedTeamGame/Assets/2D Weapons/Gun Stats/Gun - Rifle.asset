@@ -17,6 +17,7 @@ MonoBehaviour:
   shootDamage: 28
   shootDistance: 95
   shootRate: 0.4
+  reloadRate: 0
   aimFOV: 40
   aimSpeed: 8
   attachmentPosition: {x: 0, y: 0, z: 0}
@@ -26,10 +27,10 @@ MonoBehaviour:
   reserves: 0
   uiImage: {fileID: 0}
   model: {fileID: 4311248730837266121, guid: c20daf91d2bce304c85fec03f5fafd3b, type: 3}
-  gunAnimator: {fileID: 0}
-  modelSprite: {fileID: 0}
   sprite: {fileID: 0}
-  hitEffect: {fileID: 0}
+  hitEffectPS: {fileID: 0}
+  hitEffectIMG: {fileID: 0}
+  muzzleFlashGO: {fileID: 1039002645070054727, guid: e1d8bbd6e0f5b4a4a97a0d63fd4e04ff, type: 3}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0.5
   clickSound: {fileID: 8300000, guid: d98bc30f9b3aa9d45ad2556732198b7c, type: 3}
