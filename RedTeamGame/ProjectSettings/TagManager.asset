@@ -8,6 +8,8 @@ TagManager:
   - Weapon
   - Enemy
   - Pillar
+  - Effect
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -19,8 +21,8 @@ TagManager:
   - Enemy
   - LargeCharacters
   - uiSprite
-  - 
-  - 
+  - Weapon
+  - Hp Hit Marker Label
   - 
   - 
   - 
