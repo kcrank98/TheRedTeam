@@ -119,7 +119,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  dropForce: 0
+  objTrans: {fileID: 4973472659795935839}
 --- !u!135 &8778948923391767489
 SphereCollider:
   m_ObjectHideFlags: 0
