@@ -19,12 +19,13 @@ public class portalScript : MonoBehaviour
     {
         if (other.CompareTag("Player") && count == 0)
         {
-            gameManager.instance.playerScript.controller.enabled = false;
-            gameManager.instance.player.transform.position = newPos;
-            gameManager.instance.playerSpawnPos.transform.position = newPos;
-            gameManager.instance.playerScript.controller.enabled = true;
+            //gameManager.instance.playerScript.controller.enabled = false;
+            //gameManager.instance.player.transform.position = newPos;
+            //gameManager.instance.playerSpawnPos.transform.position = newPos;
+            //gameManager.instance.playerScript.controller.enabled = true;
 
-            count++;
+            //count++;
+            gameManager.instance.updateGameGoal();
         }
     }
 }
