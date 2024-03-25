@@ -63,7 +63,7 @@ public class container : MonoBehaviour, IDamage
 
         if (dmg != null)
         {
-            if (!other.isTrigger /*&& !other.CompareTag("Player")*/)
+            if (!other.isTrigger && !other.CompareTag("Player"))
             {
                 dmg.takeDamage(damageAmount);
                 aud.PlayOneShot(metalSound);

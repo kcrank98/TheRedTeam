@@ -16,7 +16,7 @@ public class ElevatorDoor : MonoBehaviour
     {
         if (hasEnteredTrigger)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E) && gameManager.instance.playerScript.hasKey)
             {
                 hasEnteredTrigger = false;
                 gameManager.instance.playerScript.hasKey = false;
