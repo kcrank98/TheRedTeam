@@ -29,7 +29,7 @@ public class bossRoomMusic : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             aud.Stop();
-            aud.PlayOneShot(gameManager.instance.backgroundMusic[Random.Range(0, gameManager.instance.backgroundMusic.Length)], gameManager.instance.backgroundMusicVol);
+            //aud.PlayOneShot(gameManager.instance.backgroundMusic[Random.Range(0, gameManager.instance.backgroundMusic.Length)], gameManager.instance.backgroundMusicVol);
         }
     }
 }

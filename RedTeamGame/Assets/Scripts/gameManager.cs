@@ -118,10 +118,10 @@ public class gameManager : MonoBehaviour
         shieldUI.gameObject.SetActive(true);
         toggleTimer();//toggle the timer
     }
-    public void updateGameGoal(int enemyTotal)//will activly alter the total score until win or loss (same code as class for now)
+    public void updateGameGoal()//will activly alter the total score until win or loss (same code as class for now)
     {
-        enemyCount += enemyTotal;// determent the current score(in this case number of enemys)
-        if (enemyCount <= 0)// if there are no enemys its a win
+        //enemyCount += enemyTotal;// determent the current score(in this case number of enemys)
+        //if (enemyCount <= 0)// if there are no enemys its a win
         {
            
             activeMenu = winMenu;//set the active menu to win menu

@@ -25,7 +25,7 @@ public class spawner : MonoBehaviour
     {
         //gameManager.instance.updateGameGoal(numberToSpawn);
         totalEnemy = numberToSpawn;
-        gameManager.instance.updateGameGoal(totalEnemy);
+        //gameManager.instance.updateGameGoal(totalEnemy);
     }
 
     // Update is called once per frame

@@ -143,7 +143,7 @@ public class bossScript : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             // heres the double decrement
-            gameManager.instance.updateGameGoal(-1);
+            //gameManager.instance.updateGameGoal(-1);
             // heres the double decrement
 
             //gameManager.instance.updateScore(scoreValue);
