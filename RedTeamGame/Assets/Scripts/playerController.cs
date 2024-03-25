@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage, IPushBack
 {
+    public bool isReloading;
+
     public string dmg;
 
     [SerializeField] public CharacterController controller;
@@ -88,7 +90,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     public Transform gunparentObject;
     public int selectedGunGameObject;
     public bool hasInfiniteAmmo;
-    public bool isReloading;
 
     [Header("---- Gun Audio")]
 
@@ -141,7 +142,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     void Start()
     {
         //HPLabel = gameObject.transform.Find("HPLabel").gameObject;
-       
+
 
         audioPitch = aud.pitch;
         //hasKey = false;
@@ -293,28 +294,28 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
             Debug.Log(hit.collider.name);
 
-            GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
-            Destroy(muzzleFlashInstance, .05f);
+            //GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
+            //Destroy(muzzleFlashInstance, .05f);
 
-            //HPLabel.GetComponent<TextMesh>().text = gunList[selectedGun].shootDamage.ToString();
-
-            GameObject hpLabel = Instantiate(HPLabel, hit.point, Quaternion.identity);
-            //hpLabel.transform.position = Vector3.Lerp(hpLabel.transform.position, hpLabel.transform.position + Vector3.up * lerpHeight, 5);
-            hpLabel.transform.position = Vector3.MoveTowards(hpLabel.transform.position, hpLabel.transform.position + Vector3.up * lerpHeight, 5);
-            Destroy(hpLabel, .5f);
+            //GameObject hpLabel = Instantiate(HPLabel, hit.point, Quaternion.identity);
+            //hpLabel.transform.position = Vector3.MoveTowards(hpLabel.transform.position, hpLabel.transform.position + Vector3.up * lerpHeight, 5);
+            //Destroy(hpLabel, .5f);
 
 
-            ////if (hit.collider.CompareTag("Enemy"))
-            //if (hit.collider.GetComponent<IDamage>() != null)
-            //{
-            //    GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
-            //    Destroy(muzzleFlashInstance, .05f);
-            //}
-            //else
-            //{
-            //    GameObject muzzleFlashInstance = Instantiate(muzzleFlashMissEffect, hit.point, Quaternion.identity);
-            //    Destroy(muzzleFlashInstance, .05f);
-            //}
+            if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Breakable"))
+            {
+                GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
+                Destroy(muzzleFlashInstance, .05f);
+
+                GameObject hpLabel = Instantiate(HPLabel, hit.point, Quaternion.identity);
+                hpLabel.transform.position = Vector3.MoveTowards(hpLabel.transform.position, hpLabel.transform.position + Vector3.up * lerpHeight, 5);
+                Destroy(hpLabel, .5f);
+            }
+            else
+            {
+                GameObject muzzleFlashInstance = Instantiate(muzzleFlashMissEffect, hit.point, Quaternion.identity);
+                Destroy(muzzleFlashInstance, .05f);
+            }
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
@@ -339,16 +340,18 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             {
                 gameManager.instance.aimReticalInRange.color = Color.red;
             }
+            else if (hit.collider.CompareTag("Breakable"))
+            {
+                gameManager.instance.aimReticalInRange.color = Color.green;
+
+            }
             else
             {
                 gameManager.instance.aimReticalInRange.color = Color.white;
 
             }
         }
-        //else
-        //{
-        //    gameManager.instance.aimReticalInRange.enabled = false;
-        //}
+       
 
     }
     private IEnumerator showMuzzleFlash()
@@ -540,7 +543,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         gunCollider.isTrigger = false;
 
         returnShootDamage(shootDamage);
-        
+
         //HPLabel.GetComponent<TextMesh>().text = returnShootDamage(shootDamage);
 
         gameManager.instance.setActiveGun();
@@ -670,35 +673,39 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     IEnumerator updateIsReloading()
     {
-        isReloading = true;
 
-        /////
+        //if (isReloading) { yield return null; }
 
-        int bulletsLeft = magazine;
-        if (isReloading) { yield return null; }
-
-        if (gunList[selectedGun] != null)
+        if (gunList[selectedGun] != null && !isReloading && magazine != magazineMax)
         {
+            isReloading = true;
+            int bulletsLeft = magazine;
+
             int difFromMagMax = magazineMax - magazine;
             if (reserves - difFromMagMax >= 0)
             {
                 magazine = magazineMax;
                 reserves -= difFromMagMax;
-
             }
             else
             {
                 magazine += reserves;
                 reserves = 0;
-
             }
+
             if (gunName == "Shotgun")
             {
+                for (int i = bulletsLeft; i < magazineMax; i++)
+                {
 
-                StartCoroutine(ReloadShotgunWithDelay(bulletsLeft));
-
-
-
+                    origPitch = aud.pitch;
+                    randomPitch = Random.Range(.9f, 1.3f);
+                    aud.pitch = randomPitch;
+                    gunAnimator.SetTrigger("Reload");
+                    aud.PlayOneShot(reloadSound);
+                    yield return new WaitForSeconds(0.5f); // Wait for 0.5 seconds
+                }
+                //StartCoroutine(ReloadShotgunWithDelay(bulletsLeft));
             }
             else if (gunName == "Axe" || gunName == "Knife")
             {
@@ -708,12 +715,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             {
                 gunAnimator.SetTrigger("Reload");
                 aud.PlayOneShot(reloadSound);
-
             }
 
-
-            /////
-            ///
             yield return new WaitForSeconds(gunList[selectedGun].reloadRate);
             gameManager.instance.updateAmmo();
 
@@ -723,8 +726,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     IEnumerator ReloadShotgunWithDelay(int bulletsLeft)
     {
+        isReloading = true;
+
         for (int i = bulletsLeft; i < magazineMax; i++)
         {
+
             origPitch = aud.pitch;
             randomPitch = Random.Range(.9f, 1.3f);
             aud.pitch = randomPitch;
@@ -732,6 +738,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             aud.PlayOneShot(reloadSound);
             yield return new WaitForSeconds(0.5f); // Wait for 0.5 seconds
         }
+        isReloading = false;
 
     }
 
@@ -748,10 +755,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     public void returnShootDamage(int damage)
     {
         dmg = "- " + damage.ToString();
-        //HPLabel = gameObject.transform.Find("HPLabel").gameObject;
 
         HPLabel.GetComponent<TextMesh>().text = dmg;
 
-        //return dmg;
     }
 }
