@@ -11530,7 +11530,7 @@ GameObject:
   - component: {fileID: 6426029992214934051}
   m_Layer: 0
   m_Name: Barrel (1)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -11640,7 +11640,6 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 5556764542243899762}
 --- !u!64 &462276107273945772
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -12239,7 +12238,7 @@ GameObject:
   - component: {fileID: 3173018130931522127}
   m_Layer: 0
   m_Name: Crate (20)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -12307,7 +12306,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 280115477571955697}
 --- !u!23 &1318437074227829959
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20293,7 +20291,7 @@ GameObject:
   - component: {fileID: 4712307801013401109}
   m_Layer: 0
   m_Name: Crate (14)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -20361,7 +20359,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 141433382690567836}
 --- !u!23 &2536596740424639328
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20856,7 +20853,7 @@ GameObject:
   - component: {fileID: 3672748575844222993}
   m_Layer: 0
   m_Name: Crate (13)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -20924,7 +20921,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 4612942166192774375}
 --- !u!23 &2251277588393932237
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24231,7 +24227,7 @@ GameObject:
   - component: {fileID: 7175435813971042838}
   m_Layer: 0
   m_Name: Crate (18)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -24299,7 +24295,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 7555575831599331344}
 --- !u!23 &7821985258289803774
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25273,7 +25268,7 @@ GameObject:
   - component: {fileID: 4917459328141695414}
   m_Layer: 0
   m_Name: Barrel (2)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -25383,7 +25378,6 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 756792160841441894}
 --- !u!64 &9108659830238614276
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -27198,7 +27192,7 @@ GameObject:
   - component: {fileID: 8690405903280989463}
   m_Layer: 0
   m_Name: Crate (16)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -27266,7 +27260,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 1700011787774196016}
 --- !u!23 &9024793750474717244
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32149,7 +32142,7 @@ GameObject:
   - component: {fileID: 7765443095728558830}
   m_Layer: 0
   m_Name: Crate (12)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -32217,7 +32210,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 743722786097848302}
 --- !u!23 &6085186989195437853
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34812,7 +34804,7 @@ GameObject:
   - component: {fileID: 7084763769885926934}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -34922,7 +34914,6 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 6003471313496778335}
 --- !u!64 &897789169690072926
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -39318,7 +39309,7 @@ GameObject:
   - component: {fileID: 2945940884265110354}
   m_Layer: 0
   m_Name: Crate (22)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -39386,7 +39377,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 5839457297265196140}
 --- !u!23 &7978997552090083964
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -45681,7 +45671,7 @@ GameObject:
   - component: {fileID: 8174588170200516614}
   m_Layer: 0
   m_Name: Crate (15)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -45749,7 +45739,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 4628509025271404131}
 --- !u!23 &7016101197563955803
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -52453,7 +52442,7 @@ GameObject:
   - component: {fileID: 5809761540317761823}
   m_Layer: 0
   m_Name: Crate (17)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -52521,7 +52510,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 6418174920739789821}
 --- !u!23 &8298631700899734840
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56538,7 +56526,7 @@ GameObject:
   - component: {fileID: 4597676435703310053}
   m_Layer: 0
   m_Name: Crate (21)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -56606,7 +56594,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 930993726909919340}
 --- !u!23 &7702752431925955372
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -57323,7 +57310,7 @@ GameObject:
   - component: {fileID: 2094458436745728206}
   m_Layer: 0
   m_Name: Crate (19)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -57391,7 +57378,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 2391198970108114026}
 --- !u!23 &757006925045773915
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64181,7 +64167,7 @@ GameObject:
   - component: {fileID: 4677403639073702860}
   m_Layer: 0
   m_Name: Crate (23)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -64249,7 +64235,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f01159b1fb4f63e40a2d5bb851e9706f, type: 2}
   - {fileID: 11400000, guid: 0d92f4b56a0d50246b3b6db531ab8f50, type: 2}
   - {fileID: 11400000, guid: dc54fa5e2d3639640b3688555585f3ac, type: 2}
-  objTrans: {fileID: 6806395877005724410}
 --- !u!23 &5961159317297949352
 MeshRenderer:
   m_ObjectHideFlags: 0

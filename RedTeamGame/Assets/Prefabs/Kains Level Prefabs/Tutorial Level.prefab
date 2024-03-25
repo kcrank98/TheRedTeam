@@ -1401,7 +1401,7 @@ GameObject:
   - component: {fileID: 1870397176453043936}
   m_Layer: 0
   m_Name: Crate (3)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4295,7 +4295,7 @@ GameObject:
   - component: {fileID: 5729675279216687508}
   m_Layer: 0
   m_Name: Breakable Pillar (1)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8325,7 +8325,7 @@ GameObject:
   - component: {fileID: 4939185425097096697}
   m_Layer: 0
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -10794,7 +10794,7 @@ GameObject:
   - component: {fileID: 3969023933247200806}
   m_Layer: 0
   m_Name: Crate (6)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -12298,7 +12298,7 @@ GameObject:
   - component: {fileID: 3967940393150485153}
   m_Layer: 0
   m_Name: Crate (2)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -13939,7 +13939,7 @@ GameObject:
   - component: {fileID: 7604404166735610894}
   m_Layer: 0
   m_Name: Crate (11)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -14517,7 +14517,7 @@ GameObject:
   - component: {fileID: 3529555557788731443}
   m_Layer: 0
   m_Name: Breakable Pillar (3)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16186,7 +16186,7 @@ GameObject:
   - component: {fileID: 5916590748512510380}
   m_Layer: 0
   m_Name: Breakable Pillar
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16647,7 +16647,7 @@ GameObject:
   - component: {fileID: 3241937862111579484}
   m_Layer: 0
   m_Name: Crate (9)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -20789,7 +20789,7 @@ GameObject:
   - component: {fileID: 835501275392232377}
   m_Layer: 0
   m_Name: Crate (8)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -26799,7 +26799,7 @@ GameObject:
   - component: {fileID: 3011531222233336588}
   m_Layer: 0
   m_Name: ceiling
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29475,7 +29475,7 @@ GameObject:
   - component: {fileID: 7108511776408999486}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29884,7 +29884,7 @@ GameObject:
   - component: {fileID: 4638328015114385581}
   m_Layer: 0
   m_Name: Breakable Pillar (5)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35731,7 +35731,7 @@ GameObject:
   - component: {fileID: 7566820758093465794}
   m_Layer: 0
   m_Name: Crate (10)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -36491,7 +36491,7 @@ GameObject:
   - component: {fileID: 8614180143970224928}
   m_Layer: 0
   m_Name: Crate (1)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -42828,7 +42828,7 @@ GameObject:
   - component: {fileID: 4110145770141817737}
   m_Layer: 0
   m_Name: Crate (5)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -44242,7 +44242,7 @@ GameObject:
   - component: {fileID: 8891113212651197675}
   m_Layer: 0
   m_Name: Barrel (2)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46626,7 +46626,7 @@ GameObject:
   - component: {fileID: 7775409384178892877}
   m_Layer: 0
   m_Name: Crate (4)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -48069,7 +48069,7 @@ GameObject:
   - component: {fileID: 3707977516689008877}
   m_Layer: 0
   m_Name: Crate (7)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -50594,7 +50594,7 @@ GameObject:
   - component: {fileID: 3222790399708419208}
   m_Layer: 0
   m_Name: Breakable Pillar (2)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51149,7 +51149,7 @@ GameObject:
   - component: {fileID: 5677727257495559211}
   m_Layer: 0
   m_Name: Breakable Pillar (4)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52138,7 +52138,7 @@ GameObject:
   - component: {fileID: 1099390590293684893}
   m_Layer: 0
   m_Name: Barrel (1)
-  m_TagString: Untagged
+  m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
