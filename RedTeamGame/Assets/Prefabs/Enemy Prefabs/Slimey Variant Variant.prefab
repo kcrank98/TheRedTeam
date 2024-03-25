@@ -108,6 +108,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4362713846069881429, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6935589316924295548, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
       propertyPath: pushPower
       value: 1
