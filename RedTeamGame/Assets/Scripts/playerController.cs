@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage, IPushBack
 {
+    public bool isReloading;
+
     public string dmg;
 
     [SerializeField] public CharacterController controller;
@@ -88,7 +90,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     public Transform gunparentObject;
     public int selectedGunGameObject;
     public bool hasInfiniteAmmo;
-    public bool isReloading;
 
     [Header("---- Gun Audio")]
 
@@ -350,10 +351,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
             }
         }
-        //else
-        //{
-        //    gameManager.instance.aimReticalInRange.enabled = false;
-        //}
+       
 
     }
     private IEnumerator showMuzzleFlash()
@@ -675,35 +673,29 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     IEnumerator updateIsReloading()
     {
-        isReloading = true;
 
-        /////
+        //if (isReloading) { yield return null; }
 
-        int bulletsLeft = magazine;
-        if (isReloading) { yield return null; }
-
-        if (gunList[selectedGun] != null)
+        if (gunList[selectedGun] != null && !isReloading && magazine != magazineMax)
         {
+            isReloading = true;
+            int bulletsLeft = magazine;
+
             int difFromMagMax = magazineMax - magazine;
             if (reserves - difFromMagMax >= 0)
             {
                 magazine = magazineMax;
                 reserves -= difFromMagMax;
-
             }
             else
             {
                 magazine += reserves;
                 reserves = 0;
-
             }
+
             if (gunName == "Shotgun")
             {
-
                 StartCoroutine(ReloadShotgunWithDelay(bulletsLeft));
-
-
-
             }
             else if (gunName == "Axe" || gunName == "Knife")
             {
@@ -716,9 +708,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
             }
 
-
-            /////
-            ///
             yield return new WaitForSeconds(gunList[selectedGun].reloadRate);
             gameManager.instance.updateAmmo();
 
@@ -728,15 +717,19 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     IEnumerator ReloadShotgunWithDelay(int bulletsLeft)
     {
+        isReloading = true;
+
         for (int i = bulletsLeft; i < magazineMax; i++)
         {
+
             origPitch = aud.pitch;
             randomPitch = Random.Range(.9f, 1.3f);
             aud.pitch = randomPitch;
             gunAnimator.SetTrigger("Reload");
             aud.PlayOneShot(reloadSound);
-            yield return new WaitForSeconds(0.5f); // Wait for 0.5 seconds
+            yield return new WaitForSeconds(0.5f * bulletsLeft); // Wait for 0.5 seconds
         }
+        isReloading = false;
 
     }
 
