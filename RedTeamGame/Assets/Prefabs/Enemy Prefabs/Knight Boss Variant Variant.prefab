@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4764857813348098441, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764857813348098441, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764857813348098441, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764857813348098441, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -42.036392
       objectReference: {fileID: 0}
@@ -55,6 +67,18 @@ PrefabInstance:
     - target: {fileID: 4764857813348098442, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764857813488205851, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764857813488205851, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764857813488205851, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5644004155002895549, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
       propertyPath: viewCone
