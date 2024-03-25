@@ -82,7 +82,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && activeMenu == null)//if the escape key is pressed and there is no open menu
+        if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("p")&& activeMenu == null)//if the escape key is pressed and there is no open menu
         {
             statePaused();//pause the game
             activeMenu = pauseMenu;//current menu set to pause menu
