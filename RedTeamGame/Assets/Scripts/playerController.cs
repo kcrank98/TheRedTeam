@@ -293,15 +293,15 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
             Debug.Log(hit.collider.name);
 
-            GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
-            Destroy(muzzleFlashInstance, .05f);
+            //GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
+            //Destroy(muzzleFlashInstance, .05f);
 
-            GameObject hpLabel = Instantiate(HPLabel, hit.point, Quaternion.identity);
-            hpLabel.transform.position = Vector3.MoveTowards(hpLabel.transform.position, hpLabel.transform.position + Vector3.up * lerpHeight, 5);
-            Destroy(hpLabel, .5f);
+            //GameObject hpLabel = Instantiate(HPLabel, hit.point, Quaternion.identity);
+            //hpLabel.transform.position = Vector3.MoveTowards(hpLabel.transform.position, hpLabel.transform.position + Vector3.up * lerpHeight, 5);
+            //Destroy(hpLabel, .5f);
 
 
-            /*if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Breakable" )
+            if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Breakable"))
             {
                 GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
                 Destroy(muzzleFlashInstance, .05f);
@@ -314,7 +314,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             {
                 GameObject muzzleFlashInstance = Instantiate(muzzleFlashMissEffect, hit.point, Quaternion.identity);
                 Destroy(muzzleFlashInstance, .05f);
-            }*/
+            }
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
@@ -341,7 +341,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             }
             else if (hit.collider.CompareTag("Breakable"))
             {
-                gameManager.instance.aimReticalInRange.color = Color.yellow;
+                gameManager.instance.aimReticalInRange.color = Color.green;
 
             }
             else
