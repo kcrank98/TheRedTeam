@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunSize: Large
   gunName: Shotgun
-  shootDamage: 40
+  shootDamage: 35
   shootDistance: 95
   shootRate: 1
   reloadRate: 0.5

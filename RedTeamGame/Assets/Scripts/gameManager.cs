@@ -49,11 +49,6 @@ public class gameManager : MonoBehaviour
     public playerController playerScript;
     public GameObject playerSpawnPos;
     
-    
-    
-
-
-
     //public GameObject enemySpawnPos;
     public TimeSpan currentTime;// unity class to turn delta time into sec,min, ext...
     public bool isPaused;

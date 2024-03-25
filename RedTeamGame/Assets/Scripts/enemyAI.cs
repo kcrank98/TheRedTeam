@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
@@ -15,7 +16,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] Collider weaponCollider;
     [SerializeField] Transform headPos;
-    [SerializeField] Image HPBar;
+    //[SerializeField] Image HPBar;
 
     [Header("-----Enemy Type-----")]
     [SerializeField] bool Shooter;
@@ -177,9 +178,9 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.SetDestination(gameManager.instance.player.transform.position);
 
         HP -= amount;
-        updateUI();
+        //updateUI();
 
-        StartCoroutine(flashMat());
+        //StartCoroutine(flashMat());
 
         if (HP <= 0)
         {
@@ -194,6 +195,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator flashMat()
     {
+
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = Color.white;
@@ -241,6 +243,6 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void updateUI()
     {
-        HPBar.fillAmount = (float)HP / (float)HPOrig;
+        //HPBar.fillAmount = (float)HP / (float)HPOrig;
     }
 }
