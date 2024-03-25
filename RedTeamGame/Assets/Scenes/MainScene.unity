@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DBL BRL Shotgun Parent Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 8089335626433314526, guid: 80499e5cd31e0464a8eb8cfbf86471e8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8418838133199133972, guid: 80499e5cd31e0464a8eb8cfbf86471e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.3200002
@@ -484,6 +488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shotgun Parent Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 5740364382459820550, guid: 97d884a3028df3e4281bf65613f9feda, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6009191679600856180, guid: 97d884a3028df3e4281bf65613f9feda, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.01999998
@@ -601,6 +609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Laser Pistol Parent Pickup '
       objectReference: {fileID: 0}
+    - target: {fileID: 6812067758509900154, guid: 6bb72b55a1d483c49a126944c2fbc661, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -663,6 +675,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife Parent Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 1500034230089989708, guid: 0181ff2e423217144aa0c575403490e6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -678,7 +694,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 427691936079947862, guid: 3e77961c8e0d16a499344147bafc30c3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.18
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 427691936079947862, guid: 3e77961c8e0d16a499344147bafc30c3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -720,6 +736,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Axe Parent Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 6058519087039278728, guid: 3e77961c8e0d16a499344147bafc30c3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -745,7 +765,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1285558356494197058, guid: 488592f217b476e4ea0d8ef4b7e3e00c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.38
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 1285558356494197058, guid: 488592f217b476e4ea0d8ef4b7e3e00c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -753,7 +773,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1285558356494197058, guid: 488592f217b476e4ea0d8ef4b7e3e00c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1285558356494197058, guid: 488592f217b476e4ea0d8ef4b7e3e00c, type: 3}
       propertyPath: m_LocalRotation.w
