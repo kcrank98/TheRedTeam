@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slimey Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7731033528653516854, guid: b41420d0f05ac0a4887680dac70acc37, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 8758026663789678936, guid: b41420d0f05ac0a4887680dac70acc37, type: 3}
       propertyPath: m_LocalPosition.x
       value: -30.1
