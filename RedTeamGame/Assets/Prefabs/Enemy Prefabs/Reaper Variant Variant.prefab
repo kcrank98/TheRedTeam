@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5592436060122639958
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2656583720719194584, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -20.584492
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656583720719194584, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656583720719194584, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -40.158157
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656583720719194584, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.18480024
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656583720719194584, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.18480024
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656583720719194584, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.68253124
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656583720719194584, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.68253124
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656583720719194584, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656583720719194584, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656583720719194584, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573915741489481201, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3573915741489481201, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_Size.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6031609967542173167, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_Height
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6031609967542173167, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_Radius
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6814574051554767410, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_Name
+      value: Reaper Variant Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643179446674431824, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: viewCone
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643179446674431824, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: meleeRate
+      value: 0.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643179446674431824, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: shootCone
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643179446674431824, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: meleeRange
+      value: 8.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643179446674431824, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: roamDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643179446674431824, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: animSpeedTrans
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643179446674431824, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: targetFaceSpeed
+      value: 27
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
