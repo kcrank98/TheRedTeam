@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight Boss Variant Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 4764857813348098442, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5644004155002895549, guid: d07ccad63bac2464a919cb55e77637ca, type: 3}
       propertyPath: viewCone
       value: 112
