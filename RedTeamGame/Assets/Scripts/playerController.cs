@@ -695,7 +695,17 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
             if (gunName == "Shotgun")
             {
-                StartCoroutine(ReloadShotgunWithDelay(bulletsLeft));
+                for (int i = bulletsLeft; i < magazineMax; i++)
+                {
+
+                    origPitch = aud.pitch;
+                    randomPitch = Random.Range(.9f, 1.3f);
+                    aud.pitch = randomPitch;
+                    gunAnimator.SetTrigger("Reload");
+                    aud.PlayOneShot(reloadSound);
+                    yield return new WaitForSeconds(0.5f); // Wait for 0.5 seconds
+                }
+                //StartCoroutine(ReloadShotgunWithDelay(bulletsLeft));
             }
             else if (gunName == "Axe" || gunName == "Knife")
             {
@@ -705,7 +715,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             {
                 gunAnimator.SetTrigger("Reload");
                 aud.PlayOneShot(reloadSound);
-
             }
 
             yield return new WaitForSeconds(gunList[selectedGun].reloadRate);
@@ -727,7 +736,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             aud.pitch = randomPitch;
             gunAnimator.SetTrigger("Reload");
             aud.PlayOneShot(reloadSound);
-            yield return new WaitForSeconds(0.5f * bulletsLeft); // Wait for 0.5 seconds
+            yield return new WaitForSeconds(0.5f); // Wait for 0.5 seconds
         }
         isReloading = false;
 
@@ -746,10 +755,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     public void returnShootDamage(int damage)
     {
         dmg = "- " + damage.ToString();
-        //HPLabel = gameObject.transform.Find("HPLabel").gameObject;
 
         HPLabel.GetComponent<TextMesh>().text = dmg;
 
-        //return dmg;
     }
 }
