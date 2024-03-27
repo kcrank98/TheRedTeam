@@ -28,7 +28,7 @@ public class ChestScript : MonoBehaviour
             {
                 aud.PlayOneShot(openSound);
                 Vector3 lootSpawnMod = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
-                GetComponent<LootBag>().instantiateLoot(lootSpawnMod, 1);
+                GetComponent<LootBag>().instantiateLoot(lootSpawnMod);
                 hasEnteredTrigger = false;
                 gameManager.instance.togglePopUpTxt();
                 Destroy(gameObject, 1);
