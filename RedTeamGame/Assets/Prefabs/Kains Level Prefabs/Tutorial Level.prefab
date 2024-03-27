@@ -1398,13 +1398,14 @@ GameObject:
   - component: {fileID: 4950641666499608414}
   - component: {fileID: 9026386981185787779}
   - component: {fileID: 6280790132781339373}
+  - component: {fileID: 4774791264747882389}
   - component: {fileID: 1870397176453043936}
   m_Layer: 0
   m_Name: Crate (3)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7282927480521265732
 Transform:
@@ -1534,6 +1535,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &4774791264747882389
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274665105132491011}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &1870397176453043936
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8459,13 +8487,14 @@ GameObject:
   - component: {fileID: 1063294180183507972}
   - component: {fileID: 8880266070045837322}
   - component: {fileID: 3013575730702974128}
+  - component: {fileID: 4966693255773565006}
   - component: {fileID: 4939185425097096697}
   m_Layer: 0
   m_Name: Crate
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2674535978716246265
 Transform:
@@ -8595,6 +8624,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &4966693255773565006
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443545940263774804}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &4939185425097096697
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11074,13 +11130,14 @@ GameObject:
   - component: {fileID: 6419662893698122178}
   - component: {fileID: 3480817603520567867}
   - component: {fileID: 8212847464799094445}
+  - component: {fileID: 9119282336025831068}
   - component: {fileID: 3969023933247200806}
   m_Layer: 0
   m_Name: Crate (6)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2960524969154307182
 Transform:
@@ -11210,6 +11267,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &9119282336025831068
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797667894550791803}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &3969023933247200806
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12580,13 +12664,14 @@ GameObject:
   - component: {fileID: 3571777965378385713}
   - component: {fileID: 1382269192668612680}
   - component: {fileID: 7628987148975170257}
+  - component: {fileID: 5417083237471761899}
   - component: {fileID: 3967940393150485153}
   m_Layer: 0
   m_Name: Crate (2)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2531325848992846411
 Transform:
@@ -12716,6 +12801,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &5417083237471761899
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979193381377977167}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &3967940393150485153
 AudioSource:
   m_ObjectHideFlags: 0
@@ -14225,13 +14337,14 @@ GameObject:
   - component: {fileID: 4821688927660837696}
   - component: {fileID: 4015242841771091302}
   - component: {fileID: 6083861083995395114}
+  - component: {fileID: 8671651218427649462}
   - component: {fileID: 7604404166735610894}
   m_Layer: 0
   m_Name: Crate (11)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2746402612970668729
 Transform:
@@ -14361,6 +14474,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &8671651218427649462
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2212526593451612194}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &7604404166735610894
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16841,13 +16981,14 @@ GameObject:
   - component: {fileID: 176284907424853299}
   - component: {fileID: 6182415683490152235}
   - component: {fileID: 8937405924978760273}
+  - component: {fileID: 7971524157773545385}
   - component: {fileID: 3241937862111579484}
   m_Layer: 0
   m_Name: Crate (9)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &346764117072698915
 Transform:
@@ -16977,6 +17118,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &7971524157773545385
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2587359328876345098}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &3241937862111579484
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20985,13 +21153,14 @@ GameObject:
   - component: {fileID: 9156898413445887164}
   - component: {fileID: 3336635205082959913}
   - component: {fileID: 1247101074312573712}
+  - component: {fileID: 6350546118807429408}
   - component: {fileID: 835501275392232377}
   m_Layer: 0
   m_Name: Crate (8)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &8191142259174648970
 Transform:
@@ -21121,6 +21290,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &6350546118807429408
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3122933792111098160}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &835501275392232377
 AudioSource:
   m_ObjectHideFlags: 0
@@ -29719,6 +29915,7 @@ GameObject:
   - component: {fileID: 5616760708617100750}
   - component: {fileID: 3264679913837685929}
   - component: {fileID: 901059325626181494}
+  - component: {fileID: 1988651778485464442}
   - component: {fileID: 7108511776408999486}
   m_Layer: 0
   m_Name: Barrel
@@ -29856,6 +30053,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8577550953178240769, guid: a59f6548c14dfa84ba2ca07e21ce1543, type: 3}
+--- !u!54 &1988651778485464442
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4638575728757425617}
+  serializedVersion: 4
+  m_Mass: 25
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &7108511776408999486
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36001,13 +36225,14 @@ GameObject:
   - component: {fileID: 1473755455862153910}
   - component: {fileID: 4709366342385138275}
   - component: {fileID: 4167189929182179383}
+  - component: {fileID: 4916002756525325679}
   - component: {fileID: 7566820758093465794}
   m_Layer: 0
   m_Name: Crate (10)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4242970212186176204
 Transform:
@@ -36137,6 +36362,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &4916002756525325679
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975929605541907897}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &7566820758093465794
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36763,13 +37015,14 @@ GameObject:
   - component: {fileID: 6831572291072945923}
   - component: {fileID: 1543679836666404693}
   - component: {fileID: 6772797578340042440}
+  - component: {fileID: 2079213151685244358}
   - component: {fileID: 8614180143970224928}
   m_Layer: 0
   m_Name: Crate (1)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5470493002240146674
 Transform:
@@ -36899,6 +37152,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &2079213151685244358
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080577644353489761}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &8614180143970224928
 AudioSource:
   m_ObjectHideFlags: 0
@@ -43102,13 +43382,14 @@ GameObject:
   - component: {fileID: 5539152465629603148}
   - component: {fileID: 6830066654546669629}
   - component: {fileID: 6105685299272937776}
+  - component: {fileID: 3857700451644653092}
   - component: {fileID: 4110145770141817737}
   m_Layer: 0
   m_Name: Crate (5)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2362003140196573989
 Transform:
@@ -43238,6 +43519,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &3857700451644653092
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7023075319502871985}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &4110145770141817737
 AudioSource:
   m_ObjectHideFlags: 0
@@ -44518,6 +44826,7 @@ GameObject:
   - component: {fileID: 2396419221499830}
   - component: {fileID: 2264338968054101342}
   - component: {fileID: 2675373869293260497}
+  - component: {fileID: 210161619120791867}
   - component: {fileID: 8891113212651197675}
   m_Layer: 0
   m_Name: Barrel (2)
@@ -44655,6 +44964,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8577550953178240769, guid: a59f6548c14dfa84ba2ca07e21ce1543, type: 3}
+--- !u!54 &210161619120791867
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7190975498828626978}
+  serializedVersion: 4
+  m_Mass: 25
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &8891113212651197675
 AudioSource:
   m_ObjectHideFlags: 0
@@ -46927,13 +47263,14 @@ GameObject:
   - component: {fileID: 6796609514739965140}
   - component: {fileID: 2442985565541022497}
   - component: {fileID: 7252887261527385589}
+  - component: {fileID: 4386782548046643290}
   - component: {fileID: 7775409384178892877}
   m_Layer: 0
   m_Name: Crate (4)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2887949003532028620
 Transform:
@@ -47063,6 +47400,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &4386782548046643290
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7527334705308917008}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &7775409384178892877
 AudioSource:
   m_ObjectHideFlags: 0
@@ -48372,13 +48736,14 @@ GameObject:
   - component: {fileID: 5990033127262067508}
   - component: {fileID: 2277194291406120658}
   - component: {fileID: 4810144229368020327}
+  - component: {fileID: 2477016825776036578}
   - component: {fileID: 3707977516689008877}
   m_Layer: 0
   m_Name: Crate (7)
   m_TagString: Breakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &7073462872321646852
 Transform:
@@ -48508,6 +48873,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2177271, y: 1.0235167, z: 1.0100458}
   m_Center: {x: 0.00096076727, y: 0.51056814, z: -0.000934124}
+--- !u!54 &2477016825776036578
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7754620364186928979}
+  serializedVersion: 4
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &3707977516689008877
 AudioSource:
   m_ObjectHideFlags: 0
@@ -52494,6 +52886,7 @@ GameObject:
   - component: {fileID: 8360030418259109349}
   - component: {fileID: 7016283875035599788}
   - component: {fileID: 8953203446001995065}
+  - component: {fileID: 3791435343157445004}
   - component: {fileID: 1099390590293684893}
   m_Layer: 0
   m_Name: Barrel (1)
@@ -52631,6 +53024,33 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8577550953178240769, guid: a59f6548c14dfa84ba2ca07e21ce1543, type: 3}
+--- !u!54 &3791435343157445004
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8363851039743445346}
+  serializedVersion: 4
+  m_Mass: 25
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!82 &1099390590293684893
 AudioSource:
   m_ObjectHideFlags: 0
