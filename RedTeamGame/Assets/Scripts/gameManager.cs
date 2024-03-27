@@ -82,7 +82,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") || Input.GetButtonDown("p")&& activeMenu == null)//if the escape key is pressed and there is no open menu
+        if ((Input.GetButtonDown("Cancel") || Input.GetButtonDown("p"))&& activeMenu == null)//if the escape key is pressed and there is no open menu
         {
             statePaused();//pause the game
             activeMenu = pauseMenu;//current menu set to pause menu
@@ -99,13 +99,12 @@ public class gameManager : MonoBehaviour
     }
     public void statePaused()//sets the game state into a paused state and brings back mouse
     {
-        isPaused = true;//is now paused
-        Time.timeScale = 0;//set time to zero
-        Cursor.visible = true;//return cursor to visable
-        Cursor.lockState = CursorLockMode.None;//unlick the cursor
-        shieldUI.gameObject.SetActive(false);//tirn off the shield
-        toggleTimer();//toggle the timer
-
+            isPaused = true;//is now paused
+            Time.timeScale = 0;//set time to zero
+            Cursor.visible = true;//return cursor to visable
+            Cursor.lockState = CursorLockMode.None;//unlick the cursor
+            shieldUI.gameObject.SetActive(false);//tirn off the shield
+            toggleTimer();//toggle the timer
     }
     public void stateUnPaused()//sets the game state into a running state and removes mouse
     {
@@ -122,14 +121,10 @@ public class gameManager : MonoBehaviour
     {
         //enemyCount += enemyTotal;// determent the current score(in this case number of enemys)
         //if (enemyCount <= 0)// if there are no enemys its a win
-        {
-           
             activeMenu = winMenu;//set the active menu to win menu
             winScore.text = bonusScoreCalc(playerScore).ToString(); //get the score and set it to the win text
             activeMenu.SetActive(true);
-
             statePaused();
-        }
     }
     public void updateScore(int value)// updates the player score to the screen
     {
