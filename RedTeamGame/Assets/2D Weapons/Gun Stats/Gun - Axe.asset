@@ -25,11 +25,11 @@ MonoBehaviour:
   reservesMax: 1000
   magazine: 1000
   reserves: 1000
+  magazineStart: 1000
+  reservesStart: 1000
   uiImage: {fileID: 0}
   model: {fileID: 1403932432879992326, guid: c2b68362777a50646bf91fb54398ce31, type: 3}
   sprite: {fileID: -233877210, guid: 6a71cc43df2b4ab49830058e6071fd60, type: 3}
-  hitEffectPS: {fileID: 0}
-  hitEffectIMG: {fileID: 0}
   muzzleFlashGO: {fileID: 1491359990764140, guid: 18c0a8b63ea8b4448a595b0c24c1384a, type: 3}
   reloadSound: {fileID: 8300000, guid: b5b64723a4abad24eb207f0b445008b4, type: 3}
   reloadSoundVol: 0
