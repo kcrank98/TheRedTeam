@@ -272,6 +272,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         if (!hasInfiniteAmmo && gunName != "Knife" || gunName != "Axe")
         {
             magazine--;
+            gunList[selectedGun].magazine--;
+
         }
 
         isShooting = true;
@@ -498,6 +500,9 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         gunList.Add(gun);
 
+        gun.reserves = gun.reservesStart;
+        gun.magazine = gun.magazineStart;
+
         gunName = gun.gunName;
         shootDamage = gun.shootDamage;
         shootDistance = gun.shootDistance;
@@ -571,6 +576,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         aud.PlayOneShot(gunPickupSound[Random.Range(0, gunPickupSound.Length)], gunPickupVol);
 
+
         gunName = gunList[selectedGun].gunName;
         shootDamage = gunList[selectedGun].shootDamage;
         shootDistance = gunList[selectedGun].shootDistance;
@@ -617,53 +623,14 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     }
     public void reloadGun()
     {
-        StartCoroutine(updateIsReloading());
-
-        //int bulletsLeft = magazine;
-        //if (isReloading) { return; }
-
-        //if (gunList[selectedGun] != null)
-        //{
-        //    int difFromMagMax = magazineMax - magazine;
-        //    if (reserves - difFromMagMax >= 0)
-        //    {
-        //        magazine = magazineMax;
-        //        reserves -= difFromMagMax;
-        //        //gunList[selectedGun].reserves -= difFromMagMax;
-        //    }
-        //    else
-        //    {
-        //        magazine += reserves;
-        //        reserves = 0;
-        //        //gunList[selectedGun].reserves = 0;
-        //    }
-        //    if (gunName == "Shotgun")
-        //    {
-        //        //for (int i = bulletsLeft; i < magazineMax; i++)
-        //        //{ 
-        //        //gunAnimator.SetTrigger("Reload");
-        //        StartCoroutine(ReloadShotgunWithDelay(bulletsLeft));
-
-        //        //}
-
-        //    }
-        //    else if (gunName == "Axe" || gunName == "Knife")
-        //    {
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        gunAnimator.SetTrigger("Reload");
-        //        aud.PlayOneShot(reloadSound);
-
-        //    }
-        //    //gunAnimator.SetTrigger("Reload");
-
-        //    StartCoroutine(updateIsReloading());
-        //    // notReloading();
-
-        //    gameManager.instance.updateAmmo();
-        //}
+        if(reserves <= 0)
+        {
+            aud.PlayOneShot(clickSound);
+        }
+        else
+        {
+            StartCoroutine(updateIsReloading());
+        }
 
     }
     IEnumerator updateIsReloading()
@@ -681,10 +648,14 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             {
                 magazine = magazineMax;
                 reserves -= difFromMagMax;
+                gunList[selectedGun].reserves -= difFromMagMax;
+
             }
             else
             {
                 magazine += reserves;
+                gunList[selectedGun].reserves += reserves;
+
                 reserves = 0;
             }
 
