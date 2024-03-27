@@ -142,7 +142,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     {
         //HPLabel = gameObject.transform.Find("HPLabel").gameObject;
 
-
         audioPitch = aud.pitch;
         //hasKey = false;
         HPOrig = HP;
@@ -154,6 +153,8 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         gameManager.instance.UpdateShiieldUi();
         hasKey = false;
         respawn();
+
+        StartCoroutine(toggleController());
     }
 
     // Update is called once per frame
@@ -234,6 +235,17 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         dashCount = 0;
         mainCamera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(mainCamera.GetComponent<Camera>().fieldOfView, originalFOV, dashFOVChangeTime);
 
+    }
+
+    IEnumerator toggleController()
+    {
+        CharacterController controller = GetComponent<CharacterController>();
+
+        controller.enabled = false;
+
+        yield return new WaitForSeconds(5);
+
+        controller.enabled = true;
     }
 
     public void pushBackDir(Vector3 dir)
