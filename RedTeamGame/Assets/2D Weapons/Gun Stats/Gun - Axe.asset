@@ -15,7 +15,7 @@ MonoBehaviour:
   gunSize: Melee
   gunName: Axe
   shootDamage: 5
-  shootDistance: 1
+  shootDistance: 2
   shootRate: 1
   reloadRate: 0.5
   aimFOV: 55

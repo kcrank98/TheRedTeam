@@ -30,8 +30,8 @@ public class gunStats : ScriptableObject
     //public Animator gunAnimator;
     //public RuntimeAnimatorController runtimeAnimatorController;
     public Sprite sprite;
-    public ParticleSystem hitEffectPS;
-    [SerializeField] GameObject hitEffectIMG;
+    //public ParticleSystem hitEffectPS;
+    //[SerializeField] GameObject hitEffectIMG;
     public GameObject muzzleFlashGO;
 
 

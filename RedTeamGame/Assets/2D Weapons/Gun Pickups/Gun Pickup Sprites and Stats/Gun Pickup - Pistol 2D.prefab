@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 11400000, guid: 37f9c20559b0cfa4295016f5655fd5ad, type: 2}
+  parentObject: {fileID: 0}
 --- !u!1 &5104130041501866467
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

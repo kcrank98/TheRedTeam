@@ -17,7 +17,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
     [SerializeField] float originalFOV;
     [SerializeField] AudioSource aud;
     [SerializeField] GameObject muzzlePos;
-    [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject muzzleFlashMissEffect;
     [SerializeField] GameObject muzzleFlashGO;
     [SerializeField] Animator anim;
@@ -171,7 +170,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 aim();
                 inRange();
 
-
                 if (Input.GetButton("Shoot") && !isShooting && !isReloading)
                 {
                     if (magazine > 0)
@@ -204,7 +202,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
 
         controller.Move(move * playerSpeed * Time.deltaTime);
 
-
         if (Input.GetButtonDown("Dash") && dashCount < dashMax && !isDashing && move.normalized.magnitude > 0.1f)
         {
             StartCoroutine(DASH());
@@ -226,7 +223,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         dashCount++;
 
         Vector3 dashTarget = move.normalized * dashForce * Time.deltaTime;
-
 
         controller.Move(Vector3.MoveTowards(move, dashTarget, dashDuration));
 
@@ -301,7 +297,11 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
             //hpLabel.transform.position = Vector3.MoveTowards(hpLabel.transform.position, hpLabel.transform.position + Vector3.up * lerpHeight, 5);
             //Destroy(hpLabel, .5f);
 
+            if(gunName == "Axe" || gunName == "Knife")
+            {
+                yield return new WaitForSeconds(.5f);
 
+            }
             if (hit.collider.CompareTag("Enemy") || hit.collider.CompareTag("Breakable"))
             {
                 GameObject muzzleFlashInstance = Instantiate(muzzleFlashGO, hit.point, Quaternion.identity);
@@ -311,7 +311,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
                 hpLabel.transform.position = Vector3.MoveTowards(hpLabel.transform.position, hpLabel.transform.position + Vector3.up * lerpHeight, 5);
                 Destroy(hpLabel, .5f);
             }
-            else
+            else if(!hit.collider.CompareTag("Enemy") || !hit.collider.CompareTag("Breakable"))
             {
                 GameObject muzzleFlashInstance = Instantiate(muzzleFlashMissEffect, hit.point, Quaternion.identity);
                 Destroy(muzzleFlashInstance, .05f);
@@ -354,12 +354,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
        
 
     }
-    private IEnumerator showMuzzleFlash()
-    {
-        muzzleFlash.Play();
-        yield return new WaitForSeconds(gunList[selectedGun].shootRate);
-        muzzleFlash.Stop();
-    }
+  
 
     public void takeDamage(int amount)
     {
@@ -524,6 +519,7 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         gunGameObject.transform.localPosition = Vector3.zero;
         gunGameObject.transform.localRotation = Quaternion.identity;
         gunGameObject.transform.localScale = Vector3.one;
+       
         if (gunGameObjectList.Count <= 0)
         {
             gunGameObjectList.Add(gunGameObject);
@@ -592,7 +588,6 @@ public class playerController : MonoBehaviour, IDamage, IPushBack
         muzzleFlashGO = gunList[selectedGun].muzzleFlashGO;
 
         returnShootDamage(shootDamage);
-        //HPLabel.GetComponent<TextMesh>().text = returnShootDamage(shootDamage);
 
         gameManager.instance.setActiveGun();
 
