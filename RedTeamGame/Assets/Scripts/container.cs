@@ -81,7 +81,8 @@ public class container : MonoBehaviour, IDamage
 
             if (loot != null && count < 1)
             {
-                GetComponent<LootBag>().instantiateLoot(transform.position);
+                Vector3 lootSpawnMod = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+                GetComponent<LootBag>().instantiateLoot(lootSpawnMod, 1);
             }
 
             if(hasBrokenModel && count < 1)
