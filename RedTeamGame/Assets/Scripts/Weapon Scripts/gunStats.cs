@@ -23,6 +23,8 @@ public class gunStats : ScriptableObject
     public int reservesMax;
     public int magazine;
     public int reserves;
+    public int magazineStart;
+    public int reservesStart;
 
     [Header(" ---- Components ---- ")]
     public Sprite uiImage;
