@@ -25,6 +25,7 @@ public class ShieldPickUp : MonoBehaviour
             {
                 aud.PlayOneShot(usePotion, usePotionVol);
                 gameManager.instance.playerScript.updateShield(restoreShieldAmount);
+                gameManager.instance.UpdateShiieldUi();
                 hasEnteredTrigger = false;
                 bottle.enabled = false;
                 Destroy(gameObject, 3);
