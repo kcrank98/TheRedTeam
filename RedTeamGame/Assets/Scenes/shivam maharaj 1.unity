@@ -334,7 +334,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6e718a9785b7eb43bc3d00bf266fdce, type: 3}
---- !u!1001 &459305084
+--- !u!1001 &356442921
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -342,71 +342,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2462768423625308559, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
-      propertyPath: HP
-      value: 215
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850552, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 8005473651937640503, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_Name
-      value: Knight Boss Variant Variant
+      value: Slimey gold sprint Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 9068493793626177881, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.66
+      value: -2.97
       objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 9068493793626177881, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.07
+      value: -5.42
       objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 9068493793626177881, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -36.91964
+      value: -47.25
       objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 9068493793626177881, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.18480024
       objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 9068493793626177881, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.18480024
       objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 9068493793626177881, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.68253124
       objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 9068493793626177881, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.68253124
       objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 9068493793626177881, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 9068493793626177881, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3341153992353850555, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+    - target: {fileID: 9068493793626177881, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5062953513968933302, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
-      propertyPath: damageAmount
-      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8ef5e5abba0d17f42aa404ed78cf6bf0, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 99e790593ad19fe4ba8484c3aafdaa86, type: 3}
 --- !u!1 &1346068877
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,4 +745,4 @@ SceneRoots:
   - {fileID: 248706094}
   - {fileID: 2027576313}
   - {fileID: 1924735309}
-  - {fileID: 459305084}
+  - {fileID: 356442921}
