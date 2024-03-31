@@ -23,6 +23,8 @@ public class gunStats : ScriptableObject
     public int reservesMax;
     public int magazine;
     public int reserves;
+    public int magazineStart;
+    public int reservesStart;
 
     [Header(" ---- Components ---- ")]
     public Sprite uiImage;
@@ -30,8 +32,8 @@ public class gunStats : ScriptableObject
     //public Animator gunAnimator;
     //public RuntimeAnimatorController runtimeAnimatorController;
     public Sprite sprite;
-    public ParticleSystem hitEffectPS;
-    [SerializeField] GameObject hitEffectIMG;
+    //public ParticleSystem hitEffectPS;
+    //[SerializeField] GameObject hitEffectIMG;
     public GameObject muzzleFlashGO;
 
 

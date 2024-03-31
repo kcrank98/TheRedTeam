@@ -85,11 +85,11 @@ public class LootBag : MonoBehaviour
 
         if (notChest == 0)
         {
-            droppedLoot = getLoot();
+            droppedLootList = getLootList();
         }
         else
         {
-            droppedLootList = getLootList();
+            droppedLoot = getLoot();
         }
 
         if(droppedLoot != null)

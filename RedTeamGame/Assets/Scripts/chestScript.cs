@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ChestScript : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class ChestScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 aud.PlayOneShot(openSound);
-                GetComponent<LootBag>().instantiateLoot(transform.position, 1);
+                Vector3 lootSpawnMod = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+                GetComponent<LootBag>().instantiateLoot(lootSpawnMod);
                 hasEnteredTrigger = false;
                 gameManager.instance.togglePopUpTxt();
                 Destroy(gameObject, 1);

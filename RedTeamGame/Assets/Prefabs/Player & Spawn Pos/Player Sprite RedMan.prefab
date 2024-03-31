@@ -464,6 +464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40af11ef153104e42a4d78aed3867d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isReloading: 0
   dmg: 
   controller: {fileID: 1320439118626046671}
   mainCamera: {fileID: 3480991790625052902}
@@ -485,7 +486,7 @@ MonoBehaviour:
   audioPitch: 0
   origPitch: 0
   randomPitch: 0
-  HP: 30
+  HP: 50
   HPOrig: 0
   HPPerc: 0.5
   lerpHeight: 0.8
@@ -527,7 +528,6 @@ MonoBehaviour:
   gunparentObject: {fileID: 1136109567677685443}
   selectedGunGameObject: 0
   hasInfiniteAmmo: 0
-  isReloading: 0
   reloadSound: {fileID: 0}
   clickSound: {fileID: 0}
   shootSound: {fileID: 0}

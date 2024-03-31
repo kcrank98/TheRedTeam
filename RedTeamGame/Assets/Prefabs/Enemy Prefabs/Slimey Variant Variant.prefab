@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slimey Variant Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1536693449253126513, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3391028502098690038, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
       propertyPath: m_Size.x
       value: 2
@@ -67,6 +71,10 @@ PrefabInstance:
     - target: {fileID: 4254255086442791251, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
       propertyPath: HP
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254255086442791251, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
+      propertyPath: Melee
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4254255086442791251, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
       propertyPath: viewCone
@@ -104,6 +112,10 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4362713846069881429, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6935589316924295548, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
       propertyPath: pushPower
       value: 1
@@ -111,5 +123,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1536693449253126513, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1258133284319542849}
   m_SourcePrefab: {fileID: 100100000, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
+--- !u!1 &7486436274775660393 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1536693449253126513, guid: a752d41eddfc60543b31ec3a7b9580f8, type: 3}
+  m_PrefabInstance: {fileID: 8265869673304495640}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1258133284319542849
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486436274775660393}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

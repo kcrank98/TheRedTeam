@@ -22,6 +22,8 @@ public class cameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         isWalking = false;
         sensitivity = dataManager.instance.GetOption("sensitivity");
+        if (sensitivity == 0)
+            sensitivity = 100;
     }
 
     // Update is called once per frame

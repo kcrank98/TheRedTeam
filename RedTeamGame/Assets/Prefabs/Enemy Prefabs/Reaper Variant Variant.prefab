@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Reaper Variant Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6814574051554767410, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 7643179446674431824, guid: a1f95687460889a43b89b6b30b4e7b01, type: 3}
       propertyPath: viewCone
       value: 110
