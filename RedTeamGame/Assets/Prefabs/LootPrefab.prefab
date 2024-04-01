@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1475752550445694500}
   - component: {fileID: 5426961599532890749}
   - component: {fileID: 5020579798255972253}
-  - component: {fileID: 1443286022337423101}
+  - component: {fileID: 8821113537492755281}
   m_Layer: 0
   m_Name: LootPrefab
   m_TagString: Untagged
@@ -306,7 +306,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &1443286022337423101
+--- !u!95 &8821113537492755281
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -316,7 +316,7 @@ Animator:
   m_GameObject: {fileID: 2209505772788294742}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cbefa72196d4ece43b4723448203c7d6, type: 2}
+  m_Controller: {fileID: 9100000, guid: ad329545b5270704c84fba1e27c650a1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
