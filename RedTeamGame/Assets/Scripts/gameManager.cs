@@ -76,7 +76,9 @@ public class gameManager : MonoBehaviour
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");//get the player spawn
         scoreList = new List<TMP_Text>();
         loadScores();
-        backgroundMusicVol = dataManager.instance.GetOption("volume");
+        int vol = dataManager.instance.GetOption("volume");
+        music.volume = vol * (float).01;
+        backgroundMusicVol = music.volume;
     }
 
     // Update is called once per frame
@@ -105,6 +107,8 @@ public class gameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;//unlick the cursor
             shieldUI.gameObject.SetActive(false);//tirn off the shield
             toggleTimer();//toggle the timer
+            music.pitch = .5f;
+            music.volume = backgroundMusicVol / 3;
     }
     public void stateUnPaused()//sets the game state into a running state and removes mouse
     {
@@ -116,6 +120,8 @@ public class gameManager : MonoBehaviour
         activeMenu = null;// there is no menu open anymore
         shieldUI.gameObject.SetActive(true);
         toggleTimer();//toggle the timer
+        music.pitch = 1;
+        music.volume = backgroundMusicVol;
     }
     public void updateGameGoal()//will activly alter the total score until win or loss (same code as class for now)
     {
